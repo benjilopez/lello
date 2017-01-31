@@ -4,9 +4,28 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>lello</groupId>
+    <groupId>ec.blopez</groupId>
     <artifactId>lello</artifactId>
+    <packing>jar</packing>
+    <url>https://github.com/benjilopez/lello</url>
     <version>1.0-SNAPSHOT</version>
+
+    <organization>
+        <name>Beuth Hochschule fuer Technik Berlin</name>
+        <url>https://www.beuth-hochschule.de</url>
+    </organization>
+    <developers>
+        <developer>
+            <name>Benjamin Lopez</name>
+            <email>s61250@beuth-hochschule.de</email>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>LGPL 3.0</name>
+            <url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+        </license>
+    </licenses>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -59,6 +78,7 @@
 
 
     <build>
+        <finalName>Lello</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

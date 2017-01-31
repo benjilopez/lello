@@ -1,9 +1,11 @@
 package ec.blopez.lello;
 
 import ec.blopez.lello.domain.Competence;
-import ec.blopez.lello.services.CompetencesService;
+import ec.blopez.lello.services.CompetenceService;
 import ec.blopez.lello.utils.ResponseKeys;
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -25,7 +27,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class Lello {
 
     @Autowired
-    CompetencesService competencesService;
+    CompetenceService competencesService;
+
+    private final static Logger LOG = LoggerFactory.getLogger(Lello.class);
 
     @RequestMapping(value = "/competences", method = RequestMethod.GET)
     public ResponseEntity<JSONObject> getCompetences(final RequestEntity<JSONObject> request){

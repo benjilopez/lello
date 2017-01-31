@@ -39,7 +39,6 @@ public class XmlParserServiceImpl implements XmlParserService {
     @Autowired
     public XmlParserServiceImpl(@Value("${esco.files.skills}") final String escoSkillsPath){
         this.escoSkillsPath = escoSkillsPath;
-        load();
     }
 
     @Override
@@ -82,20 +81,23 @@ public class XmlParserServiceImpl implements XmlParserService {
 
 
         final NodeList preferredTermNode = el.getElementsByTagName(XMLKeys.PREFERRED_TERM);
-        final Element preferredTermElement = (Element) preferredTermNode.item(0);
-        final NodeList lexicalValuesNode = preferredTermElement.getElementsByTagName(XMLKeys.LEXICAL_VALUE);
-        skill.setPreferredTerm(getLexicalValues(lexicalValuesNode));
+        if((preferredTermNode != null) && (preferredTermNode.getLength() > 0)) {
+            final Element preferredTermElement = (Element) preferredTermNode.item(0);
+            skill.setPreferredTerm(getLexicalValues(preferredTermElement.getElementsByTagName(XMLKeys.LEXICAL_VALUE)));
+        }
 
         final NodeList simpleNonPreferrredTermNode = el.getElementsByTagName(XMLKeys.SIMPLE_NON_PREFERRED_TERM);
-        final Element simpleNonPreferrredTermElement = (Element) simpleNonPreferrredTermNode.item(0);
-        final NodeList lexicalValuesNodeNonPreferred = simpleNonPreferrredTermElement.getElementsByTagName(XMLKeys.LEXICAL_VALUE);
-        skill.setSimpleNonPreferredTerm(getLexicalValues(lexicalValuesNodeNonPreferred));
+        if((simpleNonPreferrredTermNode != null) && (simpleNonPreferrredTermNode.getLength() > 0)) {
+            final Element simpleNonPreferrredTermElement = (Element) simpleNonPreferrredTermNode.item(0);
+            skill.setSimpleNonPreferredTerm(getLexicalValues(simpleNonPreferrredTermElement.getElementsByTagName(XMLKeys.LEXICAL_VALUE)));
+        }
 
         return skill;
     }
 
     private List<LexicalValue> getLexicalValues(final NodeList node){
         final List<LexicalValue> lexicalValues = Lists.newArrayList();
+        if(node == null) return lexicalValues;
         for(int i = 0; i < node.getLength(); i ++){
             final Element lexicalValueElement = (Element) node.item(i);
             final LexicalValue lexicalValue = new LexicalValue();
@@ -107,6 +109,7 @@ public class XmlParserServiceImpl implements XmlParserService {
     }
 
     private String getFirstValue(final Element element, final String xmlKey){
-        return element.getElementsByTagName(xmlKey).item(0).getTextContent();
+        final NodeList node = element.getElementsByTagName(xmlKey);
+        return ((node != null) && (node.getLength() > 0))? node.item(0).getTextContent() : null;
     }
 }

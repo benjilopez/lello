@@ -37,14 +37,12 @@ public class Lello {
 
     @RequestMapping(value = "/competences/{id}", method = RequestMethod.GET)
     public ResponseEntity<JSONObject> getCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
-        final JSONObject result = new JSONObject();
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return return404IfNull(competencesService.get(id), new JSONObject());
     }
 
     @RequestMapping(value = "/competences/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<JSONObject> deleteCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
-        final JSONObject result = new JSONObject();
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return return404IfNull(competencesService.delete(id), new JSONObject());
     }
 
     @RequestMapping(value = "/competences", method = RequestMethod.PUT)
@@ -55,13 +53,22 @@ public class Lello {
 
     @RequestMapping(value = "/competences/{id}", method = RequestMethod.PUT)
     public ResponseEntity<JSONObject> updateCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
-        final JSONObject result = new JSONObject();
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        final Competence competence = new Competence();
+        return return404IfNull(competencesService.update(id, competence), new JSONObject());
     }
 
     @RequestMapping(value = "/competences/search/{query}", method = RequestMethod.PUT)
     public ResponseEntity<JSONObject> searchCompetences(@PathVariable final String query, final RequestEntity<JSONObject> request){
         final JSONObject result = new JSONObject();
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    private ResponseEntity<JSONObject> return404IfNull(final Competence competence, final JSONObject result){
+        if(competence != null){
+            result.put(ResponseKeys.COMPETENCE, competence);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        }
+        result.put(ResponseKeys.MESSAGE, "Unknown ID");
+        return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
     }
 }

@@ -48,6 +48,9 @@ public class Lello {
     @RequestMapping(value = "/competences", method = RequestMethod.PUT)
     public ResponseEntity<JSONObject> createCompetence(final RequestEntity<JSONObject> request){
         final JSONObject result = new JSONObject();
+        final Competence competence = new Competence();
+        final Competence newCompetence = competencesService.create(competence);
+        result.put(ResponseKeys.COMPETENCE, newCompetence);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
@@ -60,6 +63,8 @@ public class Lello {
     @RequestMapping(value = "/competences/search/{query}", method = RequestMethod.PUT)
     public ResponseEntity<JSONObject> searchCompetences(@PathVariable final String query, final RequestEntity<JSONObject> request){
         final JSONObject result = new JSONObject();
+        final List<Competence> competences = competencesService.search(query);
+        result.put(ResponseKeys.COMPETENCES, competences);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

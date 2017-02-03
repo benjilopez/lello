@@ -1,5 +1,7 @@
 package ec.blopez.lello.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
@@ -7,11 +9,22 @@ import java.util.List;
  */
 public class Competence {
 
+    @JsonProperty("uri")
     private String uri;
+
+    @JsonProperty("types")
     private List<String> types;
+
+    @JsonProperty("identifier")
     private String identifier;
+
+    @JsonProperty("status")
     private String status;
+
+    @JsonProperty("topConcept")
     private boolean topConcept;
+
+    @JsonProperty("preferredTerm")
     private List<LexicalValue> preferredTerm;
 
     public String getUri() {

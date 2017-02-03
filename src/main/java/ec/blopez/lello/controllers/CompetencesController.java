@@ -1,6 +1,7 @@
-package ec.blopez.lello;
+package ec.blopez.lello.controllers;
 
 import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.domain.Skill;
 import ec.blopez.lello.services.CompetenceService;
 import ec.blopez.lello.utils.ResponseKeys;
 import org.json.simple.JSONObject;
@@ -23,15 +24,15 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * Created by Benjamin Lopez on 12/01/2017.
  */
 @RestController
-@RequestMapping(value = "/api/v1.0", produces = APPLICATION_JSON_VALUE)
-public class Lello {
+@RequestMapping(value = "/api/v1.0/competences", produces = APPLICATION_JSON_VALUE)
+public class CompetencesController {
 
     @Autowired
     CompetenceService competencesService;
 
-    private final static Logger LOG = LoggerFactory.getLogger(Lello.class);
+    private final static Logger LOG = LoggerFactory.getLogger(CompetencesController.class);
 
-    @RequestMapping(value = "/competences", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<JSONObject> getCompetences(final RequestEntity<JSONObject> request){
         final JSONObject result = new JSONObject();
         final List<Competence> competences = competencesService.get();
@@ -39,32 +40,30 @@ public class Lello {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/competences/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<JSONObject> getCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
         return return404IfNull(competencesService.get(id), new JSONObject());
     }
 
-    @RequestMapping(value = "/competences/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<JSONObject> deleteCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
         return return404IfNull(competencesService.delete(id), new JSONObject());
     }
 
-    @RequestMapping(value = "/competences", method = RequestMethod.PUT)
-    public ResponseEntity<JSONObject> createCompetence(final RequestEntity<JSONObject> request){
+    @RequestMapping(value = "", method = RequestMethod.PUT)
+    public ResponseEntity<JSONObject> createCompetence(final RequestEntity<Skill> request){
         final JSONObject result = new JSONObject();
-        final Competence competence = new Competence();
-        final Competence newCompetence = competencesService.create(competence);
+        final Competence newCompetence = competencesService.create(request.getBody());
         result.put(ResponseKeys.COMPETENCE, newCompetence);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/competences/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<JSONObject> updateCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
-        final Competence competence = new Competence();
-        return return404IfNull(competencesService.update(id, competence), new JSONObject());
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<JSONObject> updateCompetence(@PathVariable final String id, final RequestEntity<Skill> request){
+        return return404IfNull(competencesService.update(id, request.getBody()), new JSONObject());
     }
 
-    @RequestMapping(value = "/competences/search/{query}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/search/{query}", method = RequestMethod.PUT)
     public ResponseEntity<JSONObject> searchCompetences(@PathVariable final String query, final RequestEntity<JSONObject> request){
         final JSONObject result = new JSONObject();
         final List<Competence> competences = competencesService.search(query);
@@ -77,7 +76,7 @@ public class Lello {
             result.put(ResponseKeys.COMPETENCE, competence);
             return new ResponseEntity<>(result, HttpStatus.OK);
         }
-        result.put(ResponseKeys.MESSAGE, "Unknown ID");
+        result.put(ResponseKeys.MESSAGE, "Invalid action");
         return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
     }
 }

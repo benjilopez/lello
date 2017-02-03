@@ -1,5 +1,7 @@
 package ec.blopez.lello.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
@@ -7,13 +9,14 @@ import java.util.List;
  */
 public class Skill extends Competence {
 
+    @JsonProperty("simpleNonPreferredTerm")
     private List<LexicalValue> simpleNonPreferredTerm;
 
     public List<LexicalValue> getSimpleNonPreferredTerm() {
         return simpleNonPreferredTerm;
     }
 
-    public void setSimpleNonPreferredTerm(List<LexicalValue> simpleNonPreferredTerm) {
+    public void setSimpleNonPreferredTerm(final List<LexicalValue> simpleNonPreferredTerm) {
         this.simpleNonPreferredTerm = simpleNonPreferredTerm;
     }
 

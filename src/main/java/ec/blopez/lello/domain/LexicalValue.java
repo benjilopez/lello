@@ -1,11 +1,16 @@
 package ec.blopez.lello.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by Benjamin Lopez on 31/01/2017.
  */
 public class LexicalValue {
 
+    @JsonProperty("lang")
     private String lang;
+
+    @JsonProperty("value")
     private String value;
 
     public String getLang() {

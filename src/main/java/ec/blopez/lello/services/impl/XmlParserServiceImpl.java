@@ -52,7 +52,8 @@ public class XmlParserServiceImpl implements XmlParserService {
             LOG.info("Parsing and normalizing XML file: " + escoSkillsPath);
             final Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
-            LOG.info("Parsing and normalization finished");
+            LOG.info("Parsing and normalization of file finished.");
+            LOG.info("Parsing each entry.");
             final NodeList exportNode = doc.getElementsByTagName(XMLKeys.EXPORT);
             final NodeList thesaurusNode = doc.getElementsByTagName(XMLKeys.THESAURUS);
             final Element thesaurusElement = (Element) thesaurusNode.item(0);

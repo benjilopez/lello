@@ -2,6 +2,7 @@ package ec.blopez.lello.services.impl;
 
 import com.google.common.collect.Lists;
 import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.exceptions.DatabaseActionException;
 import ec.blopez.lello.services.CompetenceDatabaseService;
 import ec.blopez.lello.services.CompetenceService;
 import org.slf4j.Logger;
@@ -39,17 +40,35 @@ public class CompetenceServiceImpl implements CompetenceService {
 
     @Override
     public Competence update(final String id, final Competence competence) {
-        return competence;
+        if(competence == null) return null;
+        competence.setIdentifier(id);
+        try {
+            return competenceDatabaseService.update(competence);
+        } catch (final DatabaseActionException e) {
+            LOG.error("Error trying to update competence in the database.", e);
+        }
+        return null;
     }
 
     @Override
     public Competence delete(final String id) {
+        try {
+            return competenceDatabaseService.delete(null);
+        } catch (DatabaseActionException e) {
+            LOG.error("Error trying to delete competence from the database", e);
+        }
         return null;
     }
 
     @Override
     public Competence create(final Competence competence) {
-        return competence;
+        try {
+            if(competence == null) return null;
+            return competenceDatabaseService.create(competence);
+        } catch (DatabaseActionException e) {
+            LOG.error("Error trying to create new competence in the database.", e);
+        }
+        return null;
     }
 
     @Override

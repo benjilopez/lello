@@ -6,7 +6,7 @@
 
     <groupId>ec.blopez</groupId>
     <artifactId>lello</artifactId>
-    <packing>jar</packing>
+    <packaging>jar</packaging>
     <url>https://github.com/benjilopez/lello</url>
     <version>1.0-SNAPSHOT</version>
 

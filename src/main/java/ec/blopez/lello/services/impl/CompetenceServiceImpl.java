@@ -29,14 +29,12 @@ public class CompetenceServiceImpl implements CompetenceService {
 
     @Override
     public List<Competence> get(final List<String> ids) {
-        final List<Competence> result = Lists.newArrayList();
-        return result;
+        return competenceDatabaseService.get(ids);
     }
 
     @Override
     public List<Competence> get() {
-        final List<Competence> result = Lists.newArrayList();
-        return result;
+        return competenceDatabaseService.get();
     }
 
     @Override

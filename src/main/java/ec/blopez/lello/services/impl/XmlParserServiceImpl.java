@@ -39,7 +39,7 @@ public class XmlParserServiceImpl implements XmlParserService {
     @Autowired
     public XmlParserServiceImpl(@Value("${esco.files.skills.production}") final String escoSkillsPathProduction,
                                 @Value("${esco.files.skills.development}") final String escoSkillsPathDevelopment,
-                                @Value("environment") final String environment){
+                                @Value("${lello.environment}") final String environment){
         this.escoSkillsPath = "PRODUCTION".equals(environment)? escoSkillsPathProduction : escoSkillsPathDevelopment;
     }
 

@@ -1,6 +1,6 @@
 server.port: 9090
 
-environment: PRODUCTION
+lello.environment: PRODUCTION
 
 logging:
   file: ./lello.log

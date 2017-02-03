@@ -18,4 +18,6 @@ spring:
 
 esco:
   files:
-    skills: ./src/main/resources/esco_skills.xml
+    skills:
+      production: /mnt/lello/src/main/resources/esco_skills.xml
+      development: ./src/main/resources/esco_skills.xml

@@ -24,6 +24,8 @@ A short description of the motivation behind the creation and maintenance of the
 
 ## Installation
 
+Requirement: Java 8, Maven 3.3, MySQL Database
+
 Download and install neo4J database from https://neo4j.com/download/
 
 Compile and run the code

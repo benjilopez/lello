@@ -37,8 +37,10 @@ public class XmlParserServiceImpl implements XmlParserService {
     private final static Logger LOG = LoggerFactory.getLogger(XmlParserServiceImpl.class);
 
     @Autowired
-    public XmlParserServiceImpl(@Value("${esco.files.skills}") final String escoSkillsPath){
-        this.escoSkillsPath = escoSkillsPath;
+    public XmlParserServiceImpl(@Value("${esco.files.skills.production}") final String escoSkillsPathProduction,
+                                @Value("${esco.files.skills.development}") final String escoSkillsPathDevelopment,
+                                @Value("environment") final String environment){
+        this.escoSkillsPath = "PRODUCTION".equals(environment)? escoSkillsPathProduction : escoSkillsPathDevelopment;
     }
 
     @Override

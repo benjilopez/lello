@@ -42,25 +42,22 @@ public class CompetencesController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<JSONObject> getCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
-        return return404IfNull(competencesService.get(id), new JSONObject());
+        return return404IfNull(competencesService.get(id));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<JSONObject> deleteCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
-        return return404IfNull(competencesService.delete(id), new JSONObject());
+        return return404IfNull(competencesService.delete(id));
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public ResponseEntity<JSONObject> createCompetence(final RequestEntity<Skill> request){
-        final JSONObject result = new JSONObject();
-        final Competence newCompetence = competencesService.create(request.getBody());
-        result.put(ResponseKeys.COMPETENCE, newCompetence);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return return404IfNull(competencesService.create(request.getBody()));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<JSONObject> updateCompetence(@PathVariable final String id, final RequestEntity<Skill> request){
-        return return404IfNull(competencesService.update(id, request.getBody()), new JSONObject());
+        return return404IfNull(competencesService.update(id, request.getBody()));
     }
 
     @RequestMapping(value = "/search/{query}", method = RequestMethod.PUT)
@@ -71,12 +68,13 @@ public class CompetencesController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    private ResponseEntity<JSONObject> return404IfNull(final Competence competence, final JSONObject result){
+    private ResponseEntity<JSONObject> return404IfNull(final Competence competence){
+        final JSONObject result = new JSONObject();
         if(competence != null){
             result.put(ResponseKeys.COMPETENCE, competence);
             return new ResponseEntity<>(result, HttpStatus.OK);
         }
-        result.put(ResponseKeys.MESSAGE, "Invalid action");
+        result.put(ResponseKeys.MESSAGE, "Invalid request");
         return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
     }
 }

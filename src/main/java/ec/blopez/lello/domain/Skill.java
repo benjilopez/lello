@@ -2,14 +2,21 @@ package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.List;
 
 /**
  * Created by benjilopez on 31/01/2017.
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Skill extends Competence {
 
     @JsonProperty("simpleNonPreferredTerm")
+    @XmlElementWrapper(name="SimpleNonPreferredTerm")
+    @XmlElement(name="lexicalValue")
     private List<LexicalValue> simpleNonPreferredTerm;
 
     public List<LexicalValue> getSimpleNonPreferredTerm() {

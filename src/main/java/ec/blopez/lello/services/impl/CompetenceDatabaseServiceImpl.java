@@ -80,7 +80,7 @@ public class CompetenceDatabaseServiceImpl implements CompetenceDatabaseService 
     }
 
     private Map<String, Competence> getMap(){
-        if (defaultValues == null) defaultValues = xmlParserService.load();
+        if (defaultValues == null) defaultValues = xmlParserService.load2();
         return defaultValues;
     }
 }

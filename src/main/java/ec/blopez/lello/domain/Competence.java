@@ -2,29 +2,41 @@ package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.List;
 
 /**
  * Created by Benjamin Lopez on 14/01/2017.
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Competence {
 
     @JsonProperty("uri")
+    @XmlElement(name="uri")
     private String uri;
 
     @JsonProperty("types")
+    @XmlElement(name="type")
     private List<String> types;
 
     @JsonProperty("identifier")
+    @XmlElement(name="identifier", namespace="http://purl.org/dc/elements/1.1/")
     private String identifier;
 
     @JsonProperty("status")
+    @XmlElement(name="status")
     private String status;
 
     @JsonProperty("topConcept")
+    @XmlElement(name="topConcept")
     private boolean topConcept;
 
     @JsonProperty("preferredTerm")
+    @XmlElementWrapper(name="PreferredTerm")
+    @XmlElement(name="lexicalValue")
     private List<LexicalValue> preferredTerm;
 
     public String getUri() {

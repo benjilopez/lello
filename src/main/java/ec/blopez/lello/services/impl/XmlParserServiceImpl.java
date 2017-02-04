@@ -2,9 +2,11 @@ package ec.blopez.lello.services.impl;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.sun.xml.internal.bind.marshaller.NamespacePrefixMapper;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.domain.LexicalValue;
 import ec.blopez.lello.domain.Skill;
+import ec.blopez.lello.parser.XMLParserMainClass;
 import ec.blopez.lello.services.XmlParserService;
 import ec.blopez.lello.utils.XMLAttributes;
 import ec.blopez.lello.utils.XMLKeys;
@@ -18,6 +20,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -41,6 +46,22 @@ public class XmlParserServiceImpl implements XmlParserService {
                                 @Value("${esco.files.skills.development}") final String escoSkillsPathDevelopment,
                                 @Value("${lello.environment}") final String environment){
         this.escoSkillsPath = "PRODUCTION".equals(environment)? escoSkillsPathProduction : escoSkillsPathDevelopment;
+    }
+
+    @Override
+    public Map<String, Competence> load2(){
+        final Map<String, Competence> result = Maps.newHashMap();
+        try {
+            final JAXBContext jc = JAXBContext.newInstance(XMLParserMainClass.class);
+            final Unmarshaller unmarshaller = jc.createUnmarshaller();
+            final XMLParserMainClass xmlFile = (XMLParserMainClass) unmarshaller.unmarshal(new File(escoSkillsPath));
+            for(Competence competence : xmlFile.getSkills()){
+                result.put(competence.getIdentifier(), competence);
+            }
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override

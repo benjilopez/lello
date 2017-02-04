@@ -40,12 +40,16 @@ public class Competence {
     @XmlElement(name="lexicalValue")
     private List<LexicalValue> preferredTerm;
 
+    @JsonProperty("parentsIdentifiers")
     private List<String> parentsIdentifiers;
 
+    @JsonProperty("childrenIdentifiers")
     private List<String> childrenIdentifiers;
 
+    @JsonProperty("parentsUris")
     private List<String> parentsUris;
 
+    @JsonProperty("childrenUris")
     private List<String> childrenUris;
 
     public String getUri() {

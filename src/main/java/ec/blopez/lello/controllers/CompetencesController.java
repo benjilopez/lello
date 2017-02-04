@@ -32,7 +32,7 @@ public class CompetencesController {
 
     private final static Logger LOG = LoggerFactory.getLogger(CompetencesController.class);
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<JSONObject> getCompetences(final RequestEntity<JSONObject> request){
         final JSONObject result = new JSONObject();
         final List<Competence> competences = competencesService.get();
@@ -40,39 +40,38 @@ public class CompetencesController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<Object> createCompetence(final RequestEntity<Skill> request){
+        return return404IfNull(competencesService.create(request.getBody()));
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<JSONObject> getCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
+    public ResponseEntity<Object> getCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
         return return404IfNull(competencesService.get(id));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<JSONObject> deleteCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
+    public ResponseEntity<Object> deleteCompetence(@PathVariable final String id, final RequestEntity<JSONObject> request){
         return return404IfNull(competencesService.delete(id));
     }
 
-    @RequestMapping(value = "", method = RequestMethod.PUT)
-    public ResponseEntity<JSONObject> createCompetence(final RequestEntity<Skill> request){
-        return return404IfNull(competencesService.create(request.getBody()));
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<JSONObject> updateCompetence(@PathVariable final String id, final RequestEntity<Skill> request){
+    public ResponseEntity<Object> updateCompetence(@PathVariable final String id, final RequestEntity<Skill> request){
         return return404IfNull(competencesService.update(id, request.getBody()));
     }
 
     @RequestMapping(value = "/search/{query}", method = RequestMethod.PUT)
-    public ResponseEntity<JSONObject> searchCompetences(@PathVariable final String query, final RequestEntity<JSONObject> request){
+    public ResponseEntity<Object> searchCompetences(@PathVariable final String query, final RequestEntity<JSONObject> request){
         final JSONObject result = new JSONObject();
         final List<Competence> competences = competencesService.search(query);
         result.put(ResponseKeys.COMPETENCES, competences);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    private ResponseEntity<JSONObject> return404IfNull(final Competence competence){
+    private ResponseEntity<Object> return404IfNull(final Competence competence){
         final JSONObject result = new JSONObject();
         if(competence != null){
-            result.put(ResponseKeys.COMPETENCE, competence);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(competence, HttpStatus.OK);
         }
         result.put(ResponseKeys.MESSAGE, "Invalid request");
         return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);

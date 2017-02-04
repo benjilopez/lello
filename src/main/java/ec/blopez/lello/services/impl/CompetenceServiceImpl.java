@@ -53,7 +53,7 @@ public class CompetenceServiceImpl implements CompetenceService {
     @Override
     public Competence delete(final String id) {
         try {
-            return competenceDatabaseService.delete(null);
+            return competenceDatabaseService.delete(id);
         } catch (DatabaseActionException e) {
             LOG.error("Error trying to delete competence from the database", e);
         }

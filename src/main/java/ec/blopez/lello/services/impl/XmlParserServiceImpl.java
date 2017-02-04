@@ -1,12 +1,9 @@
 package ec.blopez.lello.services.impl;
 
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.sun.xml.internal.bind.marshaller.NamespacePrefixMapper;
-import ec.blopez.lello.domain.Competence;
-import ec.blopez.lello.domain.LexicalValue;
-import ec.blopez.lello.domain.Skill;
-import ec.blopez.lello.parser.XMLParserMainClass;
+import ec.blopez.lello.domain.*;
 import ec.blopez.lello.services.XmlParserService;
 import ec.blopez.lello.utils.XMLAttributes;
 import ec.blopez.lello.utils.XMLKeys;
@@ -51,12 +48,27 @@ public class XmlParserServiceImpl implements XmlParserService {
     @Override
     public Map<String, Competence> load2(){
         final Map<String, Competence> result = Maps.newHashMap();
+        final Map<String, Competence> mapByUri = Maps.newHashMap();
         try {
             final JAXBContext jc = JAXBContext.newInstance(XMLParserMainClass.class);
             final Unmarshaller unmarshaller = jc.createUnmarshaller();
             final XMLParserMainClass xmlFile = (XMLParserMainClass) unmarshaller.unmarshal(new File(escoSkillsPath));
             for(Competence competence : xmlFile.getSkills()){
                 result.put(competence.getIdentifier(), competence);
+                mapByUri.put(competence.getUri(), competence);
+            }
+            for(Relationship relationship : xmlFile.getRelationships()){
+                final Competence child = mapByUri.get(relationship.getChildUri());
+                final Competence parent = mapByUri.get(relationship.getParentUri());
+                if((child == null) || (parent == null)) continue;
+                final String parentIdentifier = parent.getIdentifier();
+                final String parentUri = parent.getUri();
+                final String childIdentifier = child.getIdentifier();
+                final String childUri = child.getUri();
+                if(childIdentifier != null)     parent.addChildIdentifier(childIdentifier);
+                if(childUri != null)            parent.addChildUri(childUri);
+                if(parentIdentifier != null)    child.addParentIdentifier(parentIdentifier);
+                if(parentUri != null)           child.addParentUri(parentUri);
             }
         } catch (JAXBException e) {
             e.printStackTrace();
@@ -107,7 +119,7 @@ public class XmlParserServiceImpl implements XmlParserService {
         final NodeList preferredTermNode = el.getElementsByTagName(XMLKeys.PREFERRED_TERM);
         if((preferredTermNode != null) && (preferredTermNode.getLength() > 0)) {
             final Element preferredTermElement = (Element) preferredTermNode.item(0);
-            skill.setPreferredTerm(getLexicalValues(preferredTermElement.getElementsByTagName(XMLKeys.LEXICAL_VALUE)));
+            //skill.setPreferredTerm(getLexicalValues(preferredTermElement.getElementsByTagName(XMLKeys.LEXICAL_VALUE)));
         }
 
         final NodeList simpleNonPreferrredTermNode = el.getElementsByTagName(XMLKeys.SIMPLE_NON_PREFERRED_TERM);

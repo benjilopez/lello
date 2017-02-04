@@ -1,6 +1,7 @@
 package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.Lists;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -38,6 +39,14 @@ public class Competence {
     @XmlElementWrapper(name="PreferredTerm")
     @XmlElement(name="lexicalValue")
     private List<LexicalValue> preferredTerm;
+
+    private List<String> parentsIdentifiers;
+
+    private List<String> childrenIdentifiers;
+
+    private List<String> parentsUris;
+
+    private List<String> childrenUris;
 
     public String getUri() {
         return uri;
@@ -85,6 +94,58 @@ public class Competence {
 
     public void setPreferredTerm(List<LexicalValue> preferredTerm) {
         this.preferredTerm = preferredTerm;
+    }
+
+    public List<String> getParentsIdentifiers() {
+        return parentsIdentifiers;
+    }
+
+    public void setParentsIdentifiers(List<String> parentsIdentifiers) {
+        this.parentsIdentifiers = parentsIdentifiers;
+    }
+
+    public void addParentIdentifier(final String parentIdentifier){
+        if(parentsIdentifiers == null) parentsIdentifiers = Lists.newArrayList();
+        parentsIdentifiers.add(parentIdentifier);
+    }
+
+    public List<String> getChildrenIdentifiers() {
+        return childrenIdentifiers;
+    }
+
+    public void setChildrenIdentifiers(List<String> childrenIdentifiers) {
+        this.childrenIdentifiers = childrenIdentifiers;
+    }
+
+    public void addChildIdentifier(final String childIdentifier){
+        if(childrenIdentifiers == null) childrenIdentifiers = Lists.newArrayList();
+        childrenIdentifiers.add(childIdentifier);
+    }
+
+    public List<String> getParentsUris() {
+        return parentsUris;
+    }
+
+    public void setParentsUris(List<String> parentsUris) {
+        this.parentsUris = parentsUris;
+    }
+
+    public void addParentUri(final String parentUri){
+        if(parentsUris == null) parentsUris = Lists.newArrayList();
+        parentsUris.add(parentUri);
+    }
+
+    public List<String> getChildrenUris() {
+        return childrenUris;
+    }
+
+    public void setChildrenUris(List<String> childrenUris) {
+        this.childrenUris = childrenUris;
+    }
+
+    public void addChildUri(final String childUri){
+        if(childrenUris == null) childrenUris = Lists.newArrayList();
+        childrenUris.add(childUri);
     }
 
     @Override

@@ -1,7 +1,6 @@
-package ec.blopez.lello.parser;
+package ec.blopez.lello.domain;
 
-import ec.blopez.lello.domain.Competence;
-import ec.blopez.lello.domain.Skill;
+import com.google.common.collect.Lists;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -13,19 +12,15 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class XMLParserMainClass {
 
-    @XmlElementWrapper(name="Thesaurus")
-    @XmlElement(name="ThesaurusConcept")
-    private List<Skill> skills;
+    @XmlElement(name="Thesaurus")
+    private Thesaurus thesaurus;
 
     @XmlElement(name="Export")
     private Export export;
 
     public List<Skill> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(List<Skill> skills) {
-        this.skills = skills;
+        if(thesaurus == null) return Lists.newArrayList();
+        return thesaurus.getSkills();
     }
 
     public Export getExport() {
@@ -35,4 +30,10 @@ public class XMLParserMainClass {
     public void setExport(Export export) {
         this.export = export;
     }
+
+    public List<Relationship> getRelationships() {
+        if(thesaurus == null) return Lists.newArrayList();
+        return thesaurus.getRelationships();
+    }
+
 }

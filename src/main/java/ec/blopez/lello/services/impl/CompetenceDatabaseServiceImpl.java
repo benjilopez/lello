@@ -1,6 +1,7 @@
 package ec.blopez.lello.services.impl;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.enums.DataBaseAction;
 import ec.blopez.lello.exceptions.DatabaseActionException;
@@ -19,6 +20,7 @@ import java.util.Map;
 public class CompetenceDatabaseServiceImpl implements CompetenceDatabaseService {
 
     private Map<String, Competence> defaultValues;
+    private Map<String, Competence> mapByUri;
 
     @Autowired
     private XmlParserService xmlParserService;
@@ -80,7 +82,13 @@ public class CompetenceDatabaseServiceImpl implements CompetenceDatabaseService 
     }
 
     private Map<String, Competence> getMap(){
-        if (defaultValues == null) defaultValues = xmlParserService.load2();
+        if (mapByUri == null){
+            mapByUri = xmlParserService.load2();
+            defaultValues = Maps.newHashMap();
+            for(Competence competence : mapByUri.values()){
+                if(competence.getIdentifier() != null) defaultValues.put(competence.getIdentifier(), competence);
+            }
+        }
         return defaultValues;
     }
 }

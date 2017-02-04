@@ -47,14 +47,12 @@ public class XmlParserServiceImpl implements XmlParserService {
 
     @Override
     public Map<String, Competence> load2(){
-        final Map<String, Competence> result = Maps.newHashMap();
         final Map<String, Competence> mapByUri = Maps.newHashMap();
         try {
             final JAXBContext jc = JAXBContext.newInstance(XMLParserMainClass.class);
             final Unmarshaller unmarshaller = jc.createUnmarshaller();
             final XMLParserMainClass xmlFile = (XMLParserMainClass) unmarshaller.unmarshal(new File(escoSkillsPath));
             for(Competence competence : xmlFile.getSkills()){
-                result.put(competence.getIdentifier(), competence);
                 mapByUri.put(competence.getUri(), competence);
             }
             for(Relationship relationship : xmlFile.getRelationships()){
@@ -73,7 +71,7 @@ public class XmlParserServiceImpl implements XmlParserService {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-        return result;
+        return mapByUri;
     }
 
     @Override

@@ -2,9 +2,12 @@ package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import ec.blopez.lello.xml.domain.LexicalValue;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Benjamin Lopez on 14/01/2017.
@@ -27,7 +30,7 @@ public abstract class Competence {
     private boolean topConcept;
 
     @JsonProperty("preferredTerm")
-    private List<LexicalValue> preferredTerm;
+    private Map<String, String> preferredTerm;
 
     @JsonProperty("parentsIdentifiers")
     private List<String> parentsIdentifiers;
@@ -81,24 +84,23 @@ public abstract class Competence {
         this.topConcept = topConcept;
     }
 
-    public List<LexicalValue> getPreferredTerm() {
+    public Map<String, String> getPreferredTerm() {
         return preferredTerm;
     }
 
-    public void setPreferredTerm(final List<LexicalValue> preferredTerm) {
+    public void setPreferredTerm(final Map<String, String> preferredTerm) {
         this.preferredTerm = preferredTerm;
     }
 
     public void addPreferredTerm(final LexicalValue preferredTerm){
         if(preferredTerm == null) return;
-        if(this.preferredTerm == null) this.preferredTerm = Lists.newArrayList();
-        this.preferredTerm.add(preferredTerm);
+        if(this.preferredTerm == null) this.preferredTerm = Maps.newHashMap();
+        this.preferredTerm.computeIfAbsent(preferredTerm.getLang(), k -> preferredTerm.getValue());
     }
 
-    public void addPreferredTerm(final List<LexicalValue> preferredTerms){
-        if(preferredTerms == null)return;
-        if(this.preferredTerm == null) this.preferredTerm = Lists.newArrayList();
-        this.preferredTerm.addAll(preferredTerms);
+    public void addPreferredTerm(final Map<String, String> preferredTerms){
+        if(preferredTerms == null) return;
+        for(Map.Entry<String, String> entry : preferredTerms.entrySet()) this.preferredTerm.computeIfAbsent(entry.getKey(), k -> entry.getValue());
     }
 
     public List<String> getParentsIdentifiers() {
@@ -197,7 +199,7 @@ public abstract class Competence {
         private String identifier;
         private String status;
         private boolean topConcept;
-        private List<LexicalValue> preferredTerm;
+        private Map<String, String> preferredTerm;
 
         public T setUri(String uri) {
             this.uri = uri;
@@ -224,7 +226,7 @@ public abstract class Competence {
             return (T) this;
         }
 
-        public T setPreferredTerm(List<LexicalValue> preferredTerm) {
+        public T setPreferredTerm(Map<String, String> preferredTerm) {
             this.preferredTerm = preferredTerm;
             return (T) this;
         }

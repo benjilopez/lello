@@ -24,75 +24,109 @@ import java.util.Map;
 @Service
 public class XmlParserServiceImpl implements XmlParserService {
 
-    private final String escoSkillsPath;
+    private final String skillsPath;
+    private final String qualificationsPath;
+    private final String occupationsPath;
 
     private final static Logger LOG = LoggerFactory.getLogger(XmlParserServiceImpl.class);
 
     private final static  Map<String, Competence> MAP_BY_URI = Maps.newHashMap();
 
     @Autowired
-    public XmlParserServiceImpl(@Value("${esco.files.skills.production}") final String escoSkillsPathProduction,
-                                @Value("${esco.files.skills.development}") final String escoSkillsPathDevelopment,
+    public XmlParserServiceImpl(@Value("${esco.files.skills.production}") final String skillsProd,
+                                @Value("${esco.files.skills.development}") final String skillsDev,
+                                @Value("${esco.files.occupations.production}") final String occupationsProd,
+                                @Value("${esco.files.occupations.development}") final String occupationsDev,
+                                @Value("${esco.files.qualifications.production}") final String qualificationsProd,
+                                @Value("${esco.files.qualifications.development}") final String qualificationsDev,
                                 @Value("${lello.environment}") final String environment){
-        this.escoSkillsPath = "PRODUCTION".equals(environment)? escoSkillsPathProduction : escoSkillsPathDevelopment;
+        this.skillsPath = "PRODUCTION".equals(environment)? skillsProd : skillsDev;
+        this.qualificationsPath = "PRODUCTION".equals(environment)? qualificationsProd : qualificationsDev;
+        this.occupationsPath = "PRODUCTION".equals(environment)? occupationsProd : occupationsDev;
         load();
     }
 
     @Override
     public Map<String, Competence> load(){
-        final File mainFolder = new File(escoSkillsPath);
-        if(mainFolder.isDirectory() && mainFolder.exists()) {
+        parseFolder(new File(skillsPath));
+        parseFolder(new File(qualificationsPath));
+        parseFolder(new File(occupationsPath));
+        return MAP_BY_URI;
+    }
+
+    private void parseFolder(final File folder){
+        if(folder.isDirectory() && folder.exists()) {
             boolean isFirstFile = true;
-            for(File file : mainFolder.listFiles()) {
+            for(File file : folder.listFiles()) {
                 LOG.info("Parsing XML File: " + file.getAbsolutePath());
                 try {
                     final JAXBContext jc = JAXBContext.newInstance(XMLParserMainClass.class);
                     final Unmarshaller unmarshaller = jc.createUnmarshaller();
                     final XMLParserMainClass xmlFile = (XMLParserMainClass) unmarshaller.unmarshal(file);
-                    switch(XMLType.fromString(xmlFile.getTitle())){
-                        case SKILL:
-                            parseSkills(xmlFile.getThesaurusConcepts());
-                            break;
-                        default:
-                            continue;
+                    if(xmlFile.getThesauruses() == null){
+                        LOG.error("Missing Thesauruses: " + file.getAbsolutePath());
+                        continue;
                     }
-                    if(isFirstFile) {
-                        for (Relationship relationship : xmlFile.getRelationships()) {
-                            final Competence child = MAP_BY_URI.get(relationship.getChildUri());
-                            final Competence parent = MAP_BY_URI.get(relationship.getParentUri());
-                            if ((child == null) || (parent == null)) continue;
-                            final String parentIdentifier = parent.getIdentifier();
-                            final String parentUri = parent.getUri();
-                            final String childIdentifier = child.getIdentifier();
-                            final String childUri = child.getUri();
-                            if (childIdentifier != null) parent.addChildIdentifier(childIdentifier);
-                            if (childUri != null) parent.addChildUri(childUri);
-                            if (parentIdentifier != null) child.addParentIdentifier(parentIdentifier);
-                            if (parentUri != null) child.addParentUri(parentUri);
+                    for(Thesaurus thesaurus : xmlFile.getThesauruses()) {
+                        switch (XMLType.fromString(thesaurus.getTitle())) {
+                            case SKILL:
+                                parseSkills(thesaurus.getThesaurusConcepts());
+                                break;
+                            case QUALIFICATION:
+                                parseQualifications(thesaurus.getThesaurusConcepts());
+                            default:
+                                continue;
                         }
-                        isFirstFile = false;
+                        if (isFirstFile) {
+                            for (Relationship relationship : thesaurus.getRelationships()) {
+                                final Competence child = MAP_BY_URI.get(relationship.getChildUri());
+                                final Competence parent = MAP_BY_URI.get(relationship.getParentUri());
+                                if ((child == null) || (parent == null)) continue;
+                                final String parentIdentifier = parent.getIdentifier();
+                                final String parentUri = parent.getUri();
+                                final String childIdentifier = child.getIdentifier();
+                                final String childUri = child.getUri();
+                                if (childIdentifier != null) parent.addChildIdentifier(childIdentifier);
+                                if (childUri != null) parent.addChildUri(childUri);
+                                if (parentIdentifier != null) child.addParentIdentifier(parentIdentifier);
+                                if (parentUri != null) child.addParentUri(parentUri);
+                            }
+                            isFirstFile = false;
+                        }
                     }
-
                 } catch (JAXBException e) {
                     LOG.error("Error parsing file: " + file.getAbsolutePath(), e);
                 }
                 LOG.info("Parsing XML File Finished: " + file.getAbsolutePath());
             }
         }
-        return MAP_BY_URI;
     }
 
-    private void parseSkills(final List<ThesaurusConcept> thesaurusConcepts){
-        for (ThesaurusConcept concept : thesaurusConcepts) {
+    private void parseSkills(final List<ThesaurusConcept> concepts){
+        for (ThesaurusConcept concept : concepts) {
             final Skill skill = concept.toSkill();
             final Competence competenceInDB = MAP_BY_URI.get(concept.getUri());
             if(competenceInDB == null){
                 MAP_BY_URI.put(concept.getUri(), skill);
-            }
-            else {
+            } else {
                 competenceInDB.addPreferredTerm(skill.getPreferredTerm());
                 if(competenceInDB instanceof Skill) {
                     ((Skill) competenceInDB).addSimpleNonPreferredTerm(skill.getSimpleNonPreferredTerm());
+                }
+            }
+        }
+    }
+
+    private void parseQualifications(final List<ThesaurusConcept> concepts){
+        for(ThesaurusConcept concept : concepts){
+            final Qualification qualification = concept.toQualification();
+            final Competence competenceInDB = MAP_BY_URI.get(concept.getUri());
+            if(competenceInDB == null){
+                    MAP_BY_URI.put(concept.getUri(), qualification);
+            } else {
+                competenceInDB.addPreferredTerm(qualification.getPreferredTerm());
+                if(competenceInDB instanceof Qualification) {
+                    ((Qualification) competenceInDB).addDefinitions(qualification.getDefinition());
                 }
             }
         }

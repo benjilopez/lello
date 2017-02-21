@@ -8,6 +8,7 @@ public enum XMLType {
     SKILL("skills"),
     QUALIFICATION("qualifications"),
     OCCUPATION("occupations"),
+    AWARDING_BODIES("awarding bodies"),
     OTHER(null);
 
 

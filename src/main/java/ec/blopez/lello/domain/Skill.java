@@ -2,9 +2,12 @@ package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import ec.blopez.lello.xml.domain.LexicalValue;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by benjilopez on 31/01/2017.
@@ -12,26 +15,25 @@ import java.util.List;
 public class Skill extends Competence {
 
     @JsonProperty("simpleNonPreferredTerm")
-    private List<LexicalValue> simpleNonPreferredTerm;
+    private Map<String, String> simpleNonPreferredTerm;
 
-    public List<LexicalValue> getSimpleNonPreferredTerm() {
+    public Map<String, String> getSimpleNonPreferredTerm() {
         return simpleNonPreferredTerm;
     }
 
-    public void setSimpleNonPreferredTerm(final List<LexicalValue> simpleNonPreferredTerm) {
+    public void setSimpleNonPreferredTerm(final Map<String, String> simpleNonPreferredTerm) {
         this.simpleNonPreferredTerm = simpleNonPreferredTerm;
     }
 
     public void addSimpleNonPreferredTerm(final LexicalValue simpleNonPreferredTerm){
         if(simpleNonPreferredTerm == null) return;
-        if(this.simpleNonPreferredTerm == null) this.simpleNonPreferredTerm = Lists.newArrayList();
-        this.simpleNonPreferredTerm.add(simpleNonPreferredTerm);
+        if(this.simpleNonPreferredTerm == null) this.simpleNonPreferredTerm = Maps.newHashMap();
+        this.simpleNonPreferredTerm.computeIfAbsent(simpleNonPreferredTerm.getLang(), k -> simpleNonPreferredTerm.getValue());
     }
 
-    public void addSimpleNonPreferredTerm(final List<LexicalValue> simpleNonPreferredTerms){
+    public void addSimpleNonPreferredTerm(final Map<String, String> simpleNonPreferredTerms){
         if(simpleNonPreferredTerms == null) return;
-        if(this.simpleNonPreferredTerm == null) this.simpleNonPreferredTerm = Lists.newArrayList();
-        this.simpleNonPreferredTerm.addAll(simpleNonPreferredTerms);
+        for(Map.Entry<String, String> entry : simpleNonPreferredTerms.entrySet()) this.simpleNonPreferredTerm.computeIfAbsent(entry.getKey(), k -> entry.getValue());
     }
 
     @Override
@@ -60,9 +62,9 @@ public class Skill extends Competence {
     }
 
     public static class Builder extends Competence.Builder<Builder, Skill>{
-        private List<LexicalValue> simpleNonPreferredTerm;
+        private Map<String, String> simpleNonPreferredTerm;
 
-        public Builder setSimpleNonPreferredTerm(List<LexicalValue> simpleNonPreferredTerm) {
+        public Builder setSimpleNonPreferredTerm(Map<String, String> simpleNonPreferredTerm) {
             this.simpleNonPreferredTerm = simpleNonPreferredTerm;
             return this;
         }

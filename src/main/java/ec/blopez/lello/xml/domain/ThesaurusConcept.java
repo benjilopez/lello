@@ -1,13 +1,17 @@
 package ec.blopez.lello.xml.domain;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import ec.blopez.lello.domain.Qualification;
 import ec.blopez.lello.domain.Skill;
+import javassist.compiler.Lex;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Benjamin Lopez on 14/01/2017.
@@ -37,6 +41,12 @@ public class ThesaurusConcept {
     @XmlElementWrapper(name="SimpleNonPreferredTerm")
     @XmlElement(name="lexicalValue")
     private List<LexicalValue> simpleNonPreferredTerm;
+
+    @XmlElement(name="Definition")
+    private LexicalValue definition;
+
+    @XmlElement(name="hasAwardingBody")
+    private List<HasAwardingBody> hasAwardingBody;
 
     public String getUri() {
         return uri;
@@ -94,6 +104,14 @@ public class ThesaurusConcept {
         this.simpleNonPreferredTerm = simpleNonPreferredTerm;
     }
 
+    public LexicalValue getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(LexicalValue definition) {
+        this.definition = definition;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -132,19 +150,48 @@ public class ThesaurusConcept {
                 '}';
     }
 
+    private Map<String, String> map(final List<LexicalValue> lexicalValues){
+        final Map<String, String> result = Maps.newHashMap();
+        if(lexicalValues != null) for(LexicalValue value : lexicalValues) result.put(value.getLang(), value.getValue());
+        return result;
+    }
+
+    private Map<String, String> map(final LexicalValue lexicalValue){
+        final Map<String, String> result = Maps.newHashMap();
+        if(lexicalValue != null) result.put(lexicalValue.getLang(), lexicalValue.getValue());
+        return result;
+    }
+
+    private List<String> mapAwardingBodies(final List<HasAwardingBody> hasAwardingBodies){
+        final List<String> result = Lists.newArrayList();
+        if(hasAwardingBodies != null) for(HasAwardingBody value : hasAwardingBodies) result.add(value.getUri());
+        return result;
+    }
+
     public Skill toSkill(){
         final Skill.Builder builder = new Skill.Builder();
-        final List<ec.blopez.lello.domain.LexicalValue> simpleNonPreferredTerms = Lists.newArrayList();
-        final List<ec.blopez.lello.domain.LexicalValue> preferredTerms = Lists.newArrayList();
-        if(simpleNonPreferredTerm != null) for(LexicalValue value : simpleNonPreferredTerm) simpleNonPreferredTerms.add(value.toLexicalValue());
-        if(preferredTerm != null) for(LexicalValue value : preferredTerm) preferredTerms.add(value.toLexicalValue());
-        builder .setSimpleNonPreferredTerm(simpleNonPreferredTerms)
-                .setPreferredTerm(preferredTerms)
+        builder .setPreferredTerm(map(preferredTerm))
                 .setTopConcept(topConcept)
                 .setStatus(status)
                 .setIdentifier(identifier)
                 .setTypes(types)
-                .setUri(uri);
+                .setUri(uri)
+
+                .setSimpleNonPreferredTerm(map(simpleNonPreferredTerm));
+        return builder.build();
+    }
+
+    public Qualification toQualification(){
+        final Qualification.Builder builder = new Qualification.Builder();
+        builder .setPreferredTerm(map(preferredTerm))
+                .setTopConcept(topConcept)
+                .setStatus(status)
+                .setIdentifier(identifier)
+                .setTypes(types)
+                .setUri(uri)
+
+                .setDefinition(map(definition))
+                .setHasAwardingBody(mapAwardingBodies(hasAwardingBody));
         return builder.build();
     }
 }

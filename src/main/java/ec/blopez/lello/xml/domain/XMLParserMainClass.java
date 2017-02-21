@@ -14,14 +14,17 @@ import java.util.List;
 public class XMLParserMainClass {
 
     @XmlElement(name="Thesaurus")
-    private Thesaurus thesaurus;
+    private List<Thesaurus> thesauruses;
 
     @XmlElement(name="Export")
     private Export export;
 
-    public List<ThesaurusConcept> getThesaurusConcepts() {
-        if(thesaurus == null) return Lists.newArrayList();
-        return thesaurus.getThesaurusConcepts();
+    public List<Thesaurus> getThesauruses() {
+        return thesauruses;
+    }
+
+    public void setThesauruses(List<Thesaurus> thesauruses) {
+        this.thesauruses = thesauruses;
     }
 
     public Export getExport() {
@@ -31,15 +34,4 @@ public class XMLParserMainClass {
     public void setExport(Export export) {
         this.export = export;
     }
-
-    public List<Relationship> getRelationships() {
-        if(thesaurus == null) return Lists.newArrayList();
-        return thesaurus.getRelationships();
-    }
-
-    public String getTitle(){
-        if(thesaurus == null) return null;
-        return thesaurus.getTitle();
-    }
-
 }

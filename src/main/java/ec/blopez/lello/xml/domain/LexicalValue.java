@@ -10,11 +10,9 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class LexicalValue {
 
-    @JsonProperty("lang")
     @XmlAttribute(name="lang")
     private String lang;
 
-    @JsonProperty("value")
     @XmlValue
     private String value;
 
@@ -58,12 +56,5 @@ public class LexicalValue {
                 "lang='" + lang + '\'' +
                 ", value='" + value + '\'' +
                 '}';
-    }
-
-    public ec.blopez.lello.domain.LexicalValue toLexicalValue(){
-        final ec.blopez.lello.domain.LexicalValue result = new ec.blopez.lello.domain.LexicalValue();
-        result.setLang(lang);
-        result.setValue(value);
-        return result;
     }
 }

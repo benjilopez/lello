@@ -5,7 +5,6 @@ import com.google.common.collect.Maps;
 import ec.blopez.lello.domain.Occupation;
 import ec.blopez.lello.domain.Qualification;
 import ec.blopez.lello.domain.Skill;
-import javassist.compiler.Lex;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

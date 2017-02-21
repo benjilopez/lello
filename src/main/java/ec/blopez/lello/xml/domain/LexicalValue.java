@@ -1,8 +1,10 @@
 package ec.blopez.lello.xml.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.Maps;
 
 import javax.xml.bind.annotation.*;
+import java.util.Map;
 
 /**
  * Created by Benjamin Lopez on 31/01/2017.
@@ -56,5 +58,11 @@ public class LexicalValue {
                 "lang='" + lang + '\'' +
                 ", value='" + value + '\'' +
                 '}';
+    }
+
+    public Map<String, String> toDomain(){
+        final Map<String, String> result = Maps.newHashMap();
+        result.put(lang, value);
+        return result;
     }
 }

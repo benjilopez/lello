@@ -44,6 +44,9 @@ public abstract class Competence {
     @JsonProperty("childrenUris")
     private List<String> childrenUris;
 
+    @JsonProperty("related")
+    private List<Relationship> related;
+
     public String getUri() {
         return uri;
     }
@@ -153,6 +156,19 @@ public abstract class Competence {
     public void addChildUri(final String childUri){
         if(childrenUris == null) childrenUris = Lists.newArrayList();
         childrenUris.add(childUri);
+    }
+
+    public List<Relationship> getRelated() {
+        return related;
+    }
+
+    public void setRelated(List<Relationship> related) {
+        this.related = related;
+    }
+
+    public void addRelated(final Relationship relatedUri){
+        if(related == null) related = Lists.newArrayList();
+        related.add(relatedUri);
     }
 
     @Override

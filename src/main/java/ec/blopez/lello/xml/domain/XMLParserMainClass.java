@@ -19,6 +19,9 @@ public class XMLParserMainClass {
     @XmlElement(name="Export")
     private Export export;
 
+    @XmlElement(name="AssociativeRelationship")
+    private List<AssociativeRelationship> relationships;
+
     public List<Thesaurus> getThesauruses() {
         return thesauruses;
     }
@@ -33,5 +36,13 @@ public class XMLParserMainClass {
 
     public void setExport(Export export) {
         this.export = export;
+    }
+
+    public List<AssociativeRelationship> getRelationships() {
+        return relationships;
+    }
+
+    public void setRelationships(List<AssociativeRelationship> relationships) {
+        this.relationships = relationships;
     }
 }

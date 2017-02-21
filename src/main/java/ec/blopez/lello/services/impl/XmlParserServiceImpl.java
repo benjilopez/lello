@@ -5,6 +5,7 @@ import ec.blopez.lello.domain.*;
 import ec.blopez.lello.enums.XMLType;
 import ec.blopez.lello.services.XmlParserService;
 import ec.blopez.lello.xml.domain.*;
+import ec.blopez.lello.xml.domain.Relationship;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class XmlParserServiceImpl implements XmlParserService {
     private final String skillsPath;
     private final String qualificationsPath;
     private final String occupationsPath;
+    private final String relationshipsPath;
 
     private final static Logger LOG = LoggerFactory.getLogger(XmlParserServiceImpl.class);
 
@@ -39,10 +41,13 @@ public class XmlParserServiceImpl implements XmlParserService {
                                 @Value("${esco.files.occupations.development}") final String occupationsDev,
                                 @Value("${esco.files.qualifications.production}") final String qualificationsProd,
                                 @Value("${esco.files.qualifications.development}") final String qualificationsDev,
+                                @Value("${esco.files.relationships.production}") final String relationshipsProd,
+                                @Value("${esco.files.relationships.development}") final String relationshipsDev,
                                 @Value("${lello.environment}") final String environment){
         this.skillsPath = "PRODUCTION".equals(environment)? skillsProd : skillsDev;
         this.qualificationsPath = "PRODUCTION".equals(environment)? qualificationsProd : qualificationsDev;
         this.occupationsPath = "PRODUCTION".equals(environment)? occupationsProd : occupationsDev;
+        this.relationshipsPath = "PRODUCTION".equals(environment)? relationshipsProd : relationshipsDev;
         load();
     }
 
@@ -51,6 +56,7 @@ public class XmlParserServiceImpl implements XmlParserService {
         parseFolder(new File(skillsPath));
         parseFolder(new File(qualificationsPath));
         parseFolder(new File(occupationsPath));
+        parseFolder(new File(relationshipsPath));
         return MAP_BY_URI;
     }
 
@@ -63,29 +69,49 @@ public class XmlParserServiceImpl implements XmlParserService {
                     final JAXBContext jc = JAXBContext.newInstance(XMLParserMainClass.class);
                     final Unmarshaller unmarshaller = jc.createUnmarshaller();
                     final XMLParserMainClass xmlFile = (XMLParserMainClass) unmarshaller.unmarshal(file);
-                    if(xmlFile.getThesauruses() == null){
-                        LOG.error("Missing Thesauruses: " + file.getAbsolutePath());
-                        continue;
-                    }
-                    for(Thesaurus thesaurus : xmlFile.getThesauruses()) {
-                        if(!parse(thesaurus.getThesaurusConcepts(), XMLType.fromString(thesaurus.getTitle()))) continue;
-                        if (isFirstFile && (thesaurus.getRelationships() != null)) {
-                            for (Relationship relationship : thesaurus.getRelationships()) {
-                                final Competence child = MAP_BY_URI.get(relationship.getChildUri());
-                                final Competence parent = MAP_BY_URI.get(relationship.getParentUri());
-                                if ((child == null) || (parent == null)) continue;
-                                final String parentIdentifier = parent.getIdentifier();
-                                final String parentUri = parent.getUri();
-                                final String childIdentifier = child.getIdentifier();
-                                final String childUri = child.getUri();
-                                if (childIdentifier != null) parent.addChildIdentifier(childIdentifier);
-                                if (childUri != null) parent.addChildUri(childUri);
-                                if (parentIdentifier != null) child.addParentIdentifier(parentIdentifier);
-                                if (parentUri != null) child.addParentUri(parentUri);
+                    if(xmlFile.getThesauruses() != null) {
+                        for (Thesaurus thesaurus : xmlFile.getThesauruses()) {
+                            if (!parse(thesaurus.getThesaurusConcepts(), XMLType.fromString(thesaurus.getTitle())))
+                                continue;
+                            if (isFirstFile && (thesaurus.getRelationships() != null)) {
+                                for (Relationship relationship : thesaurus.getRelationships()) {
+                                    final Competence child = MAP_BY_URI.get(relationship.getChildUri());
+                                    final Competence parent = MAP_BY_URI.get(relationship.getParentUri());
+                                    if ((child == null) || (parent == null)) continue;
+                                    final String parentIdentifier = parent.getIdentifier();
+                                    final String parentUri = parent.getUri();
+                                    final String childIdentifier = child.getIdentifier();
+                                    final String childUri = child.getUri();
+                                    if (childIdentifier != null) parent.addChildIdentifier(childIdentifier);
+                                    if (childUri != null) parent.addChildUri(childUri);
+                                    if (parentIdentifier != null) child.addParentIdentifier(parentIdentifier);
+                                    if (parentUri != null) child.addParentUri(parentUri);
+                                }
+                                isFirstFile = false;
                             }
-                            isFirstFile = false;
                         }
                     }
+
+                    if(xmlFile.getRelationships() != null){
+                        for(AssociativeRelationship relationship : xmlFile.getRelationships()){
+                            final Competence competence1 = MAP_BY_URI.get(relationship.getIsRelatedConcept());
+                            final Competence competence2 = MAP_BY_URI.get(relationship.getHasRelatedConcept());
+                            final LexicalValue description = relationship.getDescription();
+                            if ((competence1 == null) || (competence2 == null) || (description == null)) continue;
+                            final ec.blopez.lello.domain.Relationship result1 = new ec.blopez.lello.domain.Relationship();
+                            final ec.blopez.lello.domain.Relationship result2 = new ec.blopez.lello.domain.Relationship();
+                            final Map<String, String> descriptionMap = description.toDomain();
+                            result1.setUri(competence2.getUri());
+                            result2.setUri(competence1.getUri());
+                            result1.setIdentifier(competence2.getIdentifier());
+                            result2.setIdentifier(competence1.getIdentifier());
+                            result1.setMessage(descriptionMap);
+                            result2.setMessage(descriptionMap);
+                            competence1.addRelated(result1);
+                            competence2.addRelated(result2);
+                        }
+                    }
+
                 } catch (JAXBException e) {
                     LOG.error("Error parsing file: " + file.getAbsolutePath(), e);
                 }

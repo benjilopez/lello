@@ -68,16 +68,8 @@ public class XmlParserServiceImpl implements XmlParserService {
                         continue;
                     }
                     for(Thesaurus thesaurus : xmlFile.getThesauruses()) {
-                        switch (XMLType.fromString(thesaurus.getTitle())) {
-                            case SKILL:
-                                parseSkills(thesaurus.getThesaurusConcepts());
-                                break;
-                            case QUALIFICATION:
-                                parseQualifications(thesaurus.getThesaurusConcepts());
-                            default:
-                                continue;
-                        }
-                        if (isFirstFile) {
+                        if(!parse(thesaurus.getThesaurusConcepts(), XMLType.fromString(thesaurus.getTitle()))) continue;
+                        if (isFirstFile && (thesaurus.getRelationships() != null)) {
                             for (Relationship relationship : thesaurus.getRelationships()) {
                                 final Competence child = MAP_BY_URI.get(relationship.getChildUri());
                                 final Competence parent = MAP_BY_URI.get(relationship.getParentUri());
@@ -102,34 +94,37 @@ public class XmlParserServiceImpl implements XmlParserService {
         }
     }
 
-    private void parseSkills(final List<ThesaurusConcept> concepts){
+    private boolean parse(final List<ThesaurusConcept> concepts, final XMLType type){
         for (ThesaurusConcept concept : concepts) {
-            final Skill skill = concept.toSkill();
             final Competence competenceInDB = MAP_BY_URI.get(concept.getUri());
-            if(competenceInDB == null){
-                MAP_BY_URI.put(concept.getUri(), skill);
-            } else {
-                competenceInDB.addPreferredTerm(skill.getPreferredTerm());
-                if(competenceInDB instanceof Skill) {
-                    ((Skill) competenceInDB).addSimpleNonPreferredTerm(skill.getSimpleNonPreferredTerm());
-                }
-            }
-        }
-    }
 
-    private void parseQualifications(final List<ThesaurusConcept> concepts){
-        for(ThesaurusConcept concept : concepts){
-            final Qualification qualification = concept.toQualification();
-            final Competence competenceInDB = MAP_BY_URI.get(concept.getUri());
+            final Competence competence;
+            switch (type){
+                case OCCUPATION:
+                    competence = concept.toOccupation();
+                    break;
+                case QUALIFICATION:
+                    competence = concept.toQualification();
+                    break;
+                case SKILL:
+                    competence = concept.toSkill();
+                    break;
+                default:
+                    return false;
+            }
             if(competenceInDB == null){
-                    MAP_BY_URI.put(concept.getUri(), qualification);
+                MAP_BY_URI.put(concept.getUri(), competence);
             } else {
-                competenceInDB.addPreferredTerm(qualification.getPreferredTerm());
+                competenceInDB.addPreferredTerm(competence.getPreferredTerm());
+                if(competenceInDB instanceof Skill) {
+                    ((Skill) competenceInDB).addSimpleNonPreferredTerm(((Skill) competence).getSimpleNonPreferredTerm());
+                }
                 if(competenceInDB instanceof Qualification) {
-                    ((Qualification) competenceInDB).addDefinitions(qualification.getDefinition());
+                    ((Qualification) competenceInDB).addDefinitions(((Qualification) competence).getDefinition());
                 }
             }
         }
+        return true;
     }
 
     @Override

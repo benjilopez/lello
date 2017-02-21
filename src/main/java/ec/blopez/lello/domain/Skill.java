@@ -1,12 +1,10 @@
 package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import ec.blopez.lello.xml.domain.LexicalValue;
 
 import java.text.ParseException;
-import java.util.List;
 import java.util.Map;
 
 /**

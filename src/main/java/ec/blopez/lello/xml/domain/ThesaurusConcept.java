@@ -2,6 +2,7 @@ package ec.blopez.lello.xml.domain;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import ec.blopez.lello.domain.Occupation;
 import ec.blopez.lello.domain.Qualification;
 import ec.blopez.lello.domain.Skill;
 import javassist.compiler.Lex;
@@ -44,6 +45,12 @@ public class ThesaurusConcept {
 
     @XmlElement(name="Definition")
     private LexicalValue definition;
+
+    @XmlElement(name="notation")
+    private String notation;
+
+    @XmlElement(name="memberOfISCOGroup")
+    private List<ISCOGroup> groups;
 
     @XmlElement(name="hasAwardingBody")
     private List<HasAwardingBody> hasAwardingBody;
@@ -112,6 +119,8 @@ public class ThesaurusConcept {
         this.definition = definition;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -168,6 +177,12 @@ public class ThesaurusConcept {
         return result;
     }
 
+    private List<ec.blopez.lello.domain.ISCOGroup> mapGroups(final List<ISCOGroup> groups){
+        final List<ec.blopez.lello.domain.ISCOGroup> result = Lists.newArrayList();
+        if(groups != null) for(ISCOGroup group : groups) result.add(group.toDomain());
+        return result;
+    }
+
     public Skill toSkill(){
         final Skill.Builder builder = new Skill.Builder();
         builder .setPreferredTerm(map(preferredTerm))
@@ -192,6 +207,21 @@ public class ThesaurusConcept {
 
                 .setDefinition(map(definition))
                 .setHasAwardingBody(mapAwardingBodies(hasAwardingBody));
+        return builder.build();
+    }
+
+    public Occupation toOccupation(){
+        final Occupation.Builder builder = new Occupation.Builder();
+        builder .setPreferredTerm(map(preferredTerm))
+                .setTopConcept(topConcept)
+                .setStatus(status)
+                .setIdentifier(identifier)
+                .setTypes(types)
+                .setUri(uri)
+
+                .setSimpleNonPreferredTerm(map(simpleNonPreferredTerm))
+                .setGroups(mapGroups(groups))
+                .setNotation(notation);
         return builder.build();
     }
 }

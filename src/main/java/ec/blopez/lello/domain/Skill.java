@@ -1,22 +1,17 @@
 package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.Lists;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
+import java.text.ParseException;
 import java.util.List;
 
 /**
  * Created by benjilopez on 31/01/2017.
  */
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Skill extends Competence {
 
     @JsonProperty("simpleNonPreferredTerm")
-    @XmlElementWrapper(name="SimpleNonPreferredTerm")
-    @XmlElement(name="lexicalValue")
     private List<LexicalValue> simpleNonPreferredTerm;
 
     public List<LexicalValue> getSimpleNonPreferredTerm() {
@@ -25,6 +20,18 @@ public class Skill extends Competence {
 
     public void setSimpleNonPreferredTerm(final List<LexicalValue> simpleNonPreferredTerm) {
         this.simpleNonPreferredTerm = simpleNonPreferredTerm;
+    }
+
+    public void addSimpleNonPreferredTerm(final LexicalValue simpleNonPreferredTerm){
+        if(simpleNonPreferredTerm == null) return;
+        if(this.simpleNonPreferredTerm == null) this.simpleNonPreferredTerm = Lists.newArrayList();
+        this.simpleNonPreferredTerm.add(simpleNonPreferredTerm);
+    }
+
+    public void addSimpleNonPreferredTerm(final List<LexicalValue> simpleNonPreferredTerms){
+        if(simpleNonPreferredTerms == null) return;
+        if(this.simpleNonPreferredTerm == null) this.simpleNonPreferredTerm = Lists.newArrayList();
+        this.simpleNonPreferredTerm.addAll(simpleNonPreferredTerms);
     }
 
     @Override
@@ -50,5 +57,25 @@ public class Skill extends Competence {
         return "Skill{" +
                 "simpleNonPreferredTerm=" + simpleNonPreferredTerm +
                 '}';
+    }
+
+    public static class Builder extends Competence.Builder<Builder, Skill>{
+        private List<LexicalValue> simpleNonPreferredTerm;
+
+        public Builder setSimpleNonPreferredTerm(List<LexicalValue> simpleNonPreferredTerm) {
+            this.simpleNonPreferredTerm = simpleNonPreferredTerm;
+            return this;
+        }
+
+        public Skill build(){
+            try {
+                final Skill result = super.build(Skill.class);
+                result.setSimpleNonPreferredTerm(simpleNonPreferredTerm);
+                return result;
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }

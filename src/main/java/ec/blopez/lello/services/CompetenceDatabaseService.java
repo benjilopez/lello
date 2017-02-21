@@ -1,7 +1,7 @@
 package ec.blopez.lello.services;
 
-import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.exceptions.DatabaseActionException;
+import ec.blopez.lello.domain.Competence;
 
 import java.util.List;
 

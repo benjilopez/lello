@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EscoInterchange xmlns="http://data.europa.eu/esco/xml/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<Export>
+    <uri>http://data.europa.eu/esco/947132</uri>
+    <dc:identifier>ESCO ITM:20150303191510054</dc:identifier>
+    <version>v0</version>
+    <date>2015-02-27T00:00:00+01:00</date>
+</Export>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/20291</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23399</hasRelatedConcept>
+                <description lang="en">The certificate addresses to</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/15667</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366611</hasRelatedConcept>
+                <description lang="en">Recommended for pipe welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/21231</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23887</hasRelatedConcept>
+                <description lang="en">Recommended certificate for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/16979</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23847</hasRelatedConcept>
+                <description lang="en">This certificate can be useful for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/14960</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23869</hasRelatedConcept>
+                <description lang="en">This license is required for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/21515</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23887</hasRelatedConcept>
+                <description lang="en">Recommended certificate for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/23200</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23887</hasRelatedConcept>
+                <description lang="en">Recommended certificate for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/22620</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23847</hasRelatedConcept>
+                <description lang="en">This certificate can be useful for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/14773</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23869</hasRelatedConcept>
+                <description lang="en">This license is required for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/15663</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23938</hasRelatedConcept>
+                <description lang="en">This certification is designed for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/15696</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366611</hasRelatedConcept>
+                <description lang="en">Required for licensed welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/18730</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23938</hasRelatedConcept>
+                <description lang="en">This certification is designed for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/16869</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23399</hasRelatedConcept>
+                <description lang="en">The certificate addresses to</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/17800</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366611</hasRelatedConcept>
+                <description lang="en">Recommended for welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/15643</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23938</hasRelatedConcept>
+                <description lang="en">This certification is designed for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/18575</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23399</hasRelatedConcept>
+                <description lang="en">The certificate addresses to</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/16836</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23847</hasRelatedConcept>
+                <description lang="en">This certificate can be useful for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/17800</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366607</hasRelatedConcept>
+                <description lang="en">Recommended for welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/23697</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366607</hasRelatedConcept>
+                <description lang="en">Recommended for plastic welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/15647</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23938</hasRelatedConcept>
+                <description lang="en">This certification is designed for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/18787</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366607</hasRelatedConcept>
+                <description lang="en">Recommended for welding engineer</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/18462</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23938</hasRelatedConcept>
+                <description lang="en">This certification is designed for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/22022</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23847</hasRelatedConcept>
+                <description lang="en">This certificate can be useful for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/15696</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366607</hasRelatedConcept>
+                <description lang="en">Required for licensed welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/14702</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23869</hasRelatedConcept>
+                <description lang="en">This license is required for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/21340</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23887</hasRelatedConcept>
+                <description lang="en">Recommended certificate for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/20879</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23938</hasRelatedConcept>
+                <description lang="en">This certification is designed for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/18422</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23399</hasRelatedConcept>
+                <description lang="en">The certificate addresses to</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/18749</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23847</hasRelatedConcept>
+                <description lang="en">This certificate can be useful for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/18562</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23399</hasRelatedConcept>
+                <description lang="en">The certificate addresses to</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/19325</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23887</hasRelatedConcept>
+                <description lang="en">Recommended certificate for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/15933</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366607</hasRelatedConcept>
+                <description lang="en">Recommended for gas welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/15933</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366611</hasRelatedConcept>
+                <description lang="en">Recommended for gas welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/15937</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366611</hasRelatedConcept>
+                <description lang="en">Recommended for electric welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/15667</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366607</hasRelatedConcept>
+                <description lang="en">Recommended for pipe welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/18787</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366611</hasRelatedConcept>
+                <description lang="en">Recommended for welding engineer</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/19504</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23847</hasRelatedConcept>
+                <description lang="en">This certificate can be useful for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/21631</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23847</hasRelatedConcept>
+                <description lang="en">This certificate can be useful for</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/20547</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366611</hasRelatedConcept>
+                <description lang="en">Recommended for machine welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/18742</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23399</hasRelatedConcept>
+                <description lang="en">The certificate addresses to</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/23697</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366611</hasRelatedConcept>
+                <description lang="en">Recommended for plastic welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/20547</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366607</hasRelatedConcept>
+                <description lang="en">Recommended for machine welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/15937</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/366607</hasRelatedConcept>
+                <description lang="en">Recommended for electric welder</description>
+        </AssociativeRelationship>
+    <AssociativeRelationship>
+        <role>RT/QUALIFICATION</role>
+        <isRelatedConcept>http://data.europa.eu/esco/occupation/21708</isRelatedConcept>
+        <hasRelatedConcept>http://data.europa.eu/esco/qualification/23847</hasRelatedConcept>
+                <description lang="en">This certificate can be useful for</description>
+        </AssociativeRelationship>
+</EscoInterchange>

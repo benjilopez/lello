@@ -1,21 +1,15 @@
 package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.xml.bind.annotation.*;
-
 /**
  * Created by Benjamin Lopez on 31/01/2017.
  */
-@XmlAccessorType(XmlAccessType.FIELD)
 public class LexicalValue {
 
     @JsonProperty("lang")
-    @XmlAttribute(name="lang")
     private String lang;
 
     @JsonProperty("value")
-    @XmlValue
     private String value;
 
     public String getLang() {

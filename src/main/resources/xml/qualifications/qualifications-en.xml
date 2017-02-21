@@ -1,0 +1,1589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EscoInterchange xmlns="http://data.europa.eu/esco/xml/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<Export>
+    <uri>http://data.europa.eu/esco/947132</uri>
+    <dc:identifier>ESCO ITM:20150303191510054</dc:identifier>
+    <version>v0</version>
+    <date>2015-02-27T00:00:00+01:00</date>
+</Export>
+    <Thesaurus>
+        <uri>http://data.europa.eu/esco/ConceptScheme/ESCO_Qualifications</uri>
+            <dc:language>en</dc:language>
+        <dc:title lang="en">Qualifications</dc:title>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/qualification/23399</uri>
+                     <type>http://data.europa.eu/esco/model#Qualification</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#SimpleConcept</type>
+                     <type>http://data.europa.eu/esco/model#Concept</type>
+                     <type>http://data.europa.eu/esco/model#MemberConcept</type>
+                            <dc:identifier>ESCO ITM:23399</dc:identifier>
+                            <status>released</status>
+                             <topConcept>false</topConcept>
+        <PreferredTerm>       <lexicalValue lang="en">European Certificate of Floral Design</lexicalValue>
+ </PreferredTerm>
+                <Definition lang="en">
+FlorCert florist education is a handcrafted high quality initial training, which does not require any prior knowledge. The teaching of the subject florist will aim to develop students' ability to carry out all steps of the craft process from idea to finished product: identifying needs, planning to sketch or drawing, select appropriate materials and techniques, implement and report on the work and analyze and evaluate the results.
+</Definition>
+                                            <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/20391</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21561</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21470</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22125</uri>
+            </hasAwardingBody>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/qualification/366607</uri>
+                     <type>http://data.europa.eu/esco/model#SimpleConcept</type>
+                     <type>http://data.europa.eu/esco/model#Qualification</type>
+                     <type>http://data.europa.eu/esco/model#MemberConcept</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#Concept</type>
+                            <dc:identifier>ESCO ITM:366607</dc:identifier>
+                            <status>released</status>
+                             <topConcept>false</topConcept>
+        <PreferredTerm>       <lexicalValue lang="en">European/International Welding Specialist</lexicalValue>
+ </PreferredTerm>
+        <SimpleNonPreferredTerm>      <lexicalValue lang="en">IWS</lexicalValue>
+  </SimpleNonPreferredTerm>
+<SimpleNonPreferredTerm>      <lexicalValue lang="en">EWS</lexicalValue>
+  </SimpleNonPreferredTerm>
+        <Definition lang="en">
+Describe the design of welded joints in accordance with given details. Recognise the effects of imperfection size, morphology and position on structural integrity. Identify and use appropriate weld symbols.
+</Definition>
+                                            <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367013</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367039</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367018</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366699</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367037</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367041</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367012</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366960</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366948</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367005</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367009</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367021</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366842</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366709</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366711</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366915</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367085</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367028</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366841</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367032</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367019</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367003</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366722</uri>
+            </hasAwardingBody>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/qualification/366611</uri>
+                     <type>http://data.europa.eu/esco/model#Qualification</type>
+                     <type>http://data.europa.eu/esco/model#MemberConcept</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#SimpleConcept</type>
+                     <type>http://data.europa.eu/esco/model#Concept</type>
+                            <dc:identifier>ESCO ITM:366611</dc:identifier>
+                            <status>released</status>
+                             <topConcept>false</topConcept>
+        <PreferredTerm>       <lexicalValue lang="en">European/international Welding Practitioner</lexicalValue>
+ </PreferredTerm>
+        <SimpleNonPreferredTerm>      <lexicalValue lang="en">EWP</lexicalValue>
+  </SimpleNonPreferredTerm>
+<SimpleNonPreferredTerm>      <lexicalValue lang="en">IWP</lexicalValue>
+  </SimpleNonPreferredTerm>
+        <Definition lang="en">
+Outline the relationship between the welding procedure and mechanical properties. Recognise the advantages and disadvantages of different types of welds in relation to static loading.
+</Definition>
+                                            <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367018</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366948</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366699</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367012</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367003</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367005</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366842</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366709</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367021</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366915</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367041</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367085</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366711</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367028</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366841</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367019</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367032</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367009</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367037</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366722</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367039</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/366960</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/367013</uri>
+            </hasAwardingBody>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/qualification/23847</uri>
+                     <type>http://data.europa.eu/esco/model#Qualification</type>
+                     <type>http://data.europa.eu/esco/model#MemberConcept</type>
+                     <type>http://data.europa.eu/esco/model#SimpleConcept</type>
+                     <type>http://data.europa.eu/esco/model#Concept</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:23847</dc:identifier>
+                            <status>released</status>
+                             <topConcept>false</topConcept>
+        <PreferredTerm>       <lexicalValue lang="en">Project Management Professional (PMP)</lexicalValue>
+ </PreferredTerm>
+        <SimpleNonPreferredTerm>      <lexicalValue lang="en">PMP</lexicalValue>
+  </SimpleNonPreferredTerm>
+<SimpleNonPreferredTerm>      <lexicalValue lang="en">Project Management Professional</lexicalValue>
+  </SimpleNonPreferredTerm>
+        <Definition lang="en">
+PMI’s Project Management Professional (PMP) credential is an important industry-recognized certification for project managers. Globally recognized and demanded, it demonstrates that you have the experience, education and competency to lead and direct projects.<br/><br/>Participating in the Continuing Certification Requirements (CCR) program; the PMP certification cycle lasts 3 years. During this period, at least 60 professional development units (PDUs) must be attained.
+</Definition>
+<ScopeNote lang="en">
+Might be relevant for several/all branches and sectors. >> Cross-sectoral.
+</ScopeNote>
+                                            <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/20606</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22238</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22420</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/20309</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22608</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22408</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22170</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22661</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22489</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22512</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22521</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/20760</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21642</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22153</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21675</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21593</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/20432</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/20450</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22571</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21406</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22527</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21618</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22632</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21489</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21570</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21509</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21671</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21605</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21615</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21544</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21451</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/20960</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22542</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22294</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21393</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22643</uri>
+            </hasAwardingBody>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/qualification/23938</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#Qualification</type>
+                     <type>http://data.europa.eu/esco/model#SimpleConcept</type>
+                     <type>http://data.europa.eu/esco/model#Concept</type>
+                     <type>http://data.europa.eu/esco/model#MemberConcept</type>
+                            <dc:identifier>ESCO ITM:23938</dc:identifier>
+                            <status>released</status>
+                             <topConcept>false</topConcept>
+        <PreferredTerm>       <lexicalValue lang="en">Cisco Data Centre Application Services Design Specialist</lexicalValue>
+ </PreferredTerm>
+        <SimpleNonPreferredTerm>      <lexicalValue lang="en">DCASD</lexicalValue>
+  </SimpleNonPreferredTerm>
+        <Definition lang="en">
+The Cisco Data Centre Application Services Design Specialist certification validates an individual's presales knowledge of selecting and integrating Cisco Data Centre Application Services products to design a highly scalable, efficient, and high performance Data Centre Application Services solution based on Cisco's Data Centre Architecture. Cisco Data Centre Networking Application Services Design Specialist Professionals understand how to utilize and employ the features and benefits of the Cisco Application Control Engine Services Module and Appliance, the Cisco Global Site Selector and the Cisco Application Network Manager to create a scalable high performance Data Centre design.<br/><br/>Recertification every 2 years.
+</Definition>
+                                            <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22065</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21369</uri>
+            </hasAwardingBody>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/qualification/23887</uri>
+                     <type>http://data.europa.eu/esco/model#Concept</type>
+                     <type>http://data.europa.eu/esco/model#MemberConcept</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#SimpleConcept</type>
+                     <type>http://data.europa.eu/esco/model#Qualification</type>
+                            <dc:identifier>ESCO ITM:23887</dc:identifier>
+                            <status>released</status>
+                             <topConcept>false</topConcept>
+        <PreferredTerm>       <lexicalValue lang="en">European Hairdressing Certificate</lexicalValue>
+ </PreferredTerm>
+        <SimpleNonPreferredTerm>      <lexicalValue lang="en">EHC</lexicalValue>
+  </SimpleNonPreferredTerm>
+        <Definition lang="en">
+With a Level B Hairstylist certificate, employees who work abroad or live and work in border regions can demonstrate their knowledge and skills to the employer.
+</Definition>
+                                            <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21561</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22060</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21381</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21424</uri>
+            </hasAwardingBody>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/qualification/23869</uri>
+                     <type>http://data.europa.eu/esco/model#SimpleConcept</type>
+                     <type>http://data.europa.eu/esco/model#Concept</type>
+                     <type>http://data.europa.eu/esco/model#Qualification</type>
+                     <type>http://data.europa.eu/esco/model#MemberConcept</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:23869</dc:identifier>
+                            <status>released</status>
+                             <topConcept>false</topConcept>
+        <PreferredTerm>       <lexicalValue lang="en">Airline Transport Pilot License</lexicalValue>
+ </PreferredTerm>
+        <SimpleNonPreferredTerm>      <lexicalValue lang="en">ATPL</lexicalValue>
+  </SimpleNonPreferredTerm>
+                                                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/21667</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/22672</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/20694</uri>
+            </hasAwardingBody>
+                    <hasAwardingBody>
+                <uri>http://data.europa.eu/esco/awardingbody/20333</uri>
+            </hasAwardingBody>
+                </ThesaurusConcept>
+        </Thesaurus>
+    <Thesaurus>
+        <uri>http://data.europa.eu/esco/ConceptScheme/AwardingBodies/cs</uri>
+            <dc:language>en</dc:language>
+                    <dc:title lang="en">Awarding Bodies</dc:title>
+                    <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367041</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:367041</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Norwegian Welding Association</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/NO</uri>
+	                <dc:identifier>ISO 3166-1.A2:NO</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:578</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:NOR</dc:identifier>
+	                            <isoCountryCodeA2>NO</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22632</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:22632</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Portugal Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/PT</uri>
+	                <dc:identifier>ISO 3166-1.A3:PRT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:620</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:PT</dc:identifier>
+	                            <isoCountryCodeA2>PT</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21615</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:21615</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Rome, Italy Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/IT</uri>
+	                <dc:identifier>ISO 3166-1.A2:IT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:ITA</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:380</dc:identifier>
+	                            <isoCountryCodeA2>IT</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/20432</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:20432</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Berlin/Brandenburg Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/DE</uri>
+	                <dc:identifier>ISO 3166-1.A2:DE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:DEU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:276</dc:identifier>
+	                            <isoCountryCodeA2>DE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22512</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:22512</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Lithuania Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/LT</uri>
+	                <dc:identifier>ISO 3166-1.A2:LT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:LTU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:440</dc:identifier>
+	                            <isoCountryCodeA2>LT</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21605</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:21605</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Serbia Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/RS</uri>
+	                <dc:identifier>ISO 3166-1.A2:RS</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:688</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:SRB</dc:identifier>
+	                            <isoCountryCodeA2>RS</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22153</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:22153</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Belgium Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/BE</uri>
+	                <dc:identifier>ISO 3166-1.A3:BEL</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:BE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:056</dc:identifier>
+	                            <isoCountryCodeA2>BE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22125</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:22125</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Belgium Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/NL</uri>
+	                <dc:identifier>ISO 3166-1.A2:NL</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:528</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:NLD</dc:identifier>
+	                            <isoCountryCodeA2>NL</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21451</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:21451</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Bulgaria Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/BG</uri>
+	                <dc:identifier>ISO 3166-1.A2:BG</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:100</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:BGR</dc:identifier>
+	                            <isoCountryCodeA2>BG</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22672</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:22672</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Bulgaria Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/NL</uri>
+	                <dc:identifier>ISO 3166-1.A2:NL</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:528</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:NLD</dc:identifier>
+	                            <isoCountryCodeA2>NL</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367021</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:367021</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">FORCE Technology</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/DK</uri>
+	                <dc:identifier>ISO 3166-1.A3:DNK</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:DK</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:208</dc:identifier>
+	                            <isoCountryCodeA2>DK</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/366699</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:366699</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Bulgarian Welding Society</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/BG</uri>
+	                <dc:identifier>ISO 3166-1.A2:BG</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:100</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:BGR</dc:identifier>
+	                            <isoCountryCodeA2>BG</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22420</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:22420</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Switzerland Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/CH</uri>
+	                <dc:identifier>ISO 3166-1.A2:CH</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:CHE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:756</dc:identifier>
+	                            <isoCountryCodeA2>CH</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367012</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:367012</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Switzerland Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/IT</uri>
+	                <dc:identifier>ISO 3166-1.A2:IT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:ITA</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:380</dc:identifier>
+	                            <isoCountryCodeA2>IT</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21570</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:21570</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Greece Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/GR</uri>
+	                <dc:identifier>ISO 3166-1.num:300</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:GR</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:GRC</dc:identifier>
+	                            <isoCountryCodeA2>GR</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21406</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:21406</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Norway Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/NO</uri>
+	                <dc:identifier>ISO 3166-1.A2:NO</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:578</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:NOR</dc:identifier>
+	                            <isoCountryCodeA2>NO</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21667</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:21667</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Civil Aviation Authority</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/GB</uri>
+	                <dc:identifier>ISO 3166-1.num:826</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:GB</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:GBR</dc:identifier>
+	                            <isoCountryCodeA2>GB</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22521</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:22521</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Barcelona, Spain Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/ES</uri>
+	                <dc:identifier>ISO 3166-1.A2:ES</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:724</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:ESP</dc:identifier>
+	                            <isoCountryCodeA2>ES</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/20391</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:20391</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Barcelona, Spain Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/SE</uri>
+	                <dc:identifier>ISO 3166-1.num:752</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:SWE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:SE</dc:identifier>
+	                            <isoCountryCodeA2>SE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21393</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:21393</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Madrid</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/ES</uri>
+	                <dc:identifier>ISO 3166-1.A2:ES</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:724</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:ESP</dc:identifier>
+	                            <isoCountryCodeA2>ES</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/366842</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:366842</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Czech Welding Society ANB</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/CZ</uri>
+	                <dc:identifier>ISO 3166-1.A3:CZE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:203</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:CZ</dc:identifier>
+	                            <isoCountryCodeA2>CZ</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22527</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:22527</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Austria Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/AT</uri>
+	                <dc:identifier>ISO 3166-1.A2:AT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:AUT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:040</dc:identifier>
+	                            <isoCountryCodeA2>AT</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21544</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:21544</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Finland Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/FI</uri>
+	                <dc:identifier>ISO 3166-1.A3:FIN</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:246</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:FI</dc:identifier>
+	                            <isoCountryCodeA2>FI</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21369</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:21369</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Finland Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/AT</uri>
+	                <dc:identifier>ISO 3166-1.A2:AT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:AUT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:040</dc:identifier>
+	                            <isoCountryCodeA2>AT</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367037</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:367037</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Croatian Welding Society</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/HR</uri>
+	                <dc:identifier>ISO 3166-1.A2:HR</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:HRV</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:191</dc:identifier>
+	                            <isoCountryCodeA2>HR</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/366948</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:366948</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Croatian Welding Society</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/SE</uri>
+	                <dc:identifier>ISO 3166-1.num:752</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:SWE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:SE</dc:identifier>
+	                            <isoCountryCodeA2>SE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367013</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:367013</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Croatian Welding Society</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/SI</uri>
+	                <dc:identifier>ISO 3166-1.A2:SI</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:SVN</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:705</dc:identifier>
+	                            <isoCountryCodeA2>SI</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367085</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:367085</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Croatian Welding Society</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/LU</uri>
+	                <dc:identifier>ISO 3166-1.A3:LUX</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:LU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:442</dc:identifier>
+	                            <isoCountryCodeA2>LU</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367003</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:367003</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Croatian Welding Society</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/SK</uri>
+	                <dc:identifier>ISO 3166-1.num:703</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:SVK</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:SK</dc:identifier>
+	                            <isoCountryCodeA2>SK</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22170</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:22170</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Romania Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/RO</uri>
+	                <dc:identifier>ISO 3166-1.A3:ROU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:RO</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:642</dc:identifier>
+	                            <isoCountryCodeA2>RO</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21489</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:21489</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Zagreb Croatia Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/HR</uri>
+	                <dc:identifier>ISO 3166-1.A2:HR</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:HRV</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:191</dc:identifier>
+	                            <isoCountryCodeA2>HR</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/366722</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:366722</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Zagreb Croatia Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/PT</uri>
+	                <dc:identifier>ISO 3166-1.A3:PRT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:620</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:PT</dc:identifier>
+	                            <isoCountryCodeA2>PT</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22408</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:22408</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Valencia, Spain Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/ES</uri>
+	                <dc:identifier>ISO 3166-1.A2:ES</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:724</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:ESP</dc:identifier>
+	                            <isoCountryCodeA2>ES</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367018</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:367018</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Valencia, Spain Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/NL</uri>
+	                <dc:identifier>ISO 3166-1.A2:NL</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:528</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:NLD</dc:identifier>
+	                            <isoCountryCodeA2>NL</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21593</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:21593</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Slovenia, Ljubljana Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/SI</uri>
+	                <dc:identifier>ISO 3166-1.A2:SI</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:SVN</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:705</dc:identifier>
+	                            <isoCountryCodeA2>SI</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/20760</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:20760</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Slovakia Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/SK</uri>
+	                <dc:identifier>ISO 3166-1.num:703</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:SVK</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:SK</dc:identifier>
+	                            <isoCountryCodeA2>SK</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367028</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:367028</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Slovakia Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/RO</uri>
+	                <dc:identifier>ISO 3166-1.A3:ROU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:RO</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:642</dc:identifier>
+	                            <isoCountryCodeA2>RO</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/20333</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:20333</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Slovakia Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/DE</uri>
+	                <dc:identifier>ISO 3166-1.A2:DE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:DEU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:276</dc:identifier>
+	                            <isoCountryCodeA2>DE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22065</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:22065</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Aditec</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/RO</uri>
+	                <dc:identifier>ISO 3166-1.A3:ROU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:RO</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:642</dc:identifier>
+	                            <isoCountryCodeA2>RO</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22489</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:22489</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute United Kingdom Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/GB</uri>
+	                <dc:identifier>ISO 3166-1.num:826</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:GB</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:GBR</dc:identifier>
+	                            <isoCountryCodeA2>GB</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22294</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:22294</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Czech Republic Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/CZ</uri>
+	                <dc:identifier>ISO 3166-1.A3:CZE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:203</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:CZ</dc:identifier>
+	                            <isoCountryCodeA2>CZ</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21675</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:21675</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Munich Germany Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/DE</uri>
+	                <dc:identifier>ISO 3166-1.A2:DE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:DEU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:276</dc:identifier>
+	                            <isoCountryCodeA2>DE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21642</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:21642</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Cologne Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/DE</uri>
+	                <dc:identifier>ISO 3166-1.A2:DE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:DEU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:276</dc:identifier>
+	                            <isoCountryCodeA2>DE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/366960</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:366960</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">The Welding Institute</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/GB</uri>
+	                <dc:identifier>ISO 3166-1.num:826</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:GB</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:GBR</dc:identifier>
+	                            <isoCountryCodeA2>GB</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/366841</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:366841</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">The Welding Institute</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/BE</uri>
+	                <dc:identifier>ISO 3166-1.A3:BEL</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:BE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:056</dc:identifier>
+	                            <isoCountryCodeA2>BE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/20694</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:20694</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">The Welding Institute</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/SE</uri>
+	                <dc:identifier>ISO 3166-1.num:752</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:SWE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:SE</dc:identifier>
+	                            <isoCountryCodeA2>SE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22608</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:22608</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Denmark Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/DK</uri>
+	                <dc:identifier>ISO 3166-1.A3:DNK</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:DK</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:208</dc:identifier>
+	                            <isoCountryCodeA2>DK</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21470</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:21470</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Biotechnical Center Naklo</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/SI</uri>
+	                <dc:identifier>ISO 3166-1.A2:SI</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:SVN</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:705</dc:identifier>
+	                            <isoCountryCodeA2>SI</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/20309</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:20309</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Frankfurt Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/DE</uri>
+	                <dc:identifier>ISO 3166-1.A2:DE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:DEU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:276</dc:identifier>
+	                            <isoCountryCodeA2>DE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21671</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:21671</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Northern Italy Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/IT</uri>
+	                <dc:identifier>ISO 3166-1.A2:IT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:ITA</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:380</dc:identifier>
+	                            <isoCountryCodeA2>IT</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367039</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:367039</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Northern Italy Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/FI</uri>
+	                <dc:identifier>ISO 3166-1.A3:FIN</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:246</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:FI</dc:identifier>
+	                            <isoCountryCodeA2>FI</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367032</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:367032</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Northern Italy Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/ES</uri>
+	                <dc:identifier>ISO 3166-1.A2:ES</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:724</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:ESP</dc:identifier>
+	                            <isoCountryCodeA2>ES</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/20960</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:20960</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Netherlands Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/NL</uri>
+	                <dc:identifier>ISO 3166-1.A2:NL</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:528</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:NLD</dc:identifier>
+	                            <isoCountryCodeA2>NL</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21424</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:21424</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Netherlands Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/AT</uri>
+	                <dc:identifier>ISO 3166-1.A2:AT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:AUT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:040</dc:identifier>
+	                            <isoCountryCodeA2>AT</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22060</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:22060</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Netherlands Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/FR</uri>
+	                <dc:identifier>ISO 3166-1.A2:FR</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:FRA</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:250</dc:identifier>
+	                            <isoCountryCodeA2>FR</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367019</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:367019</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Netherlands Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/FR</uri>
+	                <dc:identifier>ISO 3166-1.A2:FR</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:FRA</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:250</dc:identifier>
+	                            <isoCountryCodeA2>FR</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/366711</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:366711</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">DVS German Welding Society</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/DE</uri>
+	                <dc:identifier>ISO 3166-1.A2:DE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:DEU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:276</dc:identifier>
+	                            <isoCountryCodeA2>DE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21618</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:21618</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Southern Italy Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/IT</uri>
+	                <dc:identifier>ISO 3166-1.A2:IT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:ITA</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:380</dc:identifier>
+	                            <isoCountryCodeA2>IT</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22571</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:22571</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute France Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/FR</uri>
+	                <dc:identifier>ISO 3166-1.A2:FR</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:FRA</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:250</dc:identifier>
+	                            <isoCountryCodeA2>FR</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367009</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:367009</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute France Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/PL</uri>
+	                <dc:identifier>ISO 3166-1.A2:PL</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:POL</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:616</dc:identifier>
+	                            <isoCountryCodeA2>PL</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/366709</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:366709</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute France Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/HU</uri>
+	                <dc:identifier>ISO 3166-1.A2:HU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:348</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:HUN</dc:identifier>
+	                            <isoCountryCodeA2>HU</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/366915</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:366915</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Welding Greek Institute</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/GR</uri>
+	                <dc:identifier>ISO 3166-1.num:300</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:GR</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:GRC</dc:identifier>
+	                            <isoCountryCodeA2>GR</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21509</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:21509</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Budapest, Hungarian Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/HU</uri>
+	                <dc:identifier>ISO 3166-1.A2:HU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:348</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:HUN</dc:identifier>
+	                            <isoCountryCodeA2>HU</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/20606</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:20606</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Kyiv Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/UA</uri>
+	                <dc:identifier>ISO 3166-1.num:804</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:UKR</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:UA</dc:identifier>
+	                            <isoCountryCodeA2>UA</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22238</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:22238</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Ireland Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/IE</uri>
+	                <dc:identifier>ISO 3166-1.num:372</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:IE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:IRL</dc:identifier>
+	                            <isoCountryCodeA2>IE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21381</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:21381</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">National Hairdressers&apos; Federation</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/GB</uri>
+	                <dc:identifier>ISO 3166-1.num:826</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:GB</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:GBR</dc:identifier>
+	                            <isoCountryCodeA2>GB</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/21561</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:21561</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">National Hairdressers&apos; Federation</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/NL</uri>
+	                <dc:identifier>ISO 3166-1.A2:NL</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:528</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:NLD</dc:identifier>
+	                            <isoCountryCodeA2>NL</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22542</uri>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                            <dc:identifier>ESCO ITM:22542</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Poland Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/PL</uri>
+	                <dc:identifier>ISO 3166-1.A2:PL</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:POL</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:616</dc:identifier>
+	                            <isoCountryCodeA2>PL</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/20450</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:20450</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Sweden Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/SE</uri>
+	                <dc:identifier>ISO 3166-1.num:752</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:SWE</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:SE</dc:identifier>
+	                            <isoCountryCodeA2>SE</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/367005</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:367005</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Sweden Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/AT</uri>
+	                <dc:identifier>ISO 3166-1.A2:AT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:AUT</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:040</dc:identifier>
+	                            <isoCountryCodeA2>AT</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22643</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:22643</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Luxembourg Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/LU</uri>
+	                <dc:identifier>ISO 3166-1.A3:LUX</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A2:LU</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:442</dc:identifier>
+	                            <isoCountryCodeA2>LU</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+            <ThesaurusConcept>
+            <uri>http://data.europa.eu/esco/awardingbody/22661</uri>
+                     <type>http://data.europa.eu/esco/model#AwardingBody</type>
+                     <type>http://www.w3.org/2004/02/skos/core#Concept</type>
+                            <dc:identifier>ESCO ITM:22661</dc:identifier>
+                <PreferredTerm>
+    <lexicalValue lang="en">Project Management Institute Turkey Chapter</lexicalValue>
+</PreferredTerm>
+                    <location>
+                <uri>http://data.europa.eu/esco/country/TR</uri>
+	                <dc:identifier>ISO 3166-1.A2:TR</dc:identifier>
+	                <dc:identifier>ISO 3166-1.A3:TUR</dc:identifier>
+	                <dc:identifier>ISO 3166-1.num:792</dc:identifier>
+	                            <isoCountryCodeA2>TR</isoCountryCodeA2>
+                        </location>
+                </ThesaurusConcept>
+        </Thesaurus>
+</EscoInterchange>

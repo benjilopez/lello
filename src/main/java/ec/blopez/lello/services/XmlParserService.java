@@ -11,5 +11,5 @@ public interface XmlParserService {
 
     Map<String, Competence> load();
 
-    Map<String, Competence> load2();
+    Map<String, Competence> getMap();
 }

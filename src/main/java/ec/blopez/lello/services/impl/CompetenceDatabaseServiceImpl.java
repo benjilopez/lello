@@ -83,7 +83,7 @@ public class CompetenceDatabaseServiceImpl implements CompetenceDatabaseService 
 
     private Map<String, Competence> getMap(){
         if (mapByUri == null){
-            mapByUri = xmlParserService.load2();
+            mapByUri = xmlParserService.getMap();
             defaultValues = Maps.newHashMap();
             for(Competence competence : mapByUri.values()){
                 if(competence.getIdentifier() != null) defaultValues.put(competence.getIdentifier(), competence);

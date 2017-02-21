@@ -3,41 +3,30 @@ package ec.blopez.lello.domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
+import java.text.ParseException;
 import java.util.List;
 
 /**
  * Created by Benjamin Lopez on 14/01/2017.
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Competence {
+public abstract class Competence {
 
     @JsonProperty("uri")
-    @XmlElement(name="uri")
     private String uri;
 
     @JsonProperty("types")
-    @XmlElement(name="type")
     private List<String> types;
 
     @JsonProperty("identifier")
-    @XmlElement(name="identifier", namespace="http://purl.org/dc/elements/1.1/")
     private String identifier;
 
     @JsonProperty("status")
-    @XmlElement(name="status")
     private String status;
 
     @JsonProperty("topConcept")
-    @XmlElement(name="topConcept")
     private boolean topConcept;
 
     @JsonProperty("preferredTerm")
-    @XmlElementWrapper(name="PreferredTerm")
-    @XmlElement(name="lexicalValue")
     private List<LexicalValue> preferredTerm;
 
     @JsonProperty("parentsIdentifiers")
@@ -96,8 +85,20 @@ public class Competence {
         return preferredTerm;
     }
 
-    public void setPreferredTerm(List<LexicalValue> preferredTerm) {
+    public void setPreferredTerm(final List<LexicalValue> preferredTerm) {
         this.preferredTerm = preferredTerm;
+    }
+
+    public void addPreferredTerm(final LexicalValue preferredTerm){
+        if(preferredTerm == null) return;
+        if(this.preferredTerm == null) this.preferredTerm = Lists.newArrayList();
+        this.preferredTerm.add(preferredTerm);
+    }
+
+    public void addPreferredTerm(final List<LexicalValue> preferredTerms){
+        if(preferredTerms == null)return;
+        if(this.preferredTerm == null) this.preferredTerm = Lists.newArrayList();
+        this.preferredTerm.addAll(preferredTerms);
     }
 
     public List<String> getParentsIdentifiers() {
@@ -188,5 +189,62 @@ public class Competence {
                 ", topConcept=" + topConcept +
                 ", preferredTerm=" + preferredTerm +
                 '}';
+    }
+
+    public static abstract class Builder<T, E>{
+        private String uri;
+        private List<String> types;
+        private String identifier;
+        private String status;
+        private boolean topConcept;
+        private List<LexicalValue> preferredTerm;
+
+        public T setUri(String uri) {
+            this.uri = uri;
+            return (T) this;
+        }
+
+        public T setTypes(List<String> types) {
+            this.types = types;
+            return (T) this;
+        }
+
+        public T setIdentifier(String identifier) {
+            this.identifier = identifier;
+            return (T) this;
+        }
+
+        public T setStatus(String status) {
+            this.status = status;
+            return (T) this;
+        }
+
+        public T setTopConcept(boolean topConcept) {
+            this.topConcept = topConcept;
+            return (T) this;
+        }
+
+        public T setPreferredTerm(List<LexicalValue> preferredTerm) {
+            this.preferredTerm = preferredTerm;
+            return (T) this;
+        }
+
+        public E build(final Class c) throws ParseException {
+            try{
+                final Object object = c.newInstance();
+                if (!(object instanceof Competence)) throw new ParseException("Illegal class type", 0);
+                final Competence competence = (Competence) object;
+                competence.setUri(uri);
+                competence.setTypes(types);
+                competence.setIdentifier(identifier);
+                competence.setStatus(status);
+                competence.setTopConcept(topConcept);
+                competence.setPreferredTerm(preferredTerm);
+                return (E) competence ;
+            } catch (IllegalAccessException | InstantiationException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }

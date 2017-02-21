@@ -19,5 +19,14 @@ spring:
 esco:
   files:
     skills:
-      production: /mnt/lello/src/main/resources/esco_skills.xml
-      development: ./src/main/resources/esco_skills.xml
+      production: /mnt/lello/src/main/resources/xml/capacities/
+      development: ./src/main/resources/xml/capacities/
+    occupations:
+      production: /mnt/lello/src/main/resources/xml/occupations/
+      development: ./src/main/resources/xml/occupations/
+    qualifications:
+      production: /mnt/lello/src/main/resources/xml/qualifications/
+      development: ./src/main/resources/xml/qualifications/
+    relationships:
+      production: /mnt/lello/src/main/resources/xml/relationships/
+      development: ./src/main/resources/xml/relationships/

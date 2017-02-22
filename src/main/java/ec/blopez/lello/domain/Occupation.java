@@ -1,7 +1,9 @@
 package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ec.blopez.lello.enums.XMLType;
+import com.google.common.collect.Maps;
+import ec.blopez.lello.enums.CompetenceType;
+import ec.blopez.lello.xml.domain.LexicalValue;
 
 import java.text.ParseException;
 import java.util.List;
@@ -10,13 +12,35 @@ import java.util.Map;
 /**
  * Created by benjilopez on 21/02/2017.
  */
-public class Occupation extends Skill {
+public class Occupation extends Competence {
 
     @JsonProperty("notation")
     private String notation;
 
     @JsonProperty("memberOfISCOGroup")
     private List<ISCOGroup> groups;
+
+    @JsonProperty("simpleNonPreferredTerm")
+    private Map<String, String> simpleNonPreferredTerm;
+
+    public Map<String, String> getSimpleNonPreferredTerm() {
+        return simpleNonPreferredTerm;
+    }
+
+    public void setSimpleNonPreferredTerm(final Map<String, String> simpleNonPreferredTerm) {
+        this.simpleNonPreferredTerm = simpleNonPreferredTerm;
+    }
+
+    public void addSimpleNonPreferredTerm(final LexicalValue simpleNonPreferredTerm){
+        if(simpleNonPreferredTerm == null) return;
+        if(this.simpleNonPreferredTerm == null) this.simpleNonPreferredTerm = Maps.newHashMap();
+        this.simpleNonPreferredTerm.computeIfAbsent(simpleNonPreferredTerm.getLang(), k -> simpleNonPreferredTerm.getValue());
+    }
+
+    public void addSimpleNonPreferredTerm(final Map<String, String> simpleNonPreferredTerms){
+        if(simpleNonPreferredTerms == null) return;
+        for(Map.Entry<String, String> entry : simpleNonPreferredTerms.entrySet()) this.simpleNonPreferredTerm.computeIfAbsent(entry.getKey(), k -> entry.getValue());
+    }
 
     public String getNotation() {
         return notation;
@@ -35,8 +59,8 @@ public class Occupation extends Skill {
     }
 
     @Override
-    public XMLType getType() {
-        return XMLType.OCCUPATION;
+    public CompetenceType getType() {
+        return CompetenceType.OCCUPATION;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ec.blopez.lello.enums.XMLType;
+import ec.blopez.lello.enums.CompetenceType;
 
 import java.text.ParseException;
 import java.util.List;
@@ -42,8 +42,8 @@ public class Qualification extends Competence {
     }
 
     @Override
-    public XMLType getType() {
-        return XMLType.QUALIFICATION;
+    public CompetenceType getType() {
+        return CompetenceType.QUALIFICATION;
     }
 
     @Override

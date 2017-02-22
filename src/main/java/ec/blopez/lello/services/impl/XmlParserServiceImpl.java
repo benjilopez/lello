@@ -2,7 +2,7 @@ package ec.blopez.lello.services.impl;
 
 import com.google.common.collect.Maps;
 import ec.blopez.lello.domain.*;
-import ec.blopez.lello.enums.XMLType;
+import ec.blopez.lello.enums.CompetenceType;
 import ec.blopez.lello.services.XmlParserService;
 import ec.blopez.lello.xml.domain.*;
 import ec.blopez.lello.xml.domain.Relationship;
@@ -71,7 +71,7 @@ public class XmlParserServiceImpl implements XmlParserService {
                     final XMLParserMainClass xmlFile = (XMLParserMainClass) unmarshaller.unmarshal(file);
                     if(xmlFile.getThesauruses() != null) {
                         for (Thesaurus thesaurus : xmlFile.getThesauruses()) {
-                            if (!parse(thesaurus.getThesaurusConcepts(), XMLType.fromString(thesaurus.getTitle())))
+                            if (!parse(thesaurus.getThesaurusConcepts(), CompetenceType.fromString(thesaurus.getTitle())))
                                 continue;
                             if (isFirstFile && (thesaurus.getRelationships() != null)) {
                                 for (Relationship relationship : thesaurus.getRelationships()) {
@@ -112,7 +112,7 @@ public class XmlParserServiceImpl implements XmlParserService {
         }
     }
 
-    private boolean parse(final List<ThesaurusConcept> concepts, final XMLType type){
+    private boolean parse(final List<ThesaurusConcept> concepts, final CompetenceType type){
         for (ThesaurusConcept concept : concepts) {
             final Competence competenceInDB = MAP_BY_URI.get(concept.getUri());
 

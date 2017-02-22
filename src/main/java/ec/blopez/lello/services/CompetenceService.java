@@ -1,26 +1,26 @@
 package ec.blopez.lello.services;
 
-import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.enums.CompetenceType;
 
 import java.util.List;
 
 /**
  * Created by Benjamin Lopez on 14/01/2017.
  */
-public interface CompetenceService {
+public interface CompetenceService<T> {
 
-    Competence get(final String id);
+    T get(final String id, final Class c);
 
-    List<Competence> get(final List<String> ids);
+    List<T> get(final List<String> ids, final Class c);
 
-    List<Competence> get();
+    List<T> get(final Class c);
 
-    Competence update(final String id, final Competence competence);
+    T update(final String id, final T competence, final Class c);
 
-    Competence delete(final String id);
+    T delete(final String id, final Class c);
 
-    Competence create(final Competence competence);
+    T create(final T competence);
 
-    List<Competence> search(final String query);
+    List<T> search(final String query);
 
 }

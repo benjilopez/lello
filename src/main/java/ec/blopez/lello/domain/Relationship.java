@@ -1,5 +1,6 @@
 package ec.blopez.lello.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Map;
  */
 public class Relationship {
 
+    @JsonIgnore
     private Competence competence;
 
     @JsonProperty("description")
@@ -28,6 +30,7 @@ public class Relationship {
         this.competence = competence;
     }
 
+    @JsonIgnore
     public Map<String, String> getMessage() {
         return message;
     }

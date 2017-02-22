@@ -2,8 +2,7 @@ package ec.blopez.lello.controllers;
 
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.domain.Occupation;
-import ec.blopez.lello.domain.Skill;
-import ec.blopez.lello.services.CompetenceService;
+import ec.blopez.lello.services.impl.CompetenceServiceImpl;
 import ec.blopez.lello.utils.ResponseKeys;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
@@ -29,14 +28,14 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class OccupationsController {
 
     @Autowired
-    CompetenceService competencesService;
+    CompetenceServiceImpl<Occupation> competencesService;
 
     private final static Logger LOG = LoggerFactory.getLogger(OccupationsController.class);
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<JSONObject> getOccupations(){
         final JSONObject result = new JSONObject();
-        final List<Competence> competences = competencesService.get();
+        final List<Occupation> competences = competencesService.get(Occupation.class);
         result.put(ResponseKeys.COMPETENCES, competences);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -48,23 +47,23 @@ public class OccupationsController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> getOccupation(@PathVariable final String id){
-        return return404IfNull(competencesService.get(id));
+        return return404IfNull(competencesService.get(id, Occupation.class));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteOccupation(@PathVariable final String id){
-        return return404IfNull(competencesService.delete(id));
+        return return404IfNull(competencesService.delete(id, Occupation.class));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateOccupation(@PathVariable final String id, final RequestEntity<Occupation> request){
-        return return404IfNull(competencesService.update(id, request.getBody()));
+        return return404IfNull(competencesService.update(id, request.getBody(), Occupation.class));
     }
 
     @RequestMapping(value = "/search/{query}", method = RequestMethod.PUT)
     public ResponseEntity<Object> searchOccupations(@PathVariable final String query){
         final JSONObject result = new JSONObject();
-        final List<Competence> competences = competencesService.search(query);
+        final List<Occupation> competences = competencesService.search(query);
         result.put(ResponseKeys.COMPETENCES, competences);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

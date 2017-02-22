@@ -3,9 +3,12 @@ package ec.blopez.lello.services.impl;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.domain.Occupation;
+import ec.blopez.lello.domain.Qualification;
+import ec.blopez.lello.domain.Skill;
 import ec.blopez.lello.enums.DataBaseAction;
 import ec.blopez.lello.exceptions.DatabaseActionException;
-import ec.blopez.lello.services.CompetenceDatabaseService;
+import ec.blopez.lello.services.DatabaseService;
 import ec.blopez.lello.services.XmlParserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,54 +20,47 @@ import java.util.Map;
  * Created by Benjamin Lopez on 31/01/2017.
  */
 @Service
-public class CompetenceDatabaseServiceImpl implements CompetenceDatabaseService {
+public class DatabaseServiceImpl implements DatabaseService {
 
-    private Map<String, Competence> defaultValues;
-    private Map<String, Competence> mapByUri;
+    private Map<String, Competence> competences;
 
-    @Autowired
     private XmlParserService xmlParserService;
 
-
-    @Override
-    public Competence get(final String id) {
-        return getMap().get(id);
+    @Autowired
+    public DatabaseServiceImpl(final XmlParserService xmlParserService){
+        this.xmlParserService = xmlParserService;
+        load();
     }
 
     @Override
-    public List<Competence> get(final List<String> ids) {
-        List<Competence> result = Lists.newArrayList();
-        for(String id : ids){
-            final Competence competence = getMap().get(id);
-            if(competence != null) result.add(competence);
-        }
-        return result;
+    public Competence get(final String id) {
+        return competences.get(id);
     }
 
     @Override
     public List<Competence> get() {
-        return Lists.newArrayList(getMap().values());
+        return Lists.newArrayList(competences.values());
     }
 
     @Override
     public Competence update(final Competence competence) throws DatabaseActionException {
         final Map<String, Competence> map = getMapForAction(competence, DataBaseAction.UPDATE);
-        if(!map.containsKey(competence.getIdentifier())) throw new DatabaseActionException("Database Update: No entry in the Database with identifier " + competence.getIdentifier());
+        if(!map.containsKey(competence.getId())) throw new DatabaseActionException("Database Update: No entry in the Database with identifier " + competence.getIdentifier());
         map.put(competence.getIdentifier(), competence);
         return competence;
     }
 
     @Override
     public Competence delete(final String id) throws DatabaseActionException {
-        final Map<String, Competence> map = getMap();
+        final Map<String, Competence> map = competences;
         if(!map.containsKey(id)) throw new DatabaseActionException("Database Delete: No entry in the Database with identifier " + id);
-        return getMap().remove(id);
+        return competences.remove(id);
     }
 
     @Override
     public Competence create(final Competence competence) throws DatabaseActionException{
         final Map<String, Competence> map = getMapForAction(competence, DataBaseAction.CREATE);
-        map.put(competence.getIdentifier(), competence);
+        map.put(competence.getId(), competence);
         return competence;
     }
 
@@ -76,19 +72,18 @@ public class CompetenceDatabaseServiceImpl implements CompetenceDatabaseService 
     private Map<String, Competence> getMapForAction(final Competence competence, final DataBaseAction action) throws DatabaseActionException{
         final String value = action.getValue();
         if(competence == null) throw new DatabaseActionException("Database " + value +": Entry to create is null");
-        final String id = competence.getIdentifier();
+        final String id = competence.getId();
         if(id == null) throw new DatabaseActionException("Database " + value + ": Missing entry's identifier");
-        return getMap();
+        return competences;
     }
 
-    private Map<String, Competence> getMap(){
-        if (mapByUri == null){
-            mapByUri = xmlParserService.getMap();
-            defaultValues = Maps.newHashMap();
-            for(Competence competence : mapByUri.values()){
-                if(competence.getIdentifier() != null) defaultValues.put(competence.getId(), competence);
+    private void load(){
+        final Map<String, Competence> mapByUri = xmlParserService.getMap();
+        competences = Maps.newHashMap();
+        for(Competence competence : mapByUri.values()){
+            if(competence.getId() != null){
+                competences.put(competence.getId(), competence);
             }
         }
-        return defaultValues;
     }
 }

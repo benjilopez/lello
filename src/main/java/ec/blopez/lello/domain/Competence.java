@@ -1,10 +1,11 @@
 package ec.blopez.lello.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import ec.blopez.lello.Configurations;
-import ec.blopez.lello.enums.XMLType;
+import ec.blopez.lello.enums.CompetenceType;
 import ec.blopez.lello.xml.domain.LexicalValue;
 
 import java.text.ParseException;
@@ -42,8 +43,10 @@ public abstract class Competence {
     @JsonProperty("uri")
     private String uri;
 
+    @JsonIgnore
     private Map<String, Competence> parents;
 
+    @JsonIgnore
     private Map<String, Competence> children;
 
     @JsonProperty("related")
@@ -60,7 +63,8 @@ public abstract class Competence {
         uri = builder.toString();
     }
 
-    protected abstract XMLType getType();
+    @JsonIgnore
+    public abstract CompetenceType getType();
 
     @JsonProperty("parents")
     public List<String> getParenUris(){

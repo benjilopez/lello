@@ -9,6 +9,8 @@ public class ResponseKeys {
 
     final public static String COMPETENCE = "competence";
 
+    final public static String SKILLS = "skills";
+
     final public static String RESULT = "result";
 
     final public static String MESSAGE = "message";

@@ -1,8 +1,5 @@
 package ec.blopez.lello.xml.domain;
 
-import com.google.common.collect.Lists;
-import ec.blopez.lello.enums.XMLType;
-
 import javax.xml.bind.annotation.*;
 import java.util.List;
 

@@ -2,7 +2,7 @@ package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Maps;
-import ec.blopez.lello.enums.XMLType;
+import ec.blopez.lello.enums.CompetenceType;
 import ec.blopez.lello.xml.domain.LexicalValue;
 
 import java.text.ParseException;
@@ -36,8 +36,8 @@ public class Skill extends Competence {
     }
 
     @Override
-    public XMLType getType() {
-        return XMLType.SKILL;
+    public CompetenceType getType() {
+        return CompetenceType.SKILL;
     }
 
     @Override

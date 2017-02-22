@@ -3,7 +3,7 @@ package ec.blopez.lello.enums;
 /**
  * Created by benjilopez on 21/02/2017.
  */
-public enum XMLType {
+public enum CompetenceType {
 
     SKILL("skills"),
     QUALIFICATION("qualifications"),
@@ -17,11 +17,11 @@ public enum XMLType {
 
     private String url;
 
-    XMLType(final String value){
+    CompetenceType(final String value){
         this(value, value);
     }
 
-    XMLType(final String value, final String url){
+    CompetenceType(final String value, final String url){
         this.value = value;
         this.url = url;
     }
@@ -32,9 +32,9 @@ public enum XMLType {
 
     public String getUrl(){return url;}
 
-    public static XMLType fromString(final String string){
+    public static CompetenceType fromString(final String string){
         if(string == null) return OTHER;
-        for(XMLType type : values()) if(string.toLowerCase().equals(type.getValue())) return type;
+        for(CompetenceType type : values()) if(string.toLowerCase().equals(type.getValue())) return type;
         return OTHER;
     }
 }

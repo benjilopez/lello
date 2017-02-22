@@ -3,6 +3,8 @@ package ec.blopez.lello.domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import ec.blopez.lello.Configurations;
+import ec.blopez.lello.enums.XMLType;
 import ec.blopez.lello.xml.domain.LexicalValue;
 
 import java.text.ParseException;
@@ -14,13 +16,15 @@ import java.util.Map;
  */
 public abstract class Competence {
 
-    @JsonProperty("uri")
-    private String uri;
+    private static long COUNTER = 1;
+
+    @JsonProperty("externalUri")
+    private String externalUri;
 
     @JsonProperty("types")
     private List<String> types;
 
-    @JsonProperty("identifier")
+    @JsonProperty("externalId")
     private String identifier;
 
     @JsonProperty("status")
@@ -32,27 +36,54 @@ public abstract class Competence {
     @JsonProperty("preferredTerm")
     private Map<String, String> preferredTerm;
 
-    @JsonProperty("parentsIdentifiers")
-    private List<String> parentsIdentifiers;
+    @JsonProperty("id")
+    private String id;
 
-    @JsonProperty("childrenIdentifiers")
-    private List<String> childrenIdentifiers;
+    @JsonProperty("uri")
+    private String uri;
 
-    @JsonProperty("parentsUris")
-    private List<String> parentsUris;
+    private Map<String, Competence> parents;
 
-    @JsonProperty("childrenUris")
-    private List<String> childrenUris;
+    private Map<String, Competence> children;
 
     @JsonProperty("related")
     private List<Relationship> related;
 
-    public String getUri() {
-        return uri;
+    protected Competence(){
+        id = "LELLO:" + COUNTER;
+        COUNTER++;
+        final StringBuilder builder = new StringBuilder(Configurations.URL);
+        builder.append(Configurations.PATH);
+        builder.append(getType().getUrl());
+        builder.append("/");
+        builder.append(id);
+        uri = builder.toString();
     }
 
-    public void setUri(String uri) {
-        this.uri = uri;
+    protected abstract XMLType getType();
+
+    @JsonProperty("parents")
+    public List<String> getParenUris(){
+        if(parents == null) return null;
+        final List<String> result = Lists.newArrayList();
+        for(Competence competence : parents.values()) result.add(competence.getUri());
+        return result;
+    }
+
+    @JsonProperty("children")
+    public List<String> getChildrenUris(){
+        if(children == null) return null;
+        final List<String> result = Lists.newArrayList();
+        for(Competence competence : children.values()) result.add(competence.getUri());
+        return result;
+    }
+
+    public String getExternalUri() {
+        return externalUri;
+    }
+
+    public void setExternalUri(String externalUri) {
+        this.externalUri = externalUri;
     }
 
     public List<String> getTypes() {
@@ -106,56 +137,32 @@ public abstract class Competence {
         for(Map.Entry<String, String> entry : preferredTerms.entrySet()) this.preferredTerm.computeIfAbsent(entry.getKey(), k -> entry.getValue());
     }
 
-    public List<String> getParentsIdentifiers() {
-        return parentsIdentifiers;
+    public Map<String, Competence> getParents() {
+        return parents;
     }
 
-    public void setParentsIdentifiers(List<String> parentsIdentifiers) {
-        this.parentsIdentifiers = parentsIdentifiers;
+    public void setParents(final Map<String, Competence> parents) {
+        this.parents = parents;
     }
 
-    public void addParentIdentifier(final String parentIdentifier){
-        if(parentsIdentifiers == null) parentsIdentifiers = Lists.newArrayList();
-        parentsIdentifiers.add(parentIdentifier);
+    public void addParent(final Competence parent){
+        if(parent == null) return;
+        if(parents == null) parents = Maps.newHashMap();
+        parents.computeIfAbsent(parent.getId(), k -> parent);
     }
 
-    public List<String> getChildrenIdentifiers() {
-        return childrenIdentifiers;
+    public Map<String, Competence> getChildren() {
+        return children;
     }
 
-    public void setChildrenIdentifiers(List<String> childrenIdentifiers) {
-        this.childrenIdentifiers = childrenIdentifiers;
+    public void setChildren(final Map<String, Competence> children) {
+        this.children = children;
     }
 
-    public void addChildIdentifier(final String childIdentifier){
-        if(childrenIdentifiers == null) childrenIdentifiers = Lists.newArrayList();
-        childrenIdentifiers.add(childIdentifier);
-    }
-
-    public List<String> getParentsUris() {
-        return parentsUris;
-    }
-
-    public void setParentsUris(List<String> parentsUris) {
-        this.parentsUris = parentsUris;
-    }
-
-    public void addParentUri(final String parentUri){
-        if(parentsUris == null) parentsUris = Lists.newArrayList();
-        parentsUris.add(parentUri);
-    }
-
-    public List<String> getChildrenUris() {
-        return childrenUris;
-    }
-
-    public void setChildrenUris(List<String> childrenUris) {
-        this.childrenUris = childrenUris;
-    }
-
-    public void addChildUri(final String childUri){
-        if(childrenUris == null) childrenUris = Lists.newArrayList();
-        childrenUris.add(childUri);
+    public void addChild(final Competence child){
+        if(child == null) return;
+        if(children == null) children = Maps.newHashMap();
+        children.computeIfAbsent(child.getId(), k -> child);
     }
 
     public List<Relationship> getRelated() {
@@ -171,6 +178,22 @@ public abstract class Competence {
         related.add(relatedUri);
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -179,34 +202,33 @@ public abstract class Competence {
         Competence that = (Competence) o;
 
         if (topConcept != that.topConcept) return false;
-        if (uri != null ? !uri.equals(that.uri) : that.uri != null) return false;
+        if (externalUri != null ? !externalUri.equals(that.externalUri) : that.externalUri != null) return false;
         if (types != null ? !types.equals(that.types) : that.types != null) return false;
         if (identifier != null ? !identifier.equals(that.identifier) : that.identifier != null) return false;
         if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        return preferredTerm != null ? preferredTerm.equals(that.preferredTerm) : that.preferredTerm == null;
+        if (preferredTerm != null ? !preferredTerm.equals(that.preferredTerm) : that.preferredTerm != null)
+            return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (uri != null ? !uri.equals(that.uri) : that.uri != null) return false;
+        if (parents != null ? !parents.equals(that.parents) : that.parents != null) return false;
+        if (children != null ? !children.equals(that.children) : that.children != null) return false;
+        return related != null ? related.equals(that.related) : that.related == null;
     }
 
     @Override
     public int hashCode() {
-        int result = uri != null ? uri.hashCode() : 0;
+        int result = externalUri != null ? externalUri.hashCode() : 0;
         result = 31 * result + (types != null ? types.hashCode() : 0);
         result = 31 * result + (identifier != null ? identifier.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (topConcept ? 1 : 0);
         result = 31 * result + (preferredTerm != null ? preferredTerm.hashCode() : 0);
+        result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (uri != null ? uri.hashCode() : 0);
+        result = 31 * result + (parents != null ? parents.hashCode() : 0);
+        result = 31 * result + (children != null ? children.hashCode() : 0);
+        result = 31 * result + (related != null ? related.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Competence{" +
-                "uri='" + uri + '\'' +
-                ", types=" + types +
-                ", identifier='" + identifier + '\'' +
-                ", status='" + status + '\'' +
-                ", topConcept=" + topConcept +
-                ", preferredTerm=" + preferredTerm +
-                '}';
     }
 
     public static abstract class Builder<T, E>{
@@ -252,7 +274,7 @@ public abstract class Competence {
                 final Object object = c.newInstance();
                 if (!(object instanceof Competence)) throw new ParseException("Illegal class type", 0);
                 final Competence competence = (Competence) object;
-                competence.setUri(uri);
+                competence.setExternalUri(uri);
                 competence.setTypes(types);
                 competence.setIdentifier(identifier);
                 competence.setStatus(status);

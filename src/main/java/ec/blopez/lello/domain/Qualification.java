@@ -1,6 +1,7 @@
 package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import ec.blopez.lello.enums.XMLType;
 
 import java.text.ParseException;
 import java.util.List;
@@ -38,6 +39,11 @@ public class Qualification extends Competence {
         for(Map.Entry<String, String> entry : definitions.entrySet()){
             this.definition.computeIfAbsent(entry.getKey(), k -> entry.getValue());
         }
+    }
+
+    @Override
+    public XMLType getType() {
+        return XMLType.QUALIFICATION;
     }
 
     @Override

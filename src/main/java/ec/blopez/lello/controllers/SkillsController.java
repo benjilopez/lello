@@ -24,16 +24,16 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * Created by Benjamin Lopez on 12/01/2017.
  */
 @RestController
-@RequestMapping(value = "/api/v1.0/competences", produces = APPLICATION_JSON_VALUE)
-public class CompetencesController {
+@RequestMapping(value = "/api/v1.0/skills", produces = APPLICATION_JSON_VALUE)
+public class SkillsController {
 
     @Autowired
     CompetenceService competencesService;
 
-    private final static Logger LOG = LoggerFactory.getLogger(CompetencesController.class);
+    private final static Logger LOG = LoggerFactory.getLogger(SkillsController.class);
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<JSONObject> getCompetences(){
+    public ResponseEntity<JSONObject> getSkills(){
         final JSONObject result = new JSONObject();
         final List<Competence> competences = competencesService.get();
         result.put(ResponseKeys.COMPETENCES, competences);
@@ -41,27 +41,27 @@ public class CompetencesController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Object> createCompetence(final RequestEntity<Skill> request){
+    public ResponseEntity<Object> createSkill(final RequestEntity<Skill> request){
         return return404IfNull(competencesService.create(request.getBody()));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Object> getCompetence(@PathVariable final String id){
+    public ResponseEntity<Object> getSkill(@PathVariable final String id){
         return return404IfNull(competencesService.get(id));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteCompetence(@PathVariable final String id){
+    public ResponseEntity<Object> deleteSkill(@PathVariable final String id){
         return return404IfNull(competencesService.delete(id));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateCompetence(@PathVariable final String id, final RequestEntity<Skill> request){
+    public ResponseEntity<Object> updateSkill(@PathVariable final String id, final RequestEntity<Skill> request){
         return return404IfNull(competencesService.update(id, request.getBody()));
     }
 
     @RequestMapping(value = "/search/{query}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> searchCompetences(@PathVariable final String query){
+    public ResponseEntity<Object> searchSkills(@PathVariable final String query){
         final JSONObject result = new JSONObject();
         final List<Competence> competences = competencesService.search(query);
         result.put(ResponseKeys.COMPETENCES, competences);

@@ -2,6 +2,7 @@ package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Maps;
+import ec.blopez.lello.enums.XMLType;
 import ec.blopez.lello.xml.domain.LexicalValue;
 
 import java.text.ParseException;
@@ -32,6 +33,11 @@ public class Skill extends Competence {
     public void addSimpleNonPreferredTerm(final Map<String, String> simpleNonPreferredTerms){
         if(simpleNonPreferredTerms == null) return;
         for(Map.Entry<String, String> entry : simpleNonPreferredTerms.entrySet()) this.simpleNonPreferredTerm.computeIfAbsent(entry.getKey(), k -> entry.getValue());
+    }
+
+    @Override
+    public XMLType getType() {
+        return XMLType.SKILL;
     }
 
     @Override

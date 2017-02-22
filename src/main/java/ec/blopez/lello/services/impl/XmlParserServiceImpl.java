@@ -78,14 +78,8 @@ public class XmlParserServiceImpl implements XmlParserService {
                                     final Competence child = MAP_BY_URI.get(relationship.getChildUri());
                                     final Competence parent = MAP_BY_URI.get(relationship.getParentUri());
                                     if ((child == null) || (parent == null)) continue;
-                                    final String parentIdentifier = parent.getIdentifier();
-                                    final String parentUri = parent.getUri();
-                                    final String childIdentifier = child.getIdentifier();
-                                    final String childUri = child.getUri();
-                                    if (childIdentifier != null) parent.addChildIdentifier(childIdentifier);
-                                    if (childUri != null) parent.addChildUri(childUri);
-                                    if (parentIdentifier != null) child.addParentIdentifier(parentIdentifier);
-                                    if (parentUri != null) child.addParentUri(parentUri);
+                                    child.addParent(parent);
+                                    parent.addChild(child);
                                 }
                                 isFirstFile = false;
                             }
@@ -101,10 +95,8 @@ public class XmlParserServiceImpl implements XmlParserService {
                             final ec.blopez.lello.domain.Relationship result1 = new ec.blopez.lello.domain.Relationship();
                             final ec.blopez.lello.domain.Relationship result2 = new ec.blopez.lello.domain.Relationship();
                             final Map<String, String> descriptionMap = description.toDomain();
-                            result1.setUri(competence2.getUri());
-                            result2.setUri(competence1.getUri());
-                            result1.setIdentifier(competence2.getIdentifier());
-                            result2.setIdentifier(competence1.getIdentifier());
+                            result1.setCompetence(competence2);
+                            result2.setCompetence(competence1);
                             result1.setMessage(descriptionMap);
                             result2.setMessage(descriptionMap);
                             competence1.addRelated(result1);

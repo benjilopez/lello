@@ -1,6 +1,10 @@
 server.port: 9090
 
-lello.environment: PRODUCTION
+lello:
+  environment: PRODUCTION
+  url:
+    production: http://lello.blopez.ec:9090/
+    development: http://lello.blopez-local.ec:9090/
 
 logging:
   file: ./lello.log

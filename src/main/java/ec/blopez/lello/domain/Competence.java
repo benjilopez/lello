@@ -37,10 +37,10 @@ public abstract class Competence {
     @JsonProperty("preferredTerm")
     private Map<String, String> preferredTerm;
 
-    @JsonProperty("id")
+    @JsonProperty("code")
     private String id;
 
-    @JsonProperty("uri")
+    @JsonProperty("@id")
     private String uri;
 
     @JsonIgnore
@@ -63,7 +63,7 @@ public abstract class Competence {
         uri = builder.toString();
     }
 
-    @JsonIgnore
+    @JsonProperty("competenceType")
     public abstract CompetenceType getType();
 
     @JsonProperty("parents")

@@ -3,14 +3,9 @@ package ec.blopez.lello.services.impl;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import ec.blopez.lello.domain.Competence;
-import ec.blopez.lello.domain.Occupation;
-import ec.blopez.lello.domain.Qualification;
-import ec.blopez.lello.domain.Skill;
 import ec.blopez.lello.enums.DataBaseAction;
 import ec.blopez.lello.exceptions.DatabaseActionException;
 import ec.blopez.lello.services.DatabaseService;
-import ec.blopez.lello.services.XmlParserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,15 +17,7 @@ import java.util.Map;
 @Service
 public class DatabaseServiceImpl implements DatabaseService {
 
-    private Map<String, Competence> competences;
-
-    private XmlParserService xmlParserService;
-
-    @Autowired
-    public DatabaseServiceImpl(final XmlParserService xmlParserService){
-        this.xmlParserService = xmlParserService;
-        load();
-    }
+    private Map<String, Competence> competences = Maps.newHashMap();
 
     @Override
     public Competence get(final String id) {
@@ -75,15 +62,5 @@ public class DatabaseServiceImpl implements DatabaseService {
         final String id = competence.getId();
         if(id == null) throw new DatabaseActionException("Database " + value + ": Missing entry's identifier");
         return competences;
-    }
-
-    private void load(){
-        final Map<String, Competence> mapByUri = xmlParserService.getMap();
-        competences = Maps.newHashMap();
-        for(Competence competence : mapByUri.values()){
-            if(competence.getId() != null){
-                competences.put(competence.getId(), competence);
-            }
-        }
     }
 }

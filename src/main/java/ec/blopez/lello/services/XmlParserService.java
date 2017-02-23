@@ -1,7 +1,10 @@
 package ec.blopez.lello.services;
 
 import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.xml.domain.XMLParserMainClass;
 
+import java.io.File;
+import java.net.URL;
 import java.util.Map;
 
 /**
@@ -9,7 +12,9 @@ import java.util.Map;
  */
 public interface XmlParserService {
 
-    Map<String, Competence> load();
+    void parse(final URL url);
 
-    Map<String, Competence> getMap();
+    void parse(final File folder);
+
+    void parse(final XMLParserMainClass xmlFile);
 }

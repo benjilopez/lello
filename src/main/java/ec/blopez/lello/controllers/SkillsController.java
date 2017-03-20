@@ -1,6 +1,6 @@
 package ec.blopez.lello.controllers;
 
-import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.domain.Esco;
 import ec.blopez.lello.domain.Skill;
 import ec.blopez.lello.services.impl.CompetenceServiceImpl;
 import ec.blopez.lello.utils.ResponseKeys;
@@ -68,10 +68,10 @@ public class SkillsController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    private ResponseEntity<Object> return404IfNull(final Competence competence){
+    private ResponseEntity<Object> return404IfNull(final Esco esco){
         final JSONObject result = new JSONObject();
-        if(competence != null){
-            return new ResponseEntity<>(competence, HttpStatus.OK);
+        if(esco != null){
+            return new ResponseEntity<>(esco, HttpStatus.OK);
         }
         result.put(ResponseKeys.MESSAGE, "Invalid request");
         return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);

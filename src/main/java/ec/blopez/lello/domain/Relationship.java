@@ -11,23 +11,23 @@ import java.util.Map;
 public class Relationship {
 
     @JsonIgnore
-    private Competence competence;
+    private Esco esco;
 
     @JsonProperty("description")
     private Map<String, String> message;
 
     @JsonProperty("uri")
     public String getUri() {
-        if(competence == null) return null;
-        return competence.getUri();
+        if(esco == null) return null;
+        return esco.getUri();
     }
 
-    public Competence getCompetence() {
-        return competence;
+    public Esco getEsco() {
+        return esco;
     }
 
-    public void setCompetence(Competence competence) {
-        this.competence = competence;
+    public void setEsco(Esco esco) {
+        this.esco = esco;
     }
 
     @JsonIgnore

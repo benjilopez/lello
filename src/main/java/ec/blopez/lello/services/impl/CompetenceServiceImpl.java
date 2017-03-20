@@ -1,7 +1,7 @@
 package ec.blopez.lello.services.impl;
 
 import com.google.common.collect.Lists;
-import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.domain.Esco;
 import ec.blopez.lello.exceptions.DatabaseActionException;
 import ec.blopez.lello.services.CompetenceService;
 import ec.blopez.lello.services.DatabaseService;
@@ -26,8 +26,8 @@ public class CompetenceServiceImpl<T> implements CompetenceService<T> {
 
     @Override
     public T get(final String id, final Class c) {
-        final Competence competence = databaseService.get(id);
-        if(c.isInstance(competence)) return (T) competence;
+        final Esco esco = databaseService.get(id);
+        if(c.isInstance(esco)) return (T) esco;
         return null;
     }
 
@@ -44,17 +44,17 @@ public class CompetenceServiceImpl<T> implements CompetenceService<T> {
     @Override
     public List<T> get(final Class c) {
         final List<T> result = Lists.newArrayList();
-        final List<Competence> competences = databaseService.get();
-        for(Competence competence : competences){
-            if(c.isInstance(competence)) result.add((T) competence);
+        final List<Esco> escos = databaseService.get();
+        for(Esco esco : escos){
+            if(c.isInstance(esco)) result.add((T) esco);
         }
         return result;
     }
 
     @Override
     public T update(final String id, final T competence, final Class c) {
-        if((competence == null) || (get(id, c) == null) || !(competence instanceof Competence)) return null;
-        final Competence toUpdate = (Competence) competence;
+        if((competence == null) || (get(id, c) == null) || !(competence instanceof Esco)) return null;
+        final Esco toUpdate = (Esco) competence;
         toUpdate.setId(id);
         try {
             return (T) databaseService.update(toUpdate);
@@ -81,8 +81,8 @@ public class CompetenceServiceImpl<T> implements CompetenceService<T> {
     @Override
     public T create(final T competence) {
         try {
-            if((competence == null) || !(competence instanceof Competence)) return null;
-            return (T) databaseService.create((Competence) competence);
+            if((competence == null) || !(competence instanceof Esco)) return null;
+            return (T) databaseService.create((Esco) competence);
         } catch (DatabaseActionException e) {
             LOG.error("Error trying to create new competence in the database.", e);
         }

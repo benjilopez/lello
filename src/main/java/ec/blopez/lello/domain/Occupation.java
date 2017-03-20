@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by benjilopez on 21/02/2017.
  */
-public class Occupation extends Competence {
+public class Occupation extends Esco {
 
     @JsonProperty("notation")
     private String notation;
@@ -91,7 +91,7 @@ public class Occupation extends Competence {
                 '}';
     }
 
-    public static class Builder extends Competence.Builder<Occupation.Builder, Occupation>{
+    public static class Builder extends Esco.Builder<Occupation.Builder, Occupation>{
         private Map<String, String> simpleNonPreferredTerm;
         private String notation;
         private List<ISCOGroup> groups;

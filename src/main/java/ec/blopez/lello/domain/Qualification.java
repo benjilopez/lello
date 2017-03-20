@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by benjilopez on 31/01/2017.
  */
-public class Qualification extends Competence {
+public class Qualification extends Esco {
 
     @JsonProperty("definition")
     private Map<String, String> definition;
@@ -74,7 +74,7 @@ public class Qualification extends Competence {
                 '}';
     }
 
-    public static class Builder extends Competence.Builder<Builder, Qualification>{
+    public static class Builder extends Esco.Builder<Builder, Qualification>{
         private Map<String, String> definition;
         private List<String> hasAwardingBody;
 

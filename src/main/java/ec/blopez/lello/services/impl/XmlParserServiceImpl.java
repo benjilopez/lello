@@ -36,7 +36,7 @@ public class XmlParserServiceImpl implements XmlParserService {
 
     private final static Logger LOG = LoggerFactory.getLogger(XmlParserServiceImpl.class);
 
-    private final static  Map<String, Competence> MAP_BY_URI = Maps.newHashMap();
+    private final static  Map<String, Esco> MAP_BY_URI = Maps.newHashMap();
 
     @Autowired
     public XmlParserServiceImpl(final DatabaseService databaseService,
@@ -102,8 +102,8 @@ public class XmlParserServiceImpl implements XmlParserService {
                     continue;
                 if (thesaurus.getRelationships() != null) {
                     for (Relationship relationship : thesaurus.getRelationships()) {
-                        final Competence child = MAP_BY_URI.get(relationship.getChildUri());
-                        final Competence parent = MAP_BY_URI.get(relationship.getParentUri());
+                        final Esco child = MAP_BY_URI.get(relationship.getChildUri());
+                        final Esco parent = MAP_BY_URI.get(relationship.getParentUri());
                         if ((child == null) || (parent == null)) continue;
                         child.addParent(parent);
                         parent.addChild(child);
@@ -114,55 +114,55 @@ public class XmlParserServiceImpl implements XmlParserService {
 
         if(xmlFile.getRelationships() != null){
             for(AssociativeRelationship relationship : xmlFile.getRelationships()){
-                final Competence competence1 = MAP_BY_URI.get(relationship.getIsRelatedConcept());
-                final Competence competence2 = MAP_BY_URI.get(relationship.getHasRelatedConcept());
+                final Esco esco1 = MAP_BY_URI.get(relationship.getIsRelatedConcept());
+                final Esco esco2 = MAP_BY_URI.get(relationship.getHasRelatedConcept());
                 final LexicalValue description = relationship.getDescription();
-                if ((competence1 == null) || (competence2 == null) || (description == null)) continue;
+                if ((esco1 == null) || (esco2 == null) || (description == null)) continue;
                 final ec.blopez.lello.domain.Relationship result1 = new ec.blopez.lello.domain.Relationship();
                 final ec.blopez.lello.domain.Relationship result2 = new ec.blopez.lello.domain.Relationship();
                 final Map<String, String> descriptionMap = description.toDomain();
-                result1.setCompetence(competence2);
-                result2.setCompetence(competence1);
+                result1.setEsco(esco2);
+                result2.setEsco(esco1);
                 result1.setMessage(descriptionMap);
                 result2.setMessage(descriptionMap);
-                competence1.addRelated(result1);
-                competence2.addRelated(result2);
+                esco1.addRelated(result1);
+                esco2.addRelated(result2);
             }
         }
     }
 
     private boolean parse(final List<ThesaurusConcept> concepts, final CompetenceType type){
         for (ThesaurusConcept concept : concepts) {
-            final Competence competenceInDB = MAP_BY_URI.get(concept.getUri());
+            final Esco escoInDB = MAP_BY_URI.get(concept.getUri());
 
-            final Competence competence;
+            final Esco esco;
             switch (type){
                 case OCCUPATION:
-                    competence = concept.toOccupation();
+                    esco = concept.toOccupation();
                     break;
                 case QUALIFICATION:
-                    competence = concept.toQualification();
+                    esco = concept.toQualification();
                     break;
                 case SKILL:
-                    competence = concept.toSkill();
+                    esco = concept.toSkill();
                     break;
                 default:
                     return false;
             }
-            if(competenceInDB == null){
+            if(escoInDB == null){
                 try {
-                    MAP_BY_URI.put(concept.getUri(), competence);
-                    databaseService.create(competence);
+                    MAP_BY_URI.put(concept.getUri(), esco);
+                    databaseService.create(esco);
                 } catch (DatabaseActionException e) {
-                    LOG.error("Error saving competence in the database: " + competence);
+                    LOG.error("Error saving esco in the database: " + esco);
                 }
             } else {
-                competenceInDB.addPreferredTerm(competence.getPreferredTerm());
-                if(competenceInDB instanceof Skill) {
-                    ((Skill) competenceInDB).addSimpleNonPreferredTerm(((Skill) competence).getSimpleNonPreferredTerm());
+                escoInDB.addPreferredTerm(esco.getPreferredTerm());
+                if(escoInDB instanceof Skill) {
+                    ((Skill) escoInDB).addSimpleNonPreferredTerm(((Skill) esco).getSimpleNonPreferredTerm());
                 }
-                if(competenceInDB instanceof Qualification) {
-                    ((Qualification) competenceInDB).addDefinitions(((Qualification) competence).getDefinition());
+                if(escoInDB instanceof Qualification) {
+                    ((Qualification) escoInDB).addDefinitions(((Qualification) esco).getDefinition());
                 }
             }
         }

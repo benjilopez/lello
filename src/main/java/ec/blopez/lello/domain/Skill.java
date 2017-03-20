@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by benjilopez on 31/01/2017.
  */
-public class Skill extends Competence {
+public class Skill extends Esco {
 
     @JsonProperty("simpleNonPreferredTerm")
     private Map<String, String> simpleNonPreferredTerm;
@@ -65,7 +65,7 @@ public class Skill extends Competence {
                 '}';
     }
 
-    public static class Builder extends Competence.Builder<Builder, Skill>{
+    public static class Builder extends Esco.Builder<Builder, Skill>{
         private Map<String, String> simpleNonPreferredTerm;
 
         public Builder setSimpleNonPreferredTerm(Map<String, String> simpleNonPreferredTerm) {

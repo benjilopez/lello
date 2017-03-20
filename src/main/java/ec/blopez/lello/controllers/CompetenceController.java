@@ -41,7 +41,7 @@ public class CompetenceController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Object> createCompetence(final RequestEntity<Skill> request){
+    public ResponseEntity<Object> createCompetence(final RequestEntity<Competence> request){
         return return404IfNull(competenceService.create(request.getBody()));
     }
 
@@ -56,7 +56,7 @@ public class CompetenceController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateCompetence(@PathVariable final String id, final RequestEntity<Skill> request){
+    public ResponseEntity<Object> updateCompetence(@PathVariable final String id, final RequestEntity<Competence> request){
         return return404IfNull(competenceService.update(id, request.getBody(), Competence.class));
     }
 

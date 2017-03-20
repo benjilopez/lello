@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.exceptions.DatabaseActionException;
 import ec.blopez.lello.services.CompetenceService;
+import ec.blopez.lello.services.ControlService;
 import ec.blopez.lello.services.DatabaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +17,7 @@ import java.util.List;
  * Created by Benjamin Lopez on 14/01/2017.
  */
 @Service
-public class CompetenceServiceImpl<T> implements CompetenceService<T> {
+public class CompetenceServiceImpl<T> implements CompetenceService {
 
     private final static Logger LOG = LoggerFactory.getLogger(CompetenceServiceImpl.class);
 
@@ -24,40 +25,37 @@ public class CompetenceServiceImpl<T> implements CompetenceService<T> {
     @Autowired
     private DatabaseService databaseService;
 
+    @Autowired
+    private ControlService controlService;
+
     @Override
-    public T get(final String id, final Class c) {
-        final Competence competence = databaseService.get(id);
-        if(c.isInstance(competence)) return (T) competence;
-        return null;
+    public Competence get(final String id) {
+        if (id == null) return null;
+        return databaseService.get(id);
     }
 
     @Override
-    public List<T> get(final List<String> ids, final Class c) {
-        final List<T> result = Lists.newArrayList();
+    public List<Competence> get(final List<String> ids) {
+        if(ids == null) return null;
+        final List<Competence> result = Lists.newArrayList();
         for(String id : ids){
-            final T competence = get(id, c);
+            final Competence competence = get(id);
             if(competence != null) result.add(competence);
         }
         return result;
     }
 
     @Override
-    public List<T> get(final Class c) {
-        final List<T> result = Lists.newArrayList();
-        final List<Competence> competences = databaseService.get();
-        for(Competence competence : competences){
-            if(c.isInstance(competence)) result.add((T) competence);
-        }
-        return result;
+    public List<Competence> get() {
+        return databaseService.get();
     }
 
     @Override
-    public T update(final String id, final T competence, final Class c) {
-        if((competence == null) || (get(id, c) == null) || !(competence instanceof Competence)) return null;
-        final Competence toUpdate = (Competence) competence;
-        toUpdate.setId(id);
+    public Competence update(final String id, final Competence competence) {
+        if((competence == null) || (id == null) || (get(id) == null)) return null;
+        competence.setId(id);
         try {
-            return (T) databaseService.update(toUpdate);
+            return databaseService.update(competence);
         } catch (final DatabaseActionException e) {
             LOG.error("Error trying to update competence in the database.", e);
         }
@@ -65,11 +63,12 @@ public class CompetenceServiceImpl<T> implements CompetenceService<T> {
     }
 
     @Override
-    public T delete(final String id, final Class c) {
+    public Competence delete(final String id) {
         try {
-            final T toDelete = get(id, c);
+            if(id == null) return null;
+            final Competence toDelete = get(id);
             if(toDelete == null) return null;
-            return (T) databaseService.delete(id);
+            return databaseService.delete(id);
         } catch (DatabaseActionException e) {
             LOG.error("Error trying to delete competence from the database", e);
         }
@@ -79,10 +78,15 @@ public class CompetenceServiceImpl<T> implements CompetenceService<T> {
     }
 
     @Override
-    public T create(final T competence) {
+    public Competence create(final Competence competence) {
         try {
-            if((competence == null) || !(competence instanceof Competence)) return null;
-            return (T) databaseService.create((Competence) competence);
+            if(competence == null) return null;
+            final Competence competenceToUpdate = controlService.checkDouble(competence);
+            if(competenceToUpdate != null){
+                return databaseService.update(competenceToUpdate);
+            } else {
+                return databaseService.create(competence);
+            }
         } catch (DatabaseActionException e) {
             LOG.error("Error trying to create new competence in the database.", e);
         }
@@ -90,8 +94,8 @@ public class CompetenceServiceImpl<T> implements CompetenceService<T> {
     }
 
     @Override
-    public List<T> search(final String query) {
-        final List<T> result = Lists.newArrayList();
+    public List<Competence> search(final String query) {
+        final List<Competence> result = Lists.newArrayList();
         return result;
     }
 }

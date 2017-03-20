@@ -2,9 +2,7 @@ package ec.blopez.lello.crawler.esco.domain;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import ec.blopez.lello.domain.Occupation;
-import ec.blopez.lello.domain.Qualification;
-import ec.blopez.lello.domain.Skill;
+import ec.blopez.lello.domain.Competence;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -182,8 +180,8 @@ public class ThesaurusConcept {
         return result;
     }
 
-    public Skill toSkill(){
-        final Skill.Builder builder = new Skill.Builder();
+    public Competence toCompetence(final CompetenceType competenceType){
+        final Competence.Builder builder = new Competence.Builder();
         builder .setPreferredTerm(map(preferredTerm))
                 .setTopConcept(topConcept)
                 .setStatus(status)
@@ -191,39 +189,12 @@ public class ThesaurusConcept {
                 .setTypes(types)
                 .setUri(uri)
                 .setFramework("ESCO")
-
-                .setSimpleNonPreferredTerm(map(simpleNonPreferredTerm));
-        return builder.build();
-    }
-
-    public Qualification toQualification(){
-        final Qualification.Builder builder = new Qualification.Builder();
-        builder .setPreferredTerm(map(preferredTerm))
-                .setTopConcept(topConcept)
-                .setStatus(status)
-                .setIdentifier(identifier)
-                .setTypes(types)
-                .setUri(uri)
-                .setFramework("ESCO")
-
                 .setDefinition(map(definition))
-                .setHasAwardingBody(mapAwardingBodies(hasAwardingBody));
-        return builder.build();
-    }
-
-    public Occupation toOccupation(){
-        final Occupation.Builder builder = new Occupation.Builder();
-        builder .setPreferredTerm(map(preferredTerm))
-                .setTopConcept(topConcept)
-                .setStatus(status)
-                .setIdentifier(identifier)
-                .setTypes(types)
-                .setUri(uri)
-                .setFramework("ESCO")
-
+                .setHasAwardingBody(mapAwardingBodies(hasAwardingBody))
                 .setSimpleNonPreferredTerm(map(simpleNonPreferredTerm))
                 .setGroups(mapGroups(groups))
-                .setNotation(notation);
+                .setNotation(notation)
+                .setType(competenceType);
         return builder.build();
     }
 }

@@ -108,13 +108,13 @@ public class ESCOParser implements LelloParser <ESCOXmlRootElement>{
         for (ThesaurusConcept concept : concepts) {
             switch (type){
                 case OCCUPATION:
-                    escoMap.put(concept.getUri(), concept.toOccupation());
+                    escoMap.put(concept.getUri(), concept.toCompetence(CompetenceType.OCCUPATION));
                     break;
                 case QUALIFICATION:
-                    escoMap.put(concept.getUri(), concept.toQualification());
+                    escoMap.put(concept.getUri(), concept.toCompetence(CompetenceType.QUALIFICATION));
                     break;
                 case SKILL:
-                    escoMap.put(concept.getUri(), concept.toSkill());
+                    escoMap.put(concept.getUri(), concept.toCompetence(CompetenceType.SKILL));
                     break;
             }
         }

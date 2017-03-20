@@ -1,7 +1,6 @@
 package ec.blopez.lello.controllers;
 
 import ec.blopez.lello.domain.Competence;
-import ec.blopez.lello.domain.Skill;
 import ec.blopez.lello.services.impl.CompetenceServiceImpl;
 import ec.blopez.lello.utils.ResponseKeys;
 import org.json.simple.JSONObject;

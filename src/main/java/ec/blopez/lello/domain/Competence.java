@@ -7,6 +7,8 @@ import com.google.common.collect.Maps;
 import ec.blopez.lello.Configurations;
 import ec.blopez.lello.crawler.esco.domain.CompetenceType;
 import ec.blopez.lello.crawler.esco.domain.LexicalValue;
+import org.elasticsearch.Build;
+import org.hibernate.hql.internal.ast.tree.ComponentJoin;
 
 import java.text.ParseException;
 import java.util.List;
@@ -15,9 +17,15 @@ import java.util.Map;
 /**
  * Created by Benjamin Lopez on 14/01/2017.
  */
-public abstract class Competence {
+public class Competence {
 
     private static long COUNTER = 1;
+
+    @JsonProperty("@id")
+    private String uri;
+
+    @JsonProperty("code")
+    private String id;
 
     @JsonProperty("externalUri")
     private String externalUri;
@@ -37,12 +45,6 @@ public abstract class Competence {
     @JsonProperty("preferredTerm")
     private Map<String, String> preferredTerm;
 
-    @JsonProperty("code")
-    private String id;
-
-    @JsonProperty("@id")
-    private String uri;
-
     @JsonIgnore
     private Map<String, Competence> parents;
 
@@ -54,19 +56,34 @@ public abstract class Competence {
 
     private String framework;
 
+    @JsonProperty("notation")
+    private String notation;
+
+    @JsonProperty("memberOfISCOGroup")
+    private List<ISCOGroup> groups;
+
+    @JsonProperty("simpleNonPreferredTerm")
+    private Map<String, String> simpleNonPreferredTerm;
+
+    @JsonProperty("definition")
+    private Map<String, String> definition;
+
+    @JsonProperty("hasAwardingBody")
+    private List<String> hasAwardingBody;
+
+    @JsonProperty("competenceType")
+    private CompetenceType type;
+
     protected Competence(){
         id = "LELLO:" + COUNTER;
         COUNTER++;
         final StringBuilder builder = new StringBuilder(Configurations.URL);
         builder.append(Configurations.PATH);
-        builder.append(getType().getUrl());
-        builder.append("/");
+        builder.append("competences/");
         builder.append(id);
         uri = builder.toString();
     }
 
-    @JsonProperty("competenceType")
-    public abstract CompetenceType getType();
 
     @JsonProperty("parents")
     public List<String> getParenUris(){
@@ -208,44 +225,73 @@ public abstract class Competence {
         this.framework = framework;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Competence that = (Competence) o;
-
-        if (topConcept != that.topConcept) return false;
-        if (externalUri != null ? !externalUri.equals(that.externalUri) : that.externalUri != null) return false;
-        if (types != null ? !types.equals(that.types) : that.types != null) return false;
-        if (identifier != null ? !identifier.equals(that.identifier) : that.identifier != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (preferredTerm != null ? !preferredTerm.equals(that.preferredTerm) : that.preferredTerm != null)
-            return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (uri != null ? !uri.equals(that.uri) : that.uri != null) return false;
-        if (parents != null ? !parents.equals(that.parents) : that.parents != null) return false;
-        if (children != null ? !children.equals(that.children) : that.children != null) return false;
-        return related != null ? related.equals(that.related) : that.related == null;
+    public Map<String, String> getSimpleNonPreferredTerm() {
+        return simpleNonPreferredTerm;
     }
 
-    @Override
-    public int hashCode() {
-        int result = externalUri != null ? externalUri.hashCode() : 0;
-        result = 31 * result + (types != null ? types.hashCode() : 0);
-        result = 31 * result + (identifier != null ? identifier.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (topConcept ? 1 : 0);
-        result = 31 * result + (preferredTerm != null ? preferredTerm.hashCode() : 0);
-        result = 31 * result + (id != null ? id.hashCode() : 0);
-        result = 31 * result + (uri != null ? uri.hashCode() : 0);
-        result = 31 * result + (parents != null ? parents.hashCode() : 0);
-        result = 31 * result + (children != null ? children.hashCode() : 0);
-        result = 31 * result + (related != null ? related.hashCode() : 0);
-        return result;
+    public void setSimpleNonPreferredTerm(final Map<String, String> simpleNonPreferredTerm) {
+        this.simpleNonPreferredTerm = simpleNonPreferredTerm;
     }
 
-    public static abstract class Builder<T, E>{
+    public void addSimpleNonPreferredTerm(final LexicalValue simpleNonPreferredTerm){
+        if(simpleNonPreferredTerm == null) return;
+        if(this.simpleNonPreferredTerm == null) this.simpleNonPreferredTerm = Maps.newHashMap();
+        this.simpleNonPreferredTerm.computeIfAbsent(simpleNonPreferredTerm.getLang(), k -> simpleNonPreferredTerm.getValue());
+    }
+
+    public void addSimpleNonPreferredTerm(final Map<String, String> simpleNonPreferredTerms){
+        if(simpleNonPreferredTerms == null) return;
+        for(Map.Entry<String, String> entry : simpleNonPreferredTerms.entrySet()) this.simpleNonPreferredTerm.computeIfAbsent(entry.getKey(), k -> entry.getValue());
+    }
+
+    public String getNotation() {
+        return notation;
+    }
+
+    public void setNotation(String notation) {
+        this.notation = notation;
+    }
+
+    public List<ISCOGroup> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<ISCOGroup> groups) {
+        this.groups = groups;
+    }
+
+    public Map<String, String> getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(Map<String, String> definition) {
+        this.definition = definition;
+    }
+
+    public List<String> getHasAwardingBody() {
+        return hasAwardingBody;
+    }
+
+    public void setHasAwardingBody(List<String> hasAwardingBody) {
+        this.hasAwardingBody = hasAwardingBody;
+    }
+
+    public void addDefinitions(final Map<String, String> definitions){
+        if(definitions == null) return;
+        for(Map.Entry<String, String> entry : definitions.entrySet()){
+            this.definition.computeIfAbsent(entry.getKey(), k -> entry.getValue());
+        }
+    }
+
+    public CompetenceType getType(){
+        return type;
+    }
+
+    public void setType(final CompetenceType type){
+        this.type = type;
+    }
+
+    public static class Builder{
         private String uri;
         private List<String> types;
         private String identifier;
@@ -253,59 +299,94 @@ public abstract class Competence {
         private boolean topConcept;
         private Map<String, String> preferredTerm;
         private String framework;
+        private Map<String, String> simpleNonPreferredTerm;
+        private String notation;
+        private List<ISCOGroup> groups;
+        private Map<String, String> definition;
+        private List<String> hasAwardingBody;
+        private CompetenceType type;
 
-        public T setUri(String uri) {
+        public Builder setSimpleNonPreferredTerm(Map<String, String> simpleNonPreferredTerm) {
+            this.simpleNonPreferredTerm = simpleNonPreferredTerm;
+            return this;
+        }
+
+        public Builder setNotation(String notation) {
+            this.notation = notation;
+            return this;
+        }
+
+        public Builder setGroups(List<ISCOGroup> groups) {
+            this.groups = groups;
+            return this;
+        }
+
+        public Builder setUri(String uri) {
             this.uri = uri;
-            return (T) this;
+            return this;
         }
 
-        public T setTypes(List<String> types) {
+        public Builder setTypes(List<String> types) {
             this.types = types;
-            return (T) this;
+            return this;
         }
 
-        public T setIdentifier(String identifier) {
+        public Builder setIdentifier(String identifier) {
             this.identifier = identifier;
-            return (T) this;
+            return this;
         }
 
-        public T setStatus(String status) {
+        public Builder setStatus(String status) {
             this.status = status;
-            return (T) this;
+            return this;
         }
 
-        public T setTopConcept(boolean topConcept) {
+        public Builder setTopConcept(boolean topConcept) {
             this.topConcept = topConcept;
-            return (T) this;
+            return this;
         }
 
-        public T setPreferredTerm(Map<String, String> preferredTerm) {
+        public Builder setPreferredTerm(Map<String, String> preferredTerm) {
             this.preferredTerm = preferredTerm;
-            return (T) this;
+            return this;
         }
 
-        public T setFramework(final String framework){
+        public Builder setFramework(final String framework){
             this.framework = framework;
-            return(T) this;
+            return this;
         }
 
-        public E build(final Class c) throws ParseException {
-            try{
-                final Object object = c.newInstance();
-                if (!(object instanceof Competence)) throw new ParseException("Illegal class type", 0);
-                final Competence competence = (Competence) object;
-                competence.setExternalUri(uri);
-                competence.setTypes(types);
-                competence.setIdentifier(identifier);
-                competence.setStatus(status);
-                competence.setTopConcept(topConcept);
-                competence.setPreferredTerm(preferredTerm);
-                competence.setFramework(framework);
-                return (E) competence;
-            } catch (IllegalAccessException | InstantiationException e) {
-                e.printStackTrace();
-            }
-            return null;
+        public Builder setDefinition(final Map<String, String> definition) {
+            this.definition = definition;
+            return this;
+        }
+
+        public Builder setHasAwardingBody(final List<String> hasAwardingBody) {
+            this.hasAwardingBody = hasAwardingBody;
+            return this;
+        }
+
+        public Builder setType(final CompetenceType type){
+            this.type = type;
+            return this;
+        }
+
+        public Competence build(){
+            final Competence competence = new Competence();
+            competence.setExternalUri(uri);
+            competence.setTypes(types);
+            competence.setIdentifier(identifier);
+            competence.setStatus(status);
+            competence.setTopConcept(topConcept);
+            competence.setPreferredTerm(preferredTerm);
+            competence.setFramework(framework);
+            competence.setSimpleNonPreferredTerm(simpleNonPreferredTerm);
+            competence.setNotation(notation);
+            competence.setGroups(groups);
+            competence.setDefinition(definition);
+            competence.setHasAwardingBody(hasAwardingBody);
+            competence.setType(type);
+            return competence;
         }
     }
 }

@@ -1,15 +1,17 @@
 package ec.blopez.lello.services.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.enums.DataBaseAction;
 import ec.blopez.lello.exceptions.DatabaseActionException;
 import ec.blopez.lello.services.ElasticsearchService;
+import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
@@ -34,15 +37,24 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
 
     private TransportClient client;
 
+    final ObjectMapper mapper = new ObjectMapper();
+
+    private String index;
+
+    private String type;
+
     @Autowired
     public ElasticsearchServiceImpl(@Value("${elasticsearch.host}") final String host,
                                     @Value("${elasticsearch.port}") final int port,
-                                    @Value("${elasticsearch.cluster.name}") final String clusterName){
+                                    @Value("${elasticsearch.cluster.name}") final String clusterName,
+                                    @Value("${elasticsearch.index}") final String index,
+                                    @Value("${elasticsearch.type}") final String type){
         try {
+            this.index = index;
+            this.type = type;
             final Settings settings = Settings.builder().put("cluster.name", clusterName)
-                    //.put("client.transport.sniff", true)
                     .build();
-            client = new PreBuiltTransportClient(settings)
+            this.client = new PreBuiltTransportClient(Settings.EMPTY)
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
         } catch (UnknownHostException e) {
             LOG.error("Error creating Bean for connection to Elasticsearch.", e);
@@ -51,7 +63,13 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
 
     @Override
     public Competence get(final String id) {
-        return competences.get(id);
+        try {
+            final GetResponse response = client.prepareGet(index, type, id).get();
+            return mapper.readValue(response.getSourceAsBytes(), Competence.class);
+        } catch (IOException e) {
+            LOG.error("Error getting Competence from Elasticsearch with id: " + id, e);
+            return null;
+        }
     }
 
     @Override
@@ -85,9 +103,15 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
 
     @Override
     public Competence create(final Competence competence) throws DatabaseActionException{
-        final Map<String, Competence> map = getMapForAction(competence, DataBaseAction.CREATE);
-        map.put(competence.getId(), competence);
-        return competence;
+        LOG.info("Indexing entry in Elasticsearch: " + competence.getId());
+        try {
+            final IndexResponse response = client.prepareIndex(index, type, competence.getId())
+                    .setSource(mapper.writeValueAsBytes(competence)).get();
+            return competence;
+        } catch(Exception e){
+            LOG.error("Error indexing entry into Elasticsearch: " + competence.getId(), e);
+            return null;
+        }
     }
 
     @Override

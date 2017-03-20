@@ -71,8 +71,8 @@ public class ESCOParser implements LelloParser <ESCOXmlRootElement>{
                         final Competence child = escoMap.get(relationship.getChildUri());
                         final Competence parent = escoMap.get(relationship.getParentUri());
                         if ((child == null) || (parent == null)) continue;
-                        child.addParent(parent);
-                        parent.addChild(child);
+                        child.addParent(parent.getUri());
+                        parent.addChild(child.getUri());
                     }
                 }
             }

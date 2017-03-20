@@ -1,7 +1,9 @@
 package ec.blopez.lello.domain;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import ec.blopez.lello.Configurations;
@@ -10,6 +12,7 @@ import ec.blopez.lello.crawler.esco.domain.LexicalValue;
 import org.elasticsearch.Build;
 import org.hibernate.hql.internal.ast.tree.ComponentJoin;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -45,11 +48,11 @@ public class Competence {
     @JsonProperty("preferredTerm")
     private Map<String, String> preferredTerm;
 
-    @JsonIgnore
-    private Map<String, Competence> parents;
+    @JsonProperty("parents")
+    private List<String> parents;
 
-    @JsonIgnore
-    private Map<String, Competence> children;
+    @JsonProperty("children")
+    private List<String> children;
 
     @JsonProperty("related")
     private List<Relationship> related;
@@ -74,7 +77,8 @@ public class Competence {
     @JsonProperty("competenceType")
     private CompetenceType type;
 
-    protected Competence(){
+    /*
+    public Competence(){
         id = "LELLO:" + COUNTER;
         COUNTER++;
         final StringBuilder builder = new StringBuilder(Configurations.URL);
@@ -83,23 +87,7 @@ public class Competence {
         builder.append(id);
         uri = builder.toString();
     }
-
-
-    @JsonProperty("parents")
-    public List<String> getParenUris(){
-        if(parents == null) return null;
-        final List<String> result = Lists.newArrayList();
-        for(Competence competence : parents.values()) result.add(competence.getUri());
-        return result;
-    }
-
-    @JsonProperty("children")
-    public List<String> getChildrenUris(){
-        if(children == null) return null;
-        final List<String> result = Lists.newArrayList();
-        for(Competence competence : children.values()) result.add(competence.getUri());
-        return result;
-    }
+    */
 
     public String getExternalUri() {
         return externalUri;
@@ -160,32 +148,35 @@ public class Competence {
         for(Map.Entry<String, String> entry : preferredTerms.entrySet()) this.preferredTerm.computeIfAbsent(entry.getKey(), k -> entry.getValue());
     }
 
-    public Map<String, Competence> getParents() {
+    public List<String> getParents() {
         return parents;
     }
 
-    public void setParents(final Map<String, Competence> parents) {
+    public void setParents(final List<String> parents){
         this.parents = parents;
     }
 
-    public void addParent(final Competence parent){
+
+    public void addParent(final String parent){
         if(parent == null) return;
-        if(parents == null) parents = Maps.newHashMap();
-        parents.computeIfAbsent(parent.getId(), k -> parent);
+        if(parents == null) parents = Lists.newArrayList();
+        for(String savedParent : parents) if(savedParent.equals(parent)) return;
+        parents.add(parent);
     }
 
-    public Map<String, Competence> getChildren() {
+    public List<String> getChildren() {
         return children;
     }
 
-    public void setChildren(final Map<String, Competence> children) {
+    public void setChildren(final List<String> children){
         this.children = children;
     }
 
-    public void addChild(final Competence child){
+    public void addChild(final String child){
         if(child == null) return;
-        if(children == null) children = Maps.newHashMap();
-        children.computeIfAbsent(child.getId(), k -> child);
+        if(children == null) children = Lists.newArrayList();
+        for(String savedChild : children) if(savedChild.equals(child)) return;
+        children.add(child);
     }
 
     public List<Relationship> getRelated() {

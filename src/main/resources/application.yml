@@ -25,5 +25,7 @@ spring:
 elasticsearch:
   host: localhost
   port: 9300
+  index: competences
+  type: competence
   cluster:
     name: lello

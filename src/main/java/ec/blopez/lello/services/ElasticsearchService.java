@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Benjamin Lopez on 31/01/2017.
  */
-public interface DatabaseService {
+public interface ElasticsearchService {
 
     Competence get(final String id);
 

@@ -5,7 +5,7 @@ import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.exceptions.DatabaseActionException;
 import ec.blopez.lello.services.CompetenceService;
 import ec.blopez.lello.services.ControlService;
-import ec.blopez.lello.services.DatabaseService;
+import ec.blopez.lello.services.ElasticsearchService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class CompetenceServiceImpl<T> implements CompetenceService {
 
 
     @Autowired
-    private DatabaseService databaseService;
+    private ElasticsearchService elasticsearchService;
 
     @Autowired
     private ControlService controlService;
@@ -31,7 +31,7 @@ public class CompetenceServiceImpl<T> implements CompetenceService {
     @Override
     public Competence get(final String id) {
         if (id == null) return null;
-        return databaseService.get(id);
+        return elasticsearchService.get(id);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class CompetenceServiceImpl<T> implements CompetenceService {
 
     @Override
     public List<Competence> get() {
-        return databaseService.get();
+        return elasticsearchService.get();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class CompetenceServiceImpl<T> implements CompetenceService {
         if((competence == null) || (id == null) || (get(id) == null)) return null;
         competence.setId(id);
         try {
-            return databaseService.update(competence);
+            return elasticsearchService.update(competence);
         } catch (final DatabaseActionException e) {
             LOG.error("Error trying to update competence in the database.", e);
         }
@@ -68,7 +68,7 @@ public class CompetenceServiceImpl<T> implements CompetenceService {
             if(id == null) return null;
             final Competence toDelete = get(id);
             if(toDelete == null) return null;
-            return databaseService.delete(id);
+            return elasticsearchService.delete(id);
         } catch (DatabaseActionException e) {
             LOG.error("Error trying to delete competence from the database", e);
         }
@@ -83,9 +83,9 @@ public class CompetenceServiceImpl<T> implements CompetenceService {
             if(competence == null) return null;
             final Competence competenceToUpdate = controlService.checkDouble(competence);
             if(competenceToUpdate != null){
-                return databaseService.update(competenceToUpdate);
+                return elasticsearchService.update(competenceToUpdate);
             } else {
-                return databaseService.create(competence);
+                return elasticsearchService.create(competence);
             }
         } catch (DatabaseActionException e) {
             LOG.error("Error trying to create new competence in the database.", e);

@@ -23,7 +23,7 @@ public class LelloCrawler extends WebCrawler {
 
     private final static Logger LOG = LoggerFactory.getLogger(LelloCrawler.class);
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");
-    final CompetenceService<Competence> competenceService;
+    final CompetenceService competenceService;
     final List<LelloParser> lelloParserList = Lists.newArrayList();
 
     public LelloCrawler(final CompetenceService competenceService){

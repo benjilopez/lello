@@ -4,10 +4,13 @@ import com.google.common.collect.Lists;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.services.ControlService;
 import ec.blopez.lello.services.DatabaseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Benjamin Lopez on 04/03/2017.
@@ -15,12 +18,30 @@ import java.util.List;
 @Service
 public class ControlServiceImpl implements ControlService {
 
+    private final static Logger LOG = LoggerFactory.getLogger(ControlServiceImpl.class);
+
     @Autowired
     private DatabaseService databaseService;
 
     @Override
     public Competence checkDouble(final Competence competence) {
-        return competence;
+        if(competence == null) return null;
+        Competence savedCompetence = null;
+        if(competence.getExternalUri() != null) savedCompetence = databaseService.getFromExternalURL(competence.getExternalUri());
+        if(savedCompetence == null) return null;
+        Map<String, String> preferredTerms = competence.getPreferredTerm();
+        if(preferredTerms != null){
+            Map<String, String> savedPreferredTerms = savedCompetence.getPreferredTerm();
+            if((savedPreferredTerms == null) || (savedPreferredTerms.size() == 0)){
+                savedCompetence.setPreferredTerm(preferredTerms);
+            } else{
+                for(Map.Entry<String, String> entry : preferredTerms.entrySet()){
+                    savedPreferredTerms.putIfAbsent(entry.getKey(), entry.getValue());
+                }
+            }
+        }
+
+        return savedCompetence;
     }
 
     @Override

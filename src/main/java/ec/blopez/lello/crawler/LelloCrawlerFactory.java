@@ -15,7 +15,7 @@ public class LelloCrawlerFactory implements CrawlController.WebCrawlerFactory {
 
 
     @Autowired
-    private CompetenceService<Competence> competenceService;
+    private CompetenceService competenceService;
 
     @Override
     public WebCrawler newInstance() throws Exception {

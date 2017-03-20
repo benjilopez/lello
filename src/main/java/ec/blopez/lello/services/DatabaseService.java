@@ -12,6 +12,8 @@ public interface DatabaseService {
 
     Competence get(final String id);
 
+    Competence getFromExternalURL(final String url);
+
     List<Competence> get();
 
     Competence update(final Competence competence) throws DatabaseActionException;

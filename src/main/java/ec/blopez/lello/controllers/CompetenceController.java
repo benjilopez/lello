@@ -35,7 +35,7 @@ public class CompetenceController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<JSONObject> getCompetences(){
         final JSONObject result = new JSONObject();
-        final List<Competence> competences = competenceService.get(Competence.class);
+        final List<Competence> competences = competenceService.get();
         result.put(ResponseKeys.COMPETENCES, competences);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -47,17 +47,17 @@ public class CompetenceController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> getCompetence(@PathVariable final String id){
-        return return404IfNull(competenceService.get(id, Competence.class));
+        return return404IfNull(competenceService.get(id));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteCompetence(@PathVariable final String id){
-        return return404IfNull(competenceService.delete(id, Competence.class));
+        return return404IfNull(competenceService.delete(id));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateCompetence(@PathVariable final String id, final RequestEntity<Competence> request){
-        return return404IfNull(competenceService.update(id, request.getBody(), Competence.class));
+        return return404IfNull(competenceService.update(id, request.getBody()));
     }
 
     @RequestMapping(value = "/search/{query}", method = RequestMethod.PUT)

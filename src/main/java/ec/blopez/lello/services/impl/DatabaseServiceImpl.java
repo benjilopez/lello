@@ -25,6 +25,15 @@ public class DatabaseServiceImpl implements DatabaseService {
     }
 
     @Override
+    public Competence getFromExternalURL(final String url) {
+        if(url == null) return null;
+        for(Competence competence : competences.values()){
+            if(url.equals(competence.getExternalUri())) return competence;
+        }
+        return null;
+    }
+
+    @Override
     public List<Competence> get() {
         return Lists.newArrayList(competences.values());
     }

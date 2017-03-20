@@ -1,4 +1,4 @@
-package ec.blopez.lello.xml.domain;
+package ec.blopez.lello.crawler.esco.domain;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -190,6 +190,7 @@ public class ThesaurusConcept {
                 .setIdentifier(identifier)
                 .setTypes(types)
                 .setUri(uri)
+                .setFramework("ESCO")
 
                 .setSimpleNonPreferredTerm(map(simpleNonPreferredTerm));
         return builder.build();
@@ -203,6 +204,7 @@ public class ThesaurusConcept {
                 .setIdentifier(identifier)
                 .setTypes(types)
                 .setUri(uri)
+                .setFramework("ESCO")
 
                 .setDefinition(map(definition))
                 .setHasAwardingBody(mapAwardingBodies(hasAwardingBody));
@@ -217,6 +219,7 @@ public class ThesaurusConcept {
                 .setIdentifier(identifier)
                 .setTypes(types)
                 .setUri(uri)
+                .setFramework("ESCO")
 
                 .setSimpleNonPreferredTerm(map(simpleNonPreferredTerm))
                 .setGroups(mapGroups(groups))

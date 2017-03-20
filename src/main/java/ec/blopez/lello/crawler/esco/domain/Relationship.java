@@ -1,4 +1,4 @@
-package ec.blopez.lello.xml.domain;
+package ec.blopez.lello.crawler.esco.domain;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

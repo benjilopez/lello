@@ -2,8 +2,8 @@ package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Maps;
-import ec.blopez.lello.enums.CompetenceType;
-import ec.blopez.lello.xml.domain.LexicalValue;
+import ec.blopez.lello.crawler.esco.domain.CompetenceType;
+import ec.blopez.lello.crawler.esco.domain.LexicalValue;
 
 import java.text.ParseException;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by benjilopez on 21/02/2017.
  */
-public class Occupation extends Esco {
+public class Occupation extends Competence {
 
     @JsonProperty("notation")
     private String notation;
@@ -91,7 +91,7 @@ public class Occupation extends Esco {
                 '}';
     }
 
-    public static class Builder extends Esco.Builder<Occupation.Builder, Occupation>{
+    public static class Builder extends Competence.Builder<Occupation.Builder, Occupation>{
         private Map<String, String> simpleNonPreferredTerm;
         private String notation;
         private List<ISCOGroup> groups;

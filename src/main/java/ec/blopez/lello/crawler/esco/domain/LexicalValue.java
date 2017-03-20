@@ -1,6 +1,5 @@
-package ec.blopez.lello.xml.domain;
+package ec.blopez.lello.crawler.esco.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Maps;
 
 import javax.xml.bind.annotation.*;

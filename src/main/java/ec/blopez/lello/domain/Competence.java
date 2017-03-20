@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import ec.blopez.lello.Configurations;
-import ec.blopez.lello.enums.CompetenceType;
-import ec.blopez.lello.xml.domain.LexicalValue;
+import ec.blopez.lello.crawler.esco.domain.CompetenceType;
+import ec.blopez.lello.crawler.esco.domain.LexicalValue;
 
 import java.text.ParseException;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * Created by Benjamin Lopez on 14/01/2017.
  */
-public abstract class Esco {
+public abstract class Competence {
 
     private static long COUNTER = 1;
 
@@ -44,15 +44,17 @@ public abstract class Esco {
     private String uri;
 
     @JsonIgnore
-    private Map<String, Esco> parents;
+    private Map<String, Competence> parents;
 
     @JsonIgnore
-    private Map<String, Esco> children;
+    private Map<String, Competence> children;
 
     @JsonProperty("related")
     private List<Relationship> related;
 
-    protected Esco(){
+    private String framework;
+
+    protected Competence(){
         id = "LELLO:" + COUNTER;
         COUNTER++;
         final StringBuilder builder = new StringBuilder(Configurations.URL);
@@ -70,7 +72,7 @@ public abstract class Esco {
     public List<String> getParenUris(){
         if(parents == null) return null;
         final List<String> result = Lists.newArrayList();
-        for(Esco esco : parents.values()) result.add(esco.getUri());
+        for(Competence competence : parents.values()) result.add(competence.getUri());
         return result;
     }
 
@@ -78,7 +80,7 @@ public abstract class Esco {
     public List<String> getChildrenUris(){
         if(children == null) return null;
         final List<String> result = Lists.newArrayList();
-        for(Esco esco : children.values()) result.add(esco.getUri());
+        for(Competence competence : children.values()) result.add(competence.getUri());
         return result;
     }
 
@@ -141,29 +143,29 @@ public abstract class Esco {
         for(Map.Entry<String, String> entry : preferredTerms.entrySet()) this.preferredTerm.computeIfAbsent(entry.getKey(), k -> entry.getValue());
     }
 
-    public Map<String, Esco> getParents() {
+    public Map<String, Competence> getParents() {
         return parents;
     }
 
-    public void setParents(final Map<String, Esco> parents) {
+    public void setParents(final Map<String, Competence> parents) {
         this.parents = parents;
     }
 
-    public void addParent(final Esco parent){
+    public void addParent(final Competence parent){
         if(parent == null) return;
         if(parents == null) parents = Maps.newHashMap();
         parents.computeIfAbsent(parent.getId(), k -> parent);
     }
 
-    public Map<String, Esco> getChildren() {
+    public Map<String, Competence> getChildren() {
         return children;
     }
 
-    public void setChildren(final Map<String, Esco> children) {
+    public void setChildren(final Map<String, Competence> children) {
         this.children = children;
     }
 
-    public void addChild(final Esco child){
+    public void addChild(final Competence child){
         if(child == null) return;
         if(children == null) children = Maps.newHashMap();
         children.computeIfAbsent(child.getId(), k -> child);
@@ -198,12 +200,20 @@ public abstract class Esco {
         this.uri = uri;
     }
 
+    public String getFramework() {
+        return framework;
+    }
+
+    public void setFramework(String framework) {
+        this.framework = framework;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Esco that = (Esco) o;
+        Competence that = (Competence) o;
 
         if (topConcept != that.topConcept) return false;
         if (externalUri != null ? !externalUri.equals(that.externalUri) : that.externalUri != null) return false;
@@ -242,6 +252,7 @@ public abstract class Esco {
         private String status;
         private boolean topConcept;
         private Map<String, String> preferredTerm;
+        private String framework;
 
         public T setUri(String uri) {
             this.uri = uri;
@@ -273,18 +284,24 @@ public abstract class Esco {
             return (T) this;
         }
 
+        public T setFramework(final String framework){
+            this.framework = framework;
+            return(T) this;
+        }
+
         public E build(final Class c) throws ParseException {
             try{
                 final Object object = c.newInstance();
-                if (!(object instanceof Esco)) throw new ParseException("Illegal class type", 0);
-                final Esco esco = (Esco) object;
-                esco.setExternalUri(uri);
-                esco.setTypes(types);
-                esco.setIdentifier(identifier);
-                esco.setStatus(status);
-                esco.setTopConcept(topConcept);
-                esco.setPreferredTerm(preferredTerm);
-                return (E) esco;
+                if (!(object instanceof Competence)) throw new ParseException("Illegal class type", 0);
+                final Competence competence = (Competence) object;
+                competence.setExternalUri(uri);
+                competence.setTypes(types);
+                competence.setIdentifier(identifier);
+                competence.setStatus(status);
+                competence.setTopConcept(topConcept);
+                competence.setPreferredTerm(preferredTerm);
+                competence.setFramework(framework);
+                return (E) competence;
             } catch (IllegalAccessException | InstantiationException e) {
                 e.printStackTrace();
             }

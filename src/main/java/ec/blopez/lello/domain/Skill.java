@@ -2,8 +2,8 @@ package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Maps;
-import ec.blopez.lello.enums.CompetenceType;
-import ec.blopez.lello.xml.domain.LexicalValue;
+import ec.blopez.lello.crawler.esco.domain.CompetenceType;
+import ec.blopez.lello.crawler.esco.domain.LexicalValue;
 
 import java.text.ParseException;
 import java.util.Map;
@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by benjilopez on 31/01/2017.
  */
-public class Skill extends Esco {
+public class Skill extends Competence {
 
     @JsonProperty("simpleNonPreferredTerm")
     private Map<String, String> simpleNonPreferredTerm;
@@ -65,7 +65,7 @@ public class Skill extends Esco {
                 '}';
     }
 
-    public static class Builder extends Esco.Builder<Builder, Skill>{
+    public static class Builder extends Competence.Builder<Builder, Skill>{
         private Map<String, String> simpleNonPreferredTerm;
 
         public Builder setSimpleNonPreferredTerm(Map<String, String> simpleNonPreferredTerm) {

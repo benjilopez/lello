@@ -1,14 +1,8 @@
 package ec.blopez.lello.crawler;
 
 import ec.blopez.lello.Configurations;
-import ec.blopez.lello.services.XmlParserService;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
-import edu.uci.ics.crawler4j.crawler.Page;
-import edu.uci.ics.crawler4j.crawler.WebCrawler;
-import edu.uci.ics.crawler4j.parser.HtmlParseData;
-import edu.uci.ics.crawler4j.parser.TextParseData;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
-import edu.uci.ics.crawler4j.url.WebURL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +10,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
 import java.io.File;
-import java.util.Set;
-import java.util.regex.Pattern;
 
 /**
  * Created by benjilopez on 22/02/2017.

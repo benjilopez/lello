@@ -1,4 +1,6 @@
-package ec.blopez.lello.xml.domain;
+package ec.blopez.lello.crawler.esco.domain;
+
+import ec.blopez.lello.crawler.LelloElement;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
  */
 @XmlRootElement(name="EscoInterchange")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XMLParserMainClass {
+public class ESCOXmlRootElement extends LelloElement{
 
     @XmlElement(name="Thesaurus")
     private List<Thesaurus> thesauruses;

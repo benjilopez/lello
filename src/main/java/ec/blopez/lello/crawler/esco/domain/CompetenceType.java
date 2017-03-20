@@ -1,4 +1,4 @@
-package ec.blopez.lello.enums;
+package ec.blopez.lello.crawler.esco.domain;
 
 /**
  * Created by benjilopez on 21/02/2017.

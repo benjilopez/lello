@@ -1,6 +1,7 @@
 package ec.blopez.lello.crawler;
 
-import ec.blopez.lello.services.XmlParserService;
+import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.services.CompetenceService;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,10 @@ public class LelloCrawlerFactory implements CrawlController.WebCrawlerFactory {
 
 
     @Autowired
-    private XmlParserService xmlParserService;
+    private CompetenceService<Competence> competenceService;
 
     @Override
     public WebCrawler newInstance() throws Exception {
-        return new LelloCrawler(xmlParserService);
+        return new LelloCrawler(competenceService);
     }
 }

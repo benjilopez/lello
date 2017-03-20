@@ -1,6 +1,6 @@
 package ec.blopez.lello.services;
 
-import ec.blopez.lello.domain.Esco;
+import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.exceptions.DatabaseActionException;
 
 import java.util.List;
@@ -10,15 +10,15 @@ import java.util.List;
  */
 public interface DatabaseService {
 
-    Esco get(final String id);
+    Competence get(final String id);
 
-    List<Esco> get();
+    List<Competence> get();
 
-    Esco update(final Esco esco) throws DatabaseActionException;
+    Competence update(final Competence competence) throws DatabaseActionException;
 
-    Esco delete(final String id) throws DatabaseActionException;
+    Competence delete(final String id) throws DatabaseActionException;
 
-    Esco create(final Esco esco) throws DatabaseActionException;
+    Competence create(final Competence competence) throws DatabaseActionException;
 
-    List<Esco> search(final String query);
+    List<Competence> search(final String query);
 }

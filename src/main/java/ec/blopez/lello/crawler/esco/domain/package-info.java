@@ -4,7 +4,7 @@
         xmlns = {@XmlNs(prefix="dc", namespaceURI="http://purl.org/dc/elements/1.1/")})
 
 
-package ec.blopez.lello.xml.domain;
+package ec.blopez.lello.crawler.esco.domain;
 
 import javax.xml.bind.annotation.XmlNsForm;
 import javax.xml.bind.annotation.XmlSchema;

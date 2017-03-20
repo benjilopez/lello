@@ -1,7 +1,5 @@
 package ec.blopez.lello.services;
 
-import ec.blopez.lello.enums.CompetenceType;
-
 import java.util.List;
 
 /**

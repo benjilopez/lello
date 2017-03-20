@@ -1,7 +1,7 @@
 package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ec.blopez.lello.enums.CompetenceType;
+import ec.blopez.lello.crawler.esco.domain.CompetenceType;
 
 import java.text.ParseException;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by benjilopez on 31/01/2017.
  */
-public class Qualification extends Esco {
+public class Qualification extends Competence {
 
     @JsonProperty("definition")
     private Map<String, String> definition;
@@ -74,7 +74,7 @@ public class Qualification extends Esco {
                 '}';
     }
 
-    public static class Builder extends Esco.Builder<Builder, Qualification>{
+    public static class Builder extends Competence.Builder<Builder, Qualification>{
         private Map<String, String> definition;
         private List<String> hasAwardingBody;
 

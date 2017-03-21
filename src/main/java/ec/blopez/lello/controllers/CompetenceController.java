@@ -1,5 +1,6 @@
 package ec.blopez.lello.controllers;
 
+import com.google.common.base.CharMatcher;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.services.impl.CompetenceServiceImpl;
 import ec.blopez.lello.utils.ResponseKeys;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -27,14 +29,20 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class CompetenceController {
 
     @Autowired
-    CompetenceServiceImpl<Competence> competenceService;
+    private CompetenceServiceImpl<Competence> competenceService;
 
+    private final static int DEFAULT_LIMIT = 50;
+    private final static int DEFAULT_OFFSET = 0;
     private final static Logger LOG = LoggerFactory.getLogger(CompetenceController.class);
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<JSONObject> getCompetences(){
+    public ResponseEntity<JSONObject> getCompetences(final HttpServletRequest request){
         final JSONObject result = new JSONObject();
-        final List<Competence> competences = competenceService.get();
+        final String limitAsString = request.getParameter("limit");
+        final String offSetAsString = request.getParameter("offset");
+        int limit = isOnlyDigits(limitAsString) ? Integer.parseInt(limitAsString) : DEFAULT_LIMIT;
+        int offset = isOnlyDigits(offSetAsString) ? Integer.parseInt(offSetAsString) : DEFAULT_OFFSET;
+        final List<Competence> competences = competenceService.get(limit, offset);
         result.put(ResponseKeys.COMPETENCES, competences);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -60,11 +68,19 @@ public class CompetenceController {
     }
 
     @RequestMapping(value = "/search/{query}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> searchCompetences(@PathVariable final String query){
+    public ResponseEntity<Object> searchCompetences(@PathVariable final String query, final HttpServletRequest request){
         final JSONObject result = new JSONObject();
-        final List<Competence> competences = competenceService.search(query);
+        final String limitAsString = request.getParameter("limit");
+        final String offSetAsString = request.getParameter("offset");
+        int limit =  isOnlyDigits(limitAsString) ? Integer.parseInt(limitAsString) : DEFAULT_LIMIT;
+        int offset = isOnlyDigits(offSetAsString) ? Integer.parseInt(offSetAsString) : DEFAULT_OFFSET;
+        final List<Competence> competences = competenceService.search(query, limit, offset);
         result.put(ResponseKeys.COMPETENCES, competences);
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    private boolean isOnlyDigits(final String string){
+        return (string != null) && CharMatcher.DIGIT.matchesAllOf(string);
     }
 
     private ResponseEntity<Object> return404IfNull(final Competence competence){

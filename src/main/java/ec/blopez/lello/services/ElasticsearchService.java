@@ -14,7 +14,7 @@ public interface ElasticsearchService {
 
     Competence getFromExternalURL(final String url);
 
-    List<Competence> get();
+    List<Competence> get(final int limit, final int offset);
 
     Competence update(final Competence competence) throws DatabaseActionException;
 
@@ -22,5 +22,5 @@ public interface ElasticsearchService {
 
     Competence create(final Competence competence) throws DatabaseActionException;
 
-    List<Competence> search(final String query);
+    List<Competence> search(final String query, final int limit, final int offset);
 }

@@ -97,12 +97,12 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
     }
 
     @Override
-    public List<Competence> get() {
+    public List<Competence> get(final int limit, final int offset) {
         final List<Competence> competences = Lists.newArrayList();
         try {
             final SearchResponse response = client.prepareSearch()
                     .setQuery(QueryBuilders.matchAllQuery()).setIndices(index)
-                    .setTypes(type).setSize(50).setFrom(0).execute().get();
+                    .setTypes(type).setSize(limit).setFrom(offset).execute().get();
             for(SearchHit hit : response.getHits().getHits()){
                 final Competence competence = map(hit);
                 if(competence != null) competences.add(competence);
@@ -149,7 +149,7 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
     }
 
     @Override
-    public List<Competence> search(final String query) {
+    public List<Competence> search(final String query, final int limit, final int offset) {
         return null;
     }
 }

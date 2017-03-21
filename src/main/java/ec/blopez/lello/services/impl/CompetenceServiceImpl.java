@@ -46,8 +46,8 @@ public class CompetenceServiceImpl<T> implements CompetenceService {
     }
 
     @Override
-    public List<Competence> get() {
-        return elasticsearchService.get();
+    public List<Competence> get(final int limit, final int offset) {
+        return elasticsearchService.get(limit, offset);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class CompetenceServiceImpl<T> implements CompetenceService {
     }
 
     @Override
-    public List<Competence> search(final String query) {
+    public List<Competence> search(final String query, final int limit, final int offset) {
         final List<Competence> result = Lists.newArrayList();
         return result;
     }

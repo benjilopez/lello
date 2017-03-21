@@ -13,7 +13,7 @@ public interface CompetenceService {
 
     List<Competence> get(final List<String> ids);
 
-    List<Competence> get();
+    List<Competence> get(final int limit, final int offset);
 
     Competence update(final String id, final Competence competence);
 
@@ -21,6 +21,6 @@ public interface CompetenceService {
 
     Competence create(final Competence competence);
 
-    List<Competence> search(final String query);
+    List<Competence> search(final String query, final int limit, final int offset);
 
 }

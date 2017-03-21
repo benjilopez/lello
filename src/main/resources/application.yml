@@ -28,4 +28,4 @@ elasticsearch:
   index: competences
   type: competence
   cluster:
-    name: lello
+    name: elasticsearch

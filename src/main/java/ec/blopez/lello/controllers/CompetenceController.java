@@ -72,8 +72,8 @@ public class CompetenceController {
         final JSONObject result = new JSONObject();
         final String limitAsString = request.getParameter("limit");
         final String offSetAsString = request.getParameter("offset");
-        int limit =  isOnlyDigits(limitAsString) ? Integer.parseInt(limitAsString) : DEFAULT_LIMIT;
-        int offset = isOnlyDigits(offSetAsString) ? Integer.parseInt(offSetAsString) : DEFAULT_OFFSET;
+        final int limit =  isOnlyDigits(limitAsString) ? Integer.parseInt(limitAsString) : DEFAULT_LIMIT;
+        final int offset = isOnlyDigits(offSetAsString) ? Integer.parseInt(offSetAsString) : DEFAULT_OFFSET;
         final List<Competence> competences = competenceService.search(query, limit, offset);
         result.put(ResponseKeys.COMPETENCES, competences);
         return new ResponseEntity<>(result, HttpStatus.OK);

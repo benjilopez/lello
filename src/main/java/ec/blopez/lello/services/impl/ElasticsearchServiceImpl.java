@@ -53,7 +53,7 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
             this.type = type;
             final Settings settings = Settings.builder().put("cluster.name", clusterName)
                     .build();
-            this.client = new PreBuiltTransportClient(Settings.EMPTY)
+            this.client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
         } catch (UnknownHostException e) {
             LOG.error("Error creating Bean for connection to Elasticsearch.", e);

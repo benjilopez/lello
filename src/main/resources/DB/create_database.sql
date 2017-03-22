@@ -10,6 +10,14 @@ CREATE TABLE `lello`.`crawler_sites` (  `id`            BIGINT(20)    NOT NULL  
                                         PRIMARY KEY(`id`))
                                         ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `lello`.`configs`       (  `id`            BIGINT(20)    NOT NULL  AUTO_INCREMENT,
+                                        `key`           VARCHAR(255)  NOT NULL,
+                                        `value`         VARCHAR(255)  NOT NULL,
+                                        `created`       TIMESTAMP     NOT NULL  DEFAULT NOW(),
+                                        `last_modified` DATE     	    NOT NULL,
+                                        PRIMARY KEY(`id`))
+                                        ENGINE = InnoDB DEFAULT CHARSET=utf8;
+
 INSERT INTO `lello`.`crawler_sites` (`url`,                                                                                             `last_modified`)
                                     ## ESCO - CAPACITIES ##
                              VALUES ("https://ec.europa.eu/esco/resources/edcat/storage/77/7706bac4-2662-4f9c-a82e-8e3d41ac7e4e.xml",   NOW()),
@@ -91,3 +99,4 @@ INSERT INTO `lello`.`crawler_sites` (`url`,                                     
                                     ("https://ec.europa.eu/esco/resources/edcat/storage/e6/e6bff506-e68c-4693-b5ae-c526f71cedde.xml",   NOW()),
                                     ("https://ec.europa.eu/esco/resources/edcat/storage/f7/f7a276dc-a43a-4db2-a35f-c19d85392dec.xml",   NOW()),
                                     ("https://ec.europa.eu/esco/resources/edcat/storage/d3/d37418b7-3fef-4a43-a808-ee7444f6d4cf.xml",   NOW());
+

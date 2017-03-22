@@ -51,12 +51,33 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
         try {
             this.index = index;
             this.type = type;
-            final Settings settings = Settings.builder().put("cluster.name", clusterName)
-                    .build();
+            final Settings settings = Settings.builder().put("cluster.name", clusterName).build();
             this.client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
         } catch (UnknownHostException e) {
             LOG.error("Error creating Bean for connection to Elasticsearch.", e);
+        }
+
+        if (this.client != null) {
+            try {
+                client.prepareSearch()
+                        .setQuery(QueryBuilders.matchAllQuery()).setIndices(index)
+                        .setTypes(type).setSize(1).setFrom(0).execute().get();
+            } catch(Exception e){
+                //Type isn't declared. Declaring type and not indexit the externalUri
+                client.admin().indices().prepareCreate(index)
+                        .addMapping(this.type, "{" +
+                                "    \"" + this.type + "\":{" +
+                                "        \"properties\": {" +
+                                "            \"externalUri\": {" +
+                                "                \"type\": \"string\"," +
+                                "                \"index\" : \"not_analyzed\"" +
+                                "            }" +
+                                "        }" +
+                                "    }" +
+                                "}")
+                        .get();
+            }
         }
     }
 
@@ -75,9 +96,8 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
     public Competence getFromExternalURL(final String url) {
         if(url == null) return null;
         try {
-            final SearchResponse response = client.prepareSearch()
-                    .setQuery(QueryBuilders.matchQuery("externalUri", url)).setIndices(index)
-                    .setTypes(type).setSize(1).execute().get();
+            final SearchResponse response = client.prepareSearch().setQuery(QueryBuilders
+                    .termQuery("externalUri", url)).setIndices(index).setTypes(type).setSize(1).execute().get();
             if(response.getHits().getTotalHits() > 0){
                 return map(response.getHits().getAt(0));
             }

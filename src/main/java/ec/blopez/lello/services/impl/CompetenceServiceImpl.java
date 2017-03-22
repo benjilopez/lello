@@ -1,6 +1,7 @@
 package ec.blopez.lello.services.impl;
 
 import com.google.common.collect.Lists;
+import ec.blopez.lello.Configurations;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.exceptions.DatabaseActionException;
 import ec.blopez.lello.services.CompetenceService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Benjamin Lopez on 14/01/2017.
@@ -85,6 +87,10 @@ public class CompetenceServiceImpl<T> implements CompetenceService {
             if(competenceToUpdate != null){
                 return elasticsearchService.update(competenceToUpdate);
             } else {
+                final UUID id = UUID.randomUUID();
+                final String uri = Configurations.URL + Configurations.PATH + "competences/" + id.toString();
+                competence.setId(id.toString());
+                competence.setUri(uri);
                 return elasticsearchService.create(competence);
             }
         } catch (DatabaseActionException e) {

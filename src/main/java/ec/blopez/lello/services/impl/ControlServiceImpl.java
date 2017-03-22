@@ -29,9 +29,6 @@ public class ControlServiceImpl implements ControlService {
         Competence savedCompetence = null;
         if(competence.getExternalUri() != null) savedCompetence = elasticsearchService.getFromExternalURL(competence.getExternalUri());
         if(savedCompetence == null) return null;
-        if(!savedCompetence.getExternalUri().equals(competence.getExternalUri())){
-            LOG.error("Found entry doesn't match with the competence");
-        }
         Map<String, String> preferredTerms = competence.getPreferredTerm();
         if(preferredTerms != null){
             Map<String, String> savedPreferredTerms = savedCompetence.getPreferredTerm();

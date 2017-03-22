@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import ec.blopez.lello.crawler.esco.ESCOParser;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.services.CompetenceService;
+import ec.blopez.lello.services.CrawlerDBService;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
@@ -24,10 +25,12 @@ public class LelloCrawler extends WebCrawler {
     private final static Logger LOG = LoggerFactory.getLogger(LelloCrawler.class);
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");
     final CompetenceService competenceService;
+    final CrawlerDBService crawlerDBService;
     final List<LelloParser> lelloParserList = Lists.newArrayList();
 
-    public LelloCrawler(final CompetenceService competenceService){
+    public LelloCrawler(final CompetenceService competenceService, final CrawlerDBService crawlerDBService){
         this.competenceService = competenceService;
+        this.crawlerDBService = crawlerDBService;
         lelloParserList.add(new ESCOParser());
     }
 
@@ -40,6 +43,7 @@ public class LelloCrawler extends WebCrawler {
     @Override
     public void visit(final Page page) {
         final String url = page.getWebURL().getURL();
+        boolean isDataParsed = false;
         for (LelloParser lelloParser : lelloParserList) {
             try {
                 List<Competence> competences = null;
@@ -49,9 +53,11 @@ public class LelloCrawler extends WebCrawler {
                 if(competences != null){
                     for(Competence competence : competences) competenceService.create(competence);
                 }
+                isDataParsed = true;
             } catch (final Exception e) {
                 LOG.error("Error parsing URL: " + url);
             }
         }
+        if(isDataParsed) crawlerDBService.markedAsCrawled(url);
     }
 }

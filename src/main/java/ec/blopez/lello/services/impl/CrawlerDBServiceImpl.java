@@ -23,7 +23,6 @@ public class CrawlerDBServiceImpl implements CrawlerDBService {
             final CrawlerSite.Builder builder = new CrawlerSite.Builder();
             builder .setId(rs.getLong("id"))
                     .setUrl(rs.getString("url"))
-                    .setScanned(rs.getBoolean("scanned"))
                     .setLastScanned(rs.getDate("last_scanned"))
                     .setCreated(rs.getDate("created"))
                     .setLastModified(rs.getDate("last_modified"));
@@ -33,7 +32,19 @@ public class CrawlerDBServiceImpl implements CrawlerDBService {
 
     @Override
     public List<CrawlerSite> getNotCrawledSites() {
-        final String query = "SELECT * FROM `lello`.`crawler_sites` WHERE `scanned` = FALSE";
+        final String query = "SELECT * FROM `lello`.`crawler_sites` " +
+                "                     WHERE `last_scanned` IS NULL" +
+                "                  ORDER BY `created`";
         return mysqlService.query(query, map());
+    }
+
+    @Override
+    public int markedAsCrawled(final String url){
+        final String query = "UPDATE `lello`.`crawler_sites`" +
+                "                SET `last_scanned` = NOW()," +
+                "                    `last_modified` = NOW()" +
+                "              WHERE `last_scanned` IS NULL" +
+                "                AND `url` = ?";
+        return mysqlService.update(query, new Object[]{url});
     }
 }

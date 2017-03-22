@@ -15,7 +15,7 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Created by benjilopez on 22/02/2017.
+ * Created by Benjamin Lopez on 22/02/2017.
  */
 @Controller
 public class LelloCrawlerController extends CrawlController {
@@ -43,12 +43,9 @@ public class LelloCrawlerController extends CrawlController {
             LOG.info("Initiating Crawler");
             final File file = new File(Configurations.CRAWLER_PATH);
             if(!file.exists()) file.mkdirs();
-
             final List<CrawlerSite> sites = crawlerDBService.getNotCrawledSites();
-            if(sites != null){
-                for(CrawlerSite site : sites) addSeed(site.getUrl());
-            }
-
+            if((sites != null) || (sites.size() > 0)) for(CrawlerSite site : sites) addSeed(site.getUrl());
+            else LOG.info("No Sites for crawler found.");
             start(factory, THREAD_COUNT);
             LOG.info("Crawler Finished");
         } catch(Exception e){

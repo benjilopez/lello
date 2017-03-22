@@ -11,4 +11,6 @@ public interface CrawlerDBService {
 
     List<CrawlerSite> getNotCrawledSites();
 
+    int markedAsCrawled(final String url);
+
 }

@@ -11,8 +11,6 @@ public class CrawlerSite {
 
     private String url;
 
-    private boolean scanned;
-
     private Date lastScanned;
 
     private Date created;
@@ -33,14 +31,6 @@ public class CrawlerSite {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public boolean isScanned() {
-        return scanned;
-    }
-
-    public void setScanned(boolean scanned) {
-        this.scanned = scanned;
     }
 
     public Date getLastScanned() {
@@ -70,7 +60,6 @@ public class CrawlerSite {
     public static class Builder{
         private long id;
         private String url;
-        private boolean scanned;
         private Date lastScanned;
         private Date created;
         private Date lastModified;
@@ -82,11 +71,6 @@ public class CrawlerSite {
 
         public Builder setUrl(String url) {
             this.url = url;
-            return this;
-        }
-
-        public Builder setScanned(boolean scanned) {
-            this.scanned = scanned;
             return this;
         }
 
@@ -109,7 +93,6 @@ public class CrawlerSite {
             final CrawlerSite result = new CrawlerSite();
             result.setId(id);
             result.setUrl(url);
-            result.setScanned(scanned);
             result.setLastScanned(lastScanned);
             result.setCreated(created);
             result.setLastModified(lastModified);

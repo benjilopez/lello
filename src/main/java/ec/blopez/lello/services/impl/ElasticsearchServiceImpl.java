@@ -64,7 +64,7 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
                         .setQuery(QueryBuilders.matchAllQuery()).setIndices(index)
                         .setTypes(type).setSize(1).setFrom(0).execute().get();
             } catch(Exception e){
-                //Type isn't declared. Declaring type and not indexit the externalUri
+                //Type isn't declared. Declaring type and not analyzing the externalUri to index
                 client.admin().indices().prepareCreate(index)
                         .addMapping(this.type, "{" +
                                 "    \"" + this.type + "\":{" +

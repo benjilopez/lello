@@ -23,24 +23,28 @@ public class ControlServiceImpl implements ControlService {
     @Autowired
     private ElasticsearchService elasticsearchService;
 
+    private Map<String, String> mergeLanguages(Map<String, String> savedDate, Map<String, String> newData){
+        if(newData != null){
+            if((savedDate == null) || (savedDate.size() == 0)){
+                return newData;
+            } else{
+                for(Map.Entry<String, String> entry : newData.entrySet()){
+                    savedDate.putIfAbsent(entry.getKey(), entry.getValue());
+                }
+            }
+        }
+        return savedDate;
+    }
+
     @Override
     public Competence checkDouble(final Competence competence) {
         if(competence == null) return null;
         Competence savedCompetence = null;
         if(competence.getExternalUri() != null) savedCompetence = elasticsearchService.getFromExternalURL(competence.getExternalUri());
         if(savedCompetence == null) return null;
-        Map<String, String> preferredTerms = competence.getPreferredTerm();
-        if(preferredTerms != null){
-            Map<String, String> savedPreferredTerms = savedCompetence.getPreferredTerm();
-            if((savedPreferredTerms == null) || (savedPreferredTerms.size() == 0)){
-                savedCompetence.setPreferredTerm(preferredTerms);
-            } else{
-                for(Map.Entry<String, String> entry : preferredTerms.entrySet()){
-                    savedPreferredTerms.putIfAbsent(entry.getKey(), entry.getValue());
-                }
-            }
-        }
-
+        savedCompetence.setPreferredTerm(mergeLanguages(savedCompetence.getPreferredTerm(), competence.getPreferredTerm()));
+        savedCompetence.setSimpleNonPreferredTerm(mergeLanguages(savedCompetence.getSimpleNonPreferredTerm(), competence.getSimpleNonPreferredTerm()));
+        savedCompetence.setDefinition(mergeLanguages(savedCompetence.getDefinition(), competence.getDefinition()));
         return savedCompetence;
     }
 

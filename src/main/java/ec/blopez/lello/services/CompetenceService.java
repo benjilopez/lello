@@ -1,6 +1,8 @@
 package ec.blopez.lello.services;
 
+import ec.blopez.lello.crawler.esco.domain.CompetenceType;
 import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.domain.CompetenceSearchResult;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ public interface CompetenceService {
 
     List<Competence> get(final List<String> ids);
 
-    List<Competence> get(final int limit, final int offset);
+    CompetenceSearchResult get(final int limit, final int offset, final String type, final String framework, final Boolean top);
 
     Competence update(final String id, final Competence competence);
 
@@ -21,6 +23,6 @@ public interface CompetenceService {
 
     Competence create(final Competence competence);
 
-    List<Competence> search(final String query, final int limit, final int offset);
+    CompetenceSearchResult search(final String query, final int limit, final int offset);
 
 }

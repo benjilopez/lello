@@ -2,6 +2,7 @@ package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import ec.blopez.lello.enums.RelationshipType;
 
 import java.util.Map;
 
@@ -22,6 +23,8 @@ public class Relationship {
         return competence.getUri();
     }
 
+    public RelationshipType type;
+
     public Competence getCompetence() {
         return competence;
     }
@@ -37,5 +40,13 @@ public class Relationship {
 
     public void setMessage(Map<String, String> message) {
         this.message = message;
+    }
+
+    public RelationshipType getType() {
+        return type;
+    }
+
+    public void setType(RelationshipType type) {
+        this.type = type;
     }
 }

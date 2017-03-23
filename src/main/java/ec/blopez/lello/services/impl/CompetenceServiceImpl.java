@@ -3,10 +3,15 @@ package ec.blopez.lello.services.impl;
 import com.google.common.collect.Lists;
 import ec.blopez.lello.Configurations;
 import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.domain.CompetenceSearchResult;
 import ec.blopez.lello.exceptions.DatabaseActionException;
+import ec.blopez.lello.rest.ResponseKeys;
 import ec.blopez.lello.services.CompetenceService;
 import ec.blopez.lello.services.ControlService;
 import ec.blopez.lello.services.ElasticsearchService;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +24,7 @@ import java.util.UUID;
  * Created by Benjamin Lopez on 14/01/2017.
  */
 @Service
-public class CompetenceServiceImpl<T> implements CompetenceService {
+public class CompetenceServiceImpl implements CompetenceService {
 
     private final static Logger LOG = LoggerFactory.getLogger(CompetenceServiceImpl.class);
 
@@ -47,9 +52,21 @@ public class CompetenceServiceImpl<T> implements CompetenceService {
         return result;
     }
 
+    private QueryBuilder getTermBuilder(final String term, final Object value){
+        return (value == null) ? null : QueryBuilders.termQuery(term, value.toString());
+    }
+
     @Override
-    public List<Competence> get(final int limit, final int offset) {
-        return elasticsearchService.get(limit, offset);
+    public CompetenceSearchResult get(final int limit, final int offset, final String type, final String framework, final Boolean top) {
+        if((type == null) && (top == null)) return elasticsearchService.get(limit, offset);
+        final QueryBuilder typeBuilder = getTermBuilder(ResponseKeys.TYPE, type);
+        final QueryBuilder topBuilder = getTermBuilder(ResponseKeys.TOP, top);
+        final QueryBuilder frameworkBuilder = getTermBuilder(ResponseKeys.FRAMEWORK, framework);
+        final BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+        if(typeBuilder != null) boolQuery.must(typeBuilder);
+        if(topBuilder != null) boolQuery.must(topBuilder);
+        if(frameworkBuilder != null) boolQuery.must(frameworkBuilder);
+        return elasticsearchService.search(boolQuery, limit, offset);
     }
 
     @Override
@@ -100,8 +117,8 @@ public class CompetenceServiceImpl<T> implements CompetenceService {
     }
 
     @Override
-    public List<Competence> search(final String query, final int limit, final int offset) {
-        final List<Competence> result = Lists.newArrayList();
-        return result;
+    public CompetenceSearchResult search(final String query, final int limit, final int offset) {
+        QueryBuilder builder = QueryBuilders.matchAllQuery();
+        return elasticsearchService.search(builder, limit, offset);
     }
 }

@@ -9,6 +9,7 @@ import com.google.common.collect.Maps;
 import ec.blopez.lello.Configurations;
 import ec.blopez.lello.crawler.esco.domain.CompetenceType;
 import ec.blopez.lello.crawler.esco.domain.LexicalValue;
+import ec.blopez.lello.rest.ResponseKeys;
 import org.elasticsearch.Build;
 import org.hibernate.hql.internal.ast.tree.ComponentJoin;
 
@@ -22,72 +23,59 @@ import java.util.Map;
  */
 public class Competence {
 
-    private static long COUNTER = 1;
-
-    @JsonProperty("@id")
+    @JsonProperty(ResponseKeys.ID)
     private String uri;
 
-    @JsonProperty("code")
+    @JsonProperty(ResponseKeys.CODE)
     private String id;
 
-    @JsonProperty("externalUri")
+    @JsonProperty(ResponseKeys.EXTERNAL_URL)
     private String externalUri;
 
-    @JsonProperty("types")
+    @JsonProperty(ResponseKeys.EXTERNAL_TYPES)
     private List<String> types;
 
-    @JsonProperty("externalId")
+    @JsonProperty(ResponseKeys.EXTERNAL_ID)
     private String identifier;
 
-    @JsonProperty("status")
+    @JsonProperty(ResponseKeys.STATUS)
     private String status;
 
-    @JsonProperty("topConcept")
+    @JsonProperty(ResponseKeys.TOP)
     private boolean topConcept;
 
-    @JsonProperty("preferredTerm")
+    @JsonProperty(ResponseKeys.NAME)
     private Map<String, String> preferredTerm;
 
-    @JsonProperty("parents")
+    @JsonProperty(ResponseKeys.PARENTS)
     private List<String> parents;
 
-    @JsonProperty("children")
+    @JsonProperty(ResponseKeys.CHILDREN)
     private List<String> children;
 
-    @JsonProperty("related")
+    @JsonProperty(ResponseKeys.RELATED)
     private List<Relationship> related;
 
+    @JsonProperty(ResponseKeys.FRAMEWORK)
     private String framework;
 
-    @JsonProperty("notation")
+    @JsonProperty(ResponseKeys.NOTATION)
     private String notation;
 
-    @JsonProperty("memberOfISCOGroup")
+    @JsonProperty(ResponseKeys.ISCO_GROUPS)
     private List<ISCOGroup> groups;
 
-    @JsonProperty("simpleNonPreferredTerm")
+    @JsonProperty(ResponseKeys.OTHER_NAME)
     private Map<String, String> simpleNonPreferredTerm;
 
-    @JsonProperty("definition")
+    @JsonProperty(ResponseKeys.DEFINITION)
     private Map<String, String> definition;
 
-    @JsonProperty("hasAwardingBody")
+    @JsonProperty(ResponseKeys.HAS_AWARDING_BODY)
     private List<String> hasAwardingBody;
 
-    @JsonProperty("competenceType")
-    private CompetenceType type;
-
-    /*
-    public Competence(){
-        id = "LELLO:" + COUNTER;
-        COUNTER++;
-        final StringBuilder builder = new StringBuilder(Configurations.URL);
-        builder.append(Configurations.PATH);
-        builder.append("competences/");
-        builder.append(id);
-        uri = builder.toString();
-    }
-    */
+    @JsonProperty(ResponseKeys.TYPE)
+    private String type;
 
     public String getExternalUri() {
         return externalUri;
@@ -274,11 +262,11 @@ public class Competence {
         }
     }
 
-    public CompetenceType getType(){
+    public String getType(){
         return type;
     }
 
-    public void setType(final CompetenceType type){
+    public void setType(final String type){
         this.type = type;
     }
 
@@ -295,7 +283,7 @@ public class Competence {
         private List<ISCOGroup> groups;
         private Map<String, String> definition;
         private List<String> hasAwardingBody;
-        private CompetenceType type;
+        private String type;
 
         public Builder setSimpleNonPreferredTerm(Map<String, String> simpleNonPreferredTerm) {
             this.simpleNonPreferredTerm = simpleNonPreferredTerm;
@@ -357,7 +345,7 @@ public class Competence {
             return this;
         }
 
-        public Builder setType(final CompetenceType type){
+        public Builder setType(final String type){
             this.type = type;
             return this;
         }

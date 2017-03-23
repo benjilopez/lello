@@ -1,9 +1,9 @@
 package ec.blopez.lello.services;
 
 import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.domain.CompetenceSearchResult;
 import ec.blopez.lello.exceptions.DatabaseActionException;
-
-import java.util.List;
+import org.elasticsearch.index.query.QueryBuilder;
 
 /**
  * Created by Benjamin Lopez on 31/01/2017.
@@ -14,7 +14,7 @@ public interface ElasticsearchService {
 
     Competence getFromExternalURL(final String url);
 
-    List<Competence> get(final int limit, final int offset);
+    CompetenceSearchResult get(final int limit, final int offset);
 
     Competence update(final Competence competence) throws DatabaseActionException;
 
@@ -22,5 +22,5 @@ public interface ElasticsearchService {
 
     Competence create(final Competence competence) throws DatabaseActionException;
 
-    List<Competence> search(final String query, final int limit, final int offset);
+    CompetenceSearchResult search(final QueryBuilder query, final int limit, final int offset);
 }

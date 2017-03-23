@@ -194,7 +194,7 @@ public class ThesaurusConcept {
                 .setSimpleNonPreferredTerm(map(simpleNonPreferredTerm))
                 .setGroups(mapGroups(groups))
                 .setNotation(notation)
-                .setType(competenceType);
+                .setType(competenceType.toString());
         return builder.build();
     }
 }

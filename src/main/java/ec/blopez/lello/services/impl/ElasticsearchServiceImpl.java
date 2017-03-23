@@ -4,13 +4,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.domain.CompetenceSearchResult;
 import ec.blopez.lello.exceptions.DatabaseActionException;
+import ec.blopez.lello.rest.ResponseKeys;
 import ec.blopez.lello.services.ElasticsearchService;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
@@ -65,18 +68,27 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
                         .setTypes(type).setSize(1).setFrom(0).execute().get();
             } catch(Exception e){
                 //Type isn't declared. Declaring type and not analyzing the externalUri to index
+                final String mapping = "{" +
+                        "    \"%s\":{" +
+                        "        \"properties\": {" +
+                        "            \"%s\": {" +
+                        "                \"type\": \"string\"," +
+                        "                \"index\" : \"not_analyzed\"" +
+                        "            }," +
+                        "            \"%s\": {" +
+                        "                \"type\": \"string\"," +
+                        "                \"index\" : \"not_analyzed\"" +
+                        "            }," +
+                        "            \"%s\": {" +
+                        "                \"type\": \"string\"," +
+                        "                \"index\" : \"not_analyzed\"" +
+                        "            }" +
+                        "        }" +
+                        "    }" +
+                        "}";
                 client.admin().indices().prepareCreate(index)
-                        .addMapping(this.type, "{" +
-                                "    \"" + this.type + "\":{" +
-                                "        \"properties\": {" +
-                                "            \"externalUri\": {" +
-                                "                \"type\": \"string\"," +
-                                "                \"index\" : \"not_analyzed\"" +
-                                "            }" +
-                                "        }" +
-                                "    }" +
-                                "}")
-                        .get();
+                        .addMapping(this.type, String.format(mapping, this.type, ResponseKeys.EXTERNAL_URL,
+                                ResponseKeys.TYPE, ResponseKeys.FRAMEWORK)).get();
             }
         }
     }
@@ -85,6 +97,7 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
     public Competence get(final String id) {
         try {
             final GetResponse response = client.prepareGet(index, type, id).get();
+            if(response.getSourceAsBytes() == null) return null;
             return mapper.readValue(response.getSourceAsBytes(), Competence.class);
         } catch (IOException e) {
             LOG.error("Error getting Competence from Elasticsearch with id: " + id, e);
@@ -117,20 +130,9 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
     }
 
     @Override
-    public List<Competence> get(final int limit, final int offset) {
+    public CompetenceSearchResult get(final int limit, final int offset) {
         final List<Competence> competences = Lists.newArrayList();
-        try {
-            final SearchResponse response = client.prepareSearch()
-                    .setQuery(QueryBuilders.matchAllQuery()).setIndices(index)
-                    .setTypes(type).setSize(limit).setFrom(offset).execute().get();
-            for(SearchHit hit : response.getHits().getHits()){
-                final Competence competence = map(hit);
-                if(competence != null) competences.add(competence);
-            }
-        } catch (InterruptedException | ExecutionException e) {
-            LOG.error("Error trying to get All entries from Elasticsearch: ", e);
-        }
-        return competences;
+        return search(QueryBuilders.matchAllQuery(), limit, offset);
     }
 
     @Override
@@ -169,7 +171,25 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
     }
 
     @Override
-    public List<Competence> search(final String query, final int limit, final int offset) {
-        return null;
+    public CompetenceSearchResult search(final QueryBuilder query, final int limit, final int offset) {
+        final List<Competence> competences = Lists.newArrayList();
+        final CompetenceSearchResult.Builder builder = new CompetenceSearchResult.Builder()
+                .setCompetences(competences)
+                .setLimit(limit)
+                .setOffset(offset)
+                .setTotal(0);
+        try {
+            final SearchResponse response = client.prepareSearch()
+                    .setQuery(query).setIndices(index)
+                    .setTypes(type).setSize(limit).setFrom(offset).execute().get();
+            for(SearchHit hit : response.getHits().getHits()){
+                final Competence competence = map(hit);
+                if(competence != null) competences.add(competence);
+            }
+            builder.setTotal(response.getHits().getTotalHits());
+        } catch (InterruptedException | ExecutionException e) {
+            LOG.error("Error trying to get All entries from Elasticsearch: ", e);
+        }
+        return builder.build();
     }
 }

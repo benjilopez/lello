@@ -8,29 +8,21 @@ public enum CompetenceType {
     SKILL("skills"),
     QUALIFICATION("qualifications"),
     OCCUPATION("occupations"),
-    AWARDING_BODIES("awarding bodies", "awarding_bodies"),
+    AWARDING_BODIES("awarding bodies"),
     COMPETENCES("competences"),
     OTHER(null);
 
-
     private String value;
 
-    private String url;
 
     CompetenceType(final String value){
-        this(value, value);
-    }
-
-    CompetenceType(final String value, final String url){
         this.value = value;
-        this.url = url;
     }
 
     public String getValue(){
         return value;
     }
 
-    public String getUrl(){return url;}
 
     public static CompetenceType fromString(final String string){
         if(string == null) return OTHER;

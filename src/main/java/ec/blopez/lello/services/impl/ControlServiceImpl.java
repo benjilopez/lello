@@ -23,11 +23,11 @@ public class ControlServiceImpl implements ControlService {
     @Autowired
     private ElasticsearchService elasticsearchService;
 
-    private Map<String, String> mergeLanguages(Map<String, String> savedDate, Map<String, String> newData){
+    private Map<String, String> mergeLanguages(final Map<String, String> savedDate, final Map<String, String> newData){
         if(newData != null){
             if((savedDate == null) || (savedDate.size() == 0)){
                 return newData;
-            } else{
+            } else {
                 for(Map.Entry<String, String> entry : newData.entrySet()){
                     savedDate.putIfAbsent(entry.getKey(), entry.getValue());
                 }

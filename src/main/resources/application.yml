@@ -23,7 +23,7 @@ spring:
     validationQuery: SELECT 1
 
 elasticsearch:
-  host: localhost
+  host: search-lello-blopez-ec-pfqg2asfgcbtedulcgxve7glv4.us-east-1.es.amazonaws.com
   port: 9300
   index: competences
   type: competence

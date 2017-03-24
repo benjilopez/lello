@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Locale;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -42,9 +43,9 @@ public class CompetenceController {
     public ResponseEntity<CompetenceSearchResult> get(final HttpServletRequest request){
         final String limitAsString = request.getParameter("limit");
         final String offSetAsString = request.getParameter("offset");
-        final String topAsString = request.getParameter("top");
-        final String typeAsString = request.getParameter("type");
-        final String frameworkAsString = request.getParameter("framework");
+        final String topAsString = request.getParameter(ResponseKeys.TOP);
+        final String typeAsString = request.getParameter(ResponseKeys.TYPE);
+        final String frameworkAsString = request.getParameter(ResponseKeys.FRAMEWORK);
         int limit = isOnlyDigits(limitAsString) ? Integer.parseInt(limitAsString) : DEFAULT_LIMIT;
         int offset = isOnlyDigits(offSetAsString) ? Integer.parseInt(offSetAsString) : DEFAULT_OFFSET;
         final Boolean top = (StringUtils.isEmpty(topAsString)) ? null : Boolean.parseBoolean(topAsString);
@@ -73,14 +74,22 @@ public class CompetenceController {
         return return404IfNull(competenceService.update(id, request.getBody()));
     }
 
-    @RequestMapping(value = "/search/{query}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/search/{query}", method = RequestMethod.GET)
     public ResponseEntity<CompetenceSearchResult> search(@PathVariable final String query, final HttpServletRequest request){
-        final JSONObject result = new JSONObject();
         final String limitAsString = request.getParameter("limit");
         final String offSetAsString = request.getParameter("offset");
+        final String topAsString = request.getParameter(ResponseKeys.TOP);
+        final String typeAsString = request.getParameter(ResponseKeys.TYPE);
+        final String frameworkAsString = request.getParameter(ResponseKeys.FRAMEWORK);
+        final String localeAsString = request.getHeader("Accept-Language");
         final int limit =  isOnlyDigits(limitAsString) ? Integer.parseInt(limitAsString) : DEFAULT_LIMIT;
         final int offset = isOnlyDigits(offSetAsString) ? Integer.parseInt(offSetAsString) : DEFAULT_OFFSET;
-        return new ResponseEntity<>(competenceService.search(query, limit, offset), HttpStatus.OK);
+        final Boolean top = (StringUtils.isEmpty(topAsString)) ? null : Boolean.parseBoolean(topAsString);
+        final String type = (StringUtils.isEmpty(typeAsString)) ? null : typeAsString.toUpperCase();
+        final String framework = (StringUtils.isEmpty(frameworkAsString)) ? null : frameworkAsString.toUpperCase();
+        final Locale locale = (StringUtils.isEmpty(localeAsString)) ? Locale.UK : new Locale(localeAsString);
+        return new ResponseEntity<>(competenceService.search(query, limit, offset, locale, type, framework, top),
+                HttpStatus.OK);
     }
 
     private boolean isOnlyDigits(final String string){

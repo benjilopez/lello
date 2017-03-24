@@ -10,6 +10,7 @@ import ec.blopez.lello.services.CompetenceService;
 import ec.blopez.lello.services.ControlService;
 import ec.blopez.lello.services.ElasticsearchService;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -56,9 +58,7 @@ public class CompetenceServiceImpl implements CompetenceService {
         return (value == null) ? null : QueryBuilders.termQuery(term, value.toString());
     }
 
-    @Override
-    public CompetenceSearchResult get(final int limit, final int offset, final String type, final String framework, final Boolean top) {
-        if((type == null) && (top == null)) return elasticsearchService.get(limit, offset);
+    private BoolQueryBuilder getBoolQueryWithFilters(final String type, final String framework, final Boolean top){
         final QueryBuilder typeBuilder = getTermBuilder(ResponseKeys.TYPE, type);
         final QueryBuilder topBuilder = getTermBuilder(ResponseKeys.TOP, top);
         final QueryBuilder frameworkBuilder = getTermBuilder(ResponseKeys.FRAMEWORK, framework);
@@ -66,7 +66,13 @@ public class CompetenceServiceImpl implements CompetenceService {
         if(typeBuilder != null) boolQuery.must(typeBuilder);
         if(topBuilder != null) boolQuery.must(topBuilder);
         if(frameworkBuilder != null) boolQuery.must(frameworkBuilder);
-        return elasticsearchService.search(boolQuery, limit, offset);
+        return boolQuery;
+    }
+
+    @Override
+    public CompetenceSearchResult get(final int limit, final int offset, final String type, final String framework, final Boolean top) {
+        if((type == null) && (top == null) && (framework == null)) return elasticsearchService.get(limit, offset);
+        return elasticsearchService.search(getBoolQueryWithFilters(type, framework, top), limit, offset);
     }
 
     @Override
@@ -116,9 +122,17 @@ public class CompetenceServiceImpl implements CompetenceService {
         return null;
     }
 
+    private MatchQueryBuilder localeSearch(final String key, final Locale locale, final String query){
+        return QueryBuilders.matchQuery(key + "." + locale.getLanguage(), query);
+    }
+
     @Override
-    public CompetenceSearchResult search(final String query, final int limit, final int offset) {
-        QueryBuilder builder = QueryBuilders.matchAllQuery();
-        return elasticsearchService.search(builder, limit, offset);
+    public CompetenceSearchResult search(final String query, final int limit, final int offset, final Locale locale,
+                                         final String type, final String framework, final Boolean top) {
+        final BoolQueryBuilder boolQuery = getBoolQueryWithFilters(type, framework, top);
+        final MatchQueryBuilder nameQuery = localeSearch(ResponseKeys.NAME, locale, query);
+        final MatchQueryBuilder otherQuery = localeSearch(ResponseKeys.OTHER_NAME, locale, query);
+        final MatchQueryBuilder definitionQuery = localeSearch(ResponseKeys.DEFINITION, locale, query);
+        return elasticsearchService.search(boolQuery.should(nameQuery).should(otherQuery).should(definitionQuery), limit, offset);
     }
 }

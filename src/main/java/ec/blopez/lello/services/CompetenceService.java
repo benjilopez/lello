@@ -1,10 +1,10 @@
 package ec.blopez.lello.services;
 
-import ec.blopez.lello.crawler.esco.domain.CompetenceType;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.domain.CompetenceSearchResult;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Benjamin Lopez on 14/01/2017.
@@ -23,6 +23,7 @@ public interface CompetenceService {
 
     Competence create(final Competence competence);
 
-    CompetenceSearchResult search(final String query, final int limit, final int offset);
+    CompetenceSearchResult search(final String query, final int limit, final int offset, final Locale locale,
+                                  final String type, final String framework, final Boolean top);
 
 }

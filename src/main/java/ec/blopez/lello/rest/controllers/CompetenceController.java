@@ -104,7 +104,7 @@ public class CompetenceController {
 
     private MultiValueMap<String, String> getHeaders(){
         final HttpHeaders headers = new HttpHeaders();
-        headers.add("Access-Control-Allow-Origin", "localhost:3000");
+        headers.add("Access-Control-Allow-Origin", "http://localhost:3000");
         return headers;
     }
 }

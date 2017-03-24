@@ -1,7 +1,6 @@
 package ec.blopez.lello.rest.controllers;
 
 import com.google.common.base.CharMatcher;
-import ec.blopez.lello.crawler.esco.domain.CompetenceType;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.domain.CompetenceSearchResult;
 import ec.blopez.lello.services.impl.CompetenceServiceImpl;
@@ -10,17 +9,15 @@ import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Locale;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -51,7 +48,7 @@ public class CompetenceController {
         final Boolean top = (StringUtils.isEmpty(topAsString)) ? null : Boolean.parseBoolean(topAsString);
         final String type = (StringUtils.isEmpty(typeAsString)) ? null : typeAsString.toUpperCase();
         final String framework = (StringUtils.isEmpty(frameworkAsString)) ? null : frameworkAsString.toUpperCase();
-        return new ResponseEntity<>(competenceService.get(limit, offset, type, framework, top), HttpStatus.OK);
+        return new ResponseEntity<>(competenceService.get(limit, offset, type, framework, top), getHeaders(), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -89,7 +86,7 @@ public class CompetenceController {
         final String framework = (StringUtils.isEmpty(frameworkAsString)) ? null : frameworkAsString.toUpperCase();
         final Locale locale = (StringUtils.isEmpty(localeAsString)) ? Locale.UK : new Locale(localeAsString);
         return new ResponseEntity<>(competenceService.search(query, limit, offset, locale, type, framework, top),
-                HttpStatus.OK);
+                getHeaders(), HttpStatus.OK);
     }
 
     private boolean isOnlyDigits(final String string){
@@ -99,9 +96,15 @@ public class CompetenceController {
     private ResponseEntity<Object> return404IfNull(final Competence competence){
         final JSONObject result = new JSONObject();
         if(competence != null){
-            return new ResponseEntity<>(competence, HttpStatus.OK);
+            return new ResponseEntity<>(competence, getHeaders(), HttpStatus.OK);
         }
         result.put(ResponseKeys.MESSAGE, "Invalid request");
         return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
+    }
+
+    private MultiValueMap<String, String> getHeaders(){
+        final HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "localhost:3000");
+        return headers;
     }
 }

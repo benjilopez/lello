@@ -82,13 +82,17 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
                         "            \"%s\": {" +
                         "                \"type\": \"string\"," +
                         "                \"index\" : \"not_analyzed\"" +
+                        "            }," +
+                        "            \"%s\": {" +
+                        "                \"type\": \"string\"," +
+                        "                \"index\" : \"not_analyzed\"" +
                         "            }" +
                         "        }" +
                         "    }" +
                         "}";
                 client.admin().indices().prepareCreate(index)
                         .addMapping(this.type, String.format(mapping, this.type, ResponseKeys.EXTERNAL_URL,
-                                ResponseKeys.TYPE, ResponseKeys.FRAMEWORK)).get();
+                                ResponseKeys.TYPE, ResponseKeys.FRAMEWORK, ResponseKeys.EXTERNAL_ID)).get();
             }
         }
     }

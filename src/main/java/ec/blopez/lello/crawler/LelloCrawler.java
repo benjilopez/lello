@@ -3,6 +3,8 @@ package ec.blopez.lello.crawler;
 import com.google.common.collect.Lists;
 import ec.blopez.lello.crawler.esco.ESCOParser;
 import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.domain.ParserResult;
+import ec.blopez.lello.domain.Relationship;
 import ec.blopez.lello.services.CompetenceService;
 import ec.blopez.lello.services.CrawlerDBService;
 import edu.uci.ics.crawler4j.crawler.Page;
@@ -46,12 +48,13 @@ public class LelloCrawler extends WebCrawler {
         boolean isDataParsed = false;
         for (LelloParser lelloParser : lelloParserList) {
             try {
-                List<Competence> competences = null;
-                if (page.getParseData() instanceof TextParseData) competences = lelloParser.parse(new URL(url));
-                if (page.getParseData() instanceof HtmlParseData) competences = lelloParser.parse(
+                ParserResult result = null;
+                if (page.getParseData() instanceof TextParseData) result = lelloParser.parse(new URL(url));
+                if (page.getParseData() instanceof HtmlParseData) result = lelloParser.parse(
                         (HtmlParseData) page.getParseData());
-                if(competences != null){
-                    for(Competence competence : competences) competenceService.create(competence);
+                if(result != null){
+                    for(Competence competence : result.getCompetences()) competenceService.create(competence);
+                    for(Relationship relationship : result.getRelationships()) competenceService.create(relationship);
                 }
                 isDataParsed = true;
             } catch (final Exception e) {

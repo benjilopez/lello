@@ -6,5 +6,6 @@ package ec.blopez.lello.enums;
 public enum RelationshipType {
     PARENT,
     CHILD,
-    RELATED
+    RELATED,
+    EXTERNAL
 }

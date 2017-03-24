@@ -2,6 +2,7 @@ package ec.blopez.lello.services.impl;
 
 import com.google.common.collect.Lists;
 import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.domain.Relationship;
 import ec.blopez.lello.services.ControlService;
 import ec.blopez.lello.services.ElasticsearchService;
 import org.slf4j.Logger;
@@ -49,7 +50,26 @@ public class ControlServiceImpl implements ControlService {
     }
 
     @Override
-    public List<Competence> checkRelated(final Competence competence) {
-        return Lists.newArrayList();
+    public Relationship checkRelated(final Competence competence) {
+        return null;
+    }
+
+    private boolean existsAndIsEqual(final String source, final String newValue){
+        return (source != null) && (newValue != null) && source.equals(newValue);
+    }
+
+    @Override
+    public Relationship checkDouble(final Competence competence, final Relationship relationship){
+        final List<Relationship> savedRelationships = (competence.getRelated() != null) ? competence.getRelated()
+                : Lists.newArrayList();
+        for(Relationship savedRelationship : savedRelationships){
+            if (    existsAndIsEqual(savedRelationship.getId(), relationship.getId()) ||
+                    existsAndIsEqual(savedRelationship.getCode(), relationship.getCode()) ||
+                    existsAndIsEqual(savedRelationship.getExternalUrl(), relationship.getExternalUrl())){
+                savedRelationship.setMessage(mergeLanguages(savedRelationship.getMessage(), relationship.getMessage()));
+                return savedRelationship;
+            }
+        }
+        return null;
     }
 }

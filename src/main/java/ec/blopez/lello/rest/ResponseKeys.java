@@ -31,18 +31,12 @@ public class ResponseKeys {
 
     final public static String NAME = "name";
 
-    final public static String PARENTS = "parents";
-
-    final public static String CHILDREN = "children";
-
     final public static String RELATED = "related";
 
     final public static String FRAMEWORK = "framework";
 
     final public static String NOTATION = "notation";
-
-    final public static String ISCO_GROUPS = "memberOfISCOGroup";
-
+    
     final public static String OTHER_NAME = "otherName";
 
     final public static String DEFINITION = "definition";

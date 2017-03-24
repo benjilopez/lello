@@ -174,9 +174,14 @@ public class ThesaurusConcept {
         return result;
     }
 
-    private List<ec.blopez.lello.domain.ISCOGroup> mapGroups(final List<ISCOGroup> groups){
-        final List<ec.blopez.lello.domain.ISCOGroup> result = Lists.newArrayList();
-        if(groups != null) for(ISCOGroup group : groups) result.add(group.toDomain());
+    private List<ec.blopez.lello.domain.Relationship> mapGroups(final List<ISCOGroup> groups){
+        final List<ec.blopez.lello.domain.Relationship> result = Lists.newArrayList();
+        if(groups != null) {
+            for(ISCOGroup group : groups){
+                ec.blopez.lello.domain.Relationship relationship = new ec.blopez.lello.domain.Relationship();
+                relationship.setExternalUrl(group.getUri());
+            }
+        }
         return result;
     }
 
@@ -192,7 +197,7 @@ public class ThesaurusConcept {
                 .setDefinition(map(definition))
                 .setHasAwardingBody(mapAwardingBodies(hasAwardingBody))
                 .setSimpleNonPreferredTerm(map(simpleNonPreferredTerm))
-                .setGroups(mapGroups(groups))
+                .setRelationships(mapGroups(groups))
                 .setNotation(notation)
                 .setType(competenceType.toString());
         return builder.build();

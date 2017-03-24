@@ -21,7 +21,7 @@ CREATE TABLE `lello`.`configs`       (  `id`            BIGINT(20)    NOT NULL  
 INSERT INTO `lello`.`crawler_sites` (`url`,                                                                                             `last_modified`)
                                     ## ESCO - CAPACITIES ##
                              VALUES ("https://ec.europa.eu/esco/resources/edcat/storage/77/7706bac4-2662-4f9c-a82e-8e3d41ac7e4e.xml",   NOW()),
-                                    ("https://ec.europa.eu/esco/rewsources/edcat/storage/77/7706bac4-2662-4f9c-a82e-8e3d41ac7e4e.xml",  NOW()),
+                                    ("https://ec.europa.eu/esco/resources/edcat/storage/77/7706bac4-2662-4f9c-a82e-8e3d41ac7e4e.xml",  NOW()),
                                     ("https://ec.europa.eu/esco/resources/edcat/storage/0b/0bb0e952-20b0-4705-b160-7d8e7c2e73bd.xml",   NOW()),
                                     ("https://ec.europa.eu/esco/resources/edcat/storage/9f/9fc9a1d1-ab65-49ba-b73e-bd9ba5bd42a1.xml",   NOW()),
                                     ("https://ec.europa.eu/esco/resources/edcat/storage/16/1634e5ad-be4e-4a99-8697-229e0d52db74.xml",   NOW()),

@@ -1,6 +1,7 @@
 package ec.blopez.lello.crawler;
 
 import ec.blopez.lello.domain.Competence;
+import ec.blopez.lello.domain.ParserResult;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 
 import java.io.File;
@@ -12,11 +13,11 @@ import java.util.List;
  */
 public interface LelloParser<T> {
 
-    List<Competence> parse(final URL url);
+    ParserResult parse(final URL url);
 
-    List<Competence> parse(final File folder);
+    ParserResult parse(final File folder);
 
-    List<Competence> parse(T xmlFile);
+    ParserResult parse(T xmlFile);
 
-    List<Competence> parse(final HtmlParseData htmlParseDate);
+    ParserResult parse(final HtmlParseData htmlParseDate);
 }

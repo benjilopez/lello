@@ -7,6 +7,7 @@ import ec.blopez.lello.domain.*;
 import ec.blopez.lello.crawler.esco.domain.CompetenceType;
 import ec.blopez.lello.crawler.esco.domain.*;
 import ec.blopez.lello.crawler.esco.domain.Relationship;
+import ec.blopez.lello.enums.RelationshipType;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,7 @@ public class ESCOParser implements LelloParser <ESCOXmlRootElement>{
     private final static Logger LOG = LoggerFactory.getLogger(ESCOParser.class);
 
     @Override
-    public List<Competence> parse(final URL url){
+    public ParserResult parse(final URL url){
         LOG.info("Parsing URL: " + url.toString());
         try {
             final JAXBContext jc = JAXBContext.newInstance(ESCOXmlRootElement.class);
@@ -41,7 +42,7 @@ public class ESCOParser implements LelloParser <ESCOXmlRootElement>{
     }
 
     @Override
-    public List<Competence> parse(final File folder){
+    public ParserResult parse(final File folder){
         if(folder.isDirectory() && folder.exists()) {
             for(File file : folder.listFiles()) {
                 LOG.info("Parsing XML File: " + file.getAbsolutePath());
@@ -59,20 +60,21 @@ public class ESCOParser implements LelloParser <ESCOXmlRootElement>{
     }
 
     @Override
-    public List<Competence> parse(final ESCOXmlRootElement xmlFile){
-        final Map<String, Competence> escoMap = Maps.newHashMap();
+    public ParserResult parse(final ESCOXmlRootElement xmlFile){
+        final List<Competence> competences = Lists.newArrayList();
+        final List<ec.blopez.lello.domain.Relationship> relationships = Lists.newArrayList();
         if(xmlFile.getThesauruses() != null) {
             for (Thesaurus thesaurus : xmlFile.getThesauruses()) {
-                final Map<String, Competence> result = parse(thesaurus.getThesaurusConcepts(), CompetenceType.fromString(thesaurus.getTitle()));
-                if (result.size() > 0) escoMap.putAll(result);
+                final List<Competence> result = parse(thesaurus.getThesaurusConcepts(), CompetenceType.fromString(thesaurus.getTitle()));
+                if (result.size() > 0) competences.addAll(result);
                 else continue;
                 if (thesaurus.getRelationships() != null) {
                     for (Relationship relationship : thesaurus.getRelationships()) {
-                        final Competence child = escoMap.get(relationship.getChildUri());
-                        final Competence parent = escoMap.get(relationship.getParentUri());
-                        if ((child == null) || (parent == null)) continue;
-                        child.addParent(parent.getUri());
-                        parent.addChild(child.getUri());
+                        final ec.blopez.lello.domain.Relationship cRelationship = new ec.blopez.lello.domain.Relationship();
+                        cRelationship.setType(RelationshipType.CHILD);
+                        cRelationship.setSourceExternaUrl(relationship.getParentUri());
+                        cRelationship.setExternalUrl(relationship.getChildUri());
+                        relationships.add(cRelationship);
                     }
                 }
             }
@@ -80,45 +82,39 @@ public class ESCOParser implements LelloParser <ESCOXmlRootElement>{
 
         if(xmlFile.getRelationships() != null){
             for(AssociativeRelationship relationship : xmlFile.getRelationships()){
-                final Competence competence1 = escoMap.get(relationship.getIsRelatedConcept());
-                final Competence competence2 = escoMap.get(relationship.getHasRelatedConcept());
+                final ec.blopez.lello.domain.Relationship cRelationship = new ec.blopez.lello.domain.Relationship();
+                cRelationship.setType(RelationshipType.RELATED);
+                cRelationship.setSourceExternaUrl(relationship.getHasRelatedConcept());
+                cRelationship.setExternalUrl(relationship.getIsRelatedConcept());
                 final LexicalValue description = relationship.getDescription();
-                if ((competence1 == null) || (competence2 == null) || (description == null)) continue;
-                final ec.blopez.lello.domain.Relationship result1 = new ec.blopez.lello.domain.Relationship();
-                final ec.blopez.lello.domain.Relationship result2 = new ec.blopez.lello.domain.Relationship();
-                final Map<String, String> descriptionMap = description.toDomain();
-                result1.setCompetence(competence2);
-                result2.setCompetence(competence1);
-                result1.setMessage(descriptionMap);
-                result2.setMessage(descriptionMap);
-                competence1.addRelated(result1);
-                competence2.addRelated(result2);
+                cRelationship.setMessage(description.toDomain());
+                relationships.add(cRelationship);
             }
         }
-        return Lists.newArrayList(escoMap.values());
+        return new ParserResult(competences, relationships);
     }
 
     @Override
-    public List<Competence> parse(final HtmlParseData htmlParseDate) {
+    public ParserResult parse(final HtmlParseData htmlParseDate) {
         return null;
     }
 
-    private Map<String, Competence> parse(final List<ThesaurusConcept> concepts, final CompetenceType type){
-        final Map<String, Competence> escoMap = Maps.newHashMap();
+    private List<Competence> parse(final List<ThesaurusConcept> concepts, final CompetenceType type){
+        final List<Competence> competences = Lists.newArrayList();
         for (ThesaurusConcept concept : concepts) {
             switch (type){
                 case OCCUPATION:
-                    escoMap.put(concept.getUri(), concept.toCompetence(CompetenceType.OCCUPATION));
+                    competences.add(concept.toCompetence(CompetenceType.OCCUPATION));
                     break;
                 case QUALIFICATION:
-                    escoMap.put(concept.getUri(), concept.toCompetence(CompetenceType.QUALIFICATION));
+                    competences.add(concept.toCompetence(CompetenceType.QUALIFICATION));
                     break;
                 case SKILL:
-                    escoMap.put(concept.getUri(), concept.toCompetence(CompetenceType.SKILL));
+                    competences.add(concept.toCompetence(CompetenceType.SKILL));
                     break;
             }
         }
-        return escoMap;
+        return competences;
     }
 
 }

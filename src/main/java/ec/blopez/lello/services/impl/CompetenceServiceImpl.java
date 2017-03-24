@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import ec.blopez.lello.Configurations;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.domain.CompetenceSearchResult;
+import ec.blopez.lello.domain.Relationship;
+import ec.blopez.lello.enums.RelationshipType;
 import ec.blopez.lello.exceptions.DatabaseActionException;
 import ec.blopez.lello.rest.ResponseKeys;
 import ec.blopez.lello.services.CompetenceService;
@@ -133,6 +135,68 @@ public class CompetenceServiceImpl implements CompetenceService {
         final MatchQueryBuilder nameQuery = localeSearch(ResponseKeys.NAME, locale, query);
         final MatchQueryBuilder otherQuery = localeSearch(ResponseKeys.OTHER_NAME, locale, query);
         final MatchQueryBuilder definitionQuery = localeSearch(ResponseKeys.DEFINITION, locale, query);
-        return elasticsearchService.search(boolQuery.should(nameQuery).should(otherQuery).should(definitionQuery), limit, offset);
+        final MatchQueryBuilder externalUrl = QueryBuilders.matchQuery(ResponseKeys.EXTERNAL_URL , query);
+        final MatchQueryBuilder externalId = QueryBuilders.matchQuery(ResponseKeys.EXTERNAL_ID , query);
+        return elasticsearchService.search(boolQuery.should(nameQuery).should(otherQuery).should(definitionQuery)
+                .should(externalUrl).should(externalId), limit, offset);
+    }
+
+    @Override
+    public boolean create(final Relationship relationship){
+        if((relationship == null) || ((relationship.getId() == null) && (relationship.getExternalUrl() == null))) return false;
+        final String sourceId = relationship.getSourceId();
+        final String sourceExternalUrl = relationship.getSourceExternaUrl();
+        final Competence source = (sourceId != null) ? elasticsearchService.get(sourceId) :
+                elasticsearchService.getFromExternalURL(sourceExternalUrl);
+        if(source == null) return false;
+        final Relationship sourceRelationship = controlService.checkDouble(source, relationship);
+
+        try{
+            if(sourceRelationship != null) {
+                elasticsearchService.update(source);
+                return true;
+            }
+
+            if(relationship.getType() == RelationshipType.EXTERNAL) {
+                source.addRelated(relationship);
+                elasticsearchService.update(source);
+                return true;
+            }
+
+            final String externalUrl = relationship.getExternalUrl();
+            final Competence relatedCompetence = elasticsearchService.getFromExternalURL(externalUrl);
+            if(relatedCompetence == null) return false;
+
+            final Relationship newRelationship = new Relationship();
+
+            relationship.setId(relatedCompetence.getUri());
+            newRelationship.setId(source.getUri());
+            relationship.setCode(relatedCompetence.getId());
+            newRelationship.setCode(source.getId());
+            newRelationship.setExternalUrl(relatedCompetence.getExternalUri());
+
+
+            switch (relationship.getType()){
+                case RELATED:
+                    newRelationship.setType(RelationshipType.RELATED);
+                    break;
+                case CHILD:
+                    newRelationship.setType(RelationshipType.PARENT);
+                    break;
+                case PARENT:
+                    newRelationship.setType(RelationshipType.CHILD);
+                    break;
+            }
+            source.addRelated(relationship);
+            elasticsearchService.update(source);
+            relatedCompetence.addRelated(newRelationship);
+            elasticsearchService.update(relatedCompetence);
+            return true;
+
+        } catch (DatabaseActionException e) {
+            LOG.error("Error trying to update the update the entry in the database;");
+            return false;
+        }
+
     }
 }

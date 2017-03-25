@@ -3,7 +3,7 @@ package ec.blopez.lello.rest.controllers;
 import com.google.common.base.CharMatcher;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.domain.CompetenceSearchResult;
-import ec.blopez.lello.services.impl.CompetenceServiceImpl;
+import ec.blopez.lello.services.CompetenceService;
 import ec.blopez.lello.rest.ResponseKeys;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
@@ -13,7 +13,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +29,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class CompetenceController {
 
     @Autowired
-    private CompetenceServiceImpl competenceService;
+    private CompetenceService competenceService;
 
     private final static int DEFAULT_LIMIT = 50;
     private final static int DEFAULT_OFFSET = 0;
@@ -99,10 +98,10 @@ public class CompetenceController {
             return new ResponseEntity<>(competence, getHeaders(), HttpStatus.OK);
         }
         result.put(ResponseKeys.MESSAGE, "Invalid request");
-        return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(result, getHeaders(), HttpStatus.NOT_FOUND);
     }
 
-    private MultiValueMap<String, String> getHeaders(){
+    private HttpHeaders getHeaders(){
         final HttpHeaders headers = new HttpHeaders();
         headers.add("Access-Control-Allow-Origin", "http://localhost:3000");
         return headers;

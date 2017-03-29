@@ -16,6 +16,6 @@ public class LelloCrawlConfig extends CrawlConfig {
         super();
         setCrawlStorageFolder(configurations.CRAWLER_PATH);
         setMaxDepthOfCrawling(configurations.CRAWLER_DEPTH);
-        setResumableCrawling(true);
+        //setResumableCrawling(true);
     }
 }

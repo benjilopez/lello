@@ -215,6 +215,74 @@ public class Competence {
         this.type = type;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Competence that = (Competence) o;
+
+        if (topConcept != that.topConcept) return false;
+        if (uri != null ? !uri.equals(that.uri) : that.uri != null) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (preferredTerm != null ? !preferredTerm.equals(that.preferredTerm) : that.preferredTerm != null)
+            return false;
+        if (simpleNonPreferredTerm != null ? !simpleNonPreferredTerm.equals(that.simpleNonPreferredTerm) : that.simpleNonPreferredTerm != null)
+            return false;
+        if (definition != null ? !definition.equals(that.definition) : that.definition != null) return false;
+        if (framework != null ? !framework.equals(that.framework) : that.framework != null) return false;
+        if (externalUri != null ? !externalUri.equals(that.externalUri) : that.externalUri != null) return false;
+        if (types != null ? !types.equals(that.types) : that.types != null) return false;
+        if (identifier != null ? !identifier.equals(that.identifier) : that.identifier != null) return false;
+        if (status != null ? !status.equals(that.status) : that.status != null) return false;
+        if (related != null ? !related.equals(that.related) : that.related != null) return false;
+        if (notation != null ? !notation.equals(that.notation) : that.notation != null) return false;
+        if (hasAwardingBody != null ? !hasAwardingBody.equals(that.hasAwardingBody) : that.hasAwardingBody != null)
+            return false;
+        return type != null ? type.equals(that.type) : that.type == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = uri != null ? uri.hashCode() : 0;
+        result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (preferredTerm != null ? preferredTerm.hashCode() : 0);
+        result = 31 * result + (simpleNonPreferredTerm != null ? simpleNonPreferredTerm.hashCode() : 0);
+        result = 31 * result + (definition != null ? definition.hashCode() : 0);
+        result = 31 * result + (framework != null ? framework.hashCode() : 0);
+        result = 31 * result + (externalUri != null ? externalUri.hashCode() : 0);
+        result = 31 * result + (types != null ? types.hashCode() : 0);
+        result = 31 * result + (identifier != null ? identifier.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (topConcept ? 1 : 0);
+        result = 31 * result + (related != null ? related.hashCode() : 0);
+        result = 31 * result + (notation != null ? notation.hashCode() : 0);
+        result = 31 * result + (hasAwardingBody != null ? hasAwardingBody.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Competence{" +
+                "uri='" + uri + '\'' +
+                ", id='" + id + '\'' +
+                ", preferredTerm=" + preferredTerm +
+                ", simpleNonPreferredTerm=" + simpleNonPreferredTerm +
+                ", definition=" + definition +
+                ", framework='" + framework + '\'' +
+                ", externalUri='" + externalUri + '\'' +
+                ", types=" + types +
+                ", identifier='" + identifier + '\'' +
+                ", status='" + status + '\'' +
+                ", topConcept=" + topConcept +
+                ", related=" + related +
+                ", notation='" + notation + '\'' +
+                ", hasAwardingBody=" + hasAwardingBody +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
     public static class Builder{
         private String uri;
         private List<String> types;

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -28,11 +29,16 @@ public class ControlServiceImpl implements ControlService {
     public Competence checkDouble(final Competence competence) {
         if(competence == null) return null;
         Competence savedCompetence = null;
+        final Date started = new Date();
+        LOG.info("Checking for double entry in the Database: " + competence);
         if(competence.getExternalUri() != null) savedCompetence = elasticsearchService.getFromExternalURL(competence.getExternalUri());
-        if(savedCompetence == null) return null;
-        savedCompetence.setPreferredTerm(mergeLanguages(savedCompetence.getPreferredTerm(), competence.getPreferredTerm()));
-        savedCompetence.setSimpleNonPreferredTerm(mergeLanguages(savedCompetence.getSimpleNonPreferredTerm(), competence.getSimpleNonPreferredTerm()));
-        savedCompetence.setDefinition(mergeLanguages(savedCompetence.getDefinition(), competence.getDefinition()));
+        if(savedCompetence != null) {
+            savedCompetence.setPreferredTerm(mergeLanguages(savedCompetence.getPreferredTerm(), competence.getPreferredTerm()));
+            savedCompetence.setSimpleNonPreferredTerm(mergeLanguages(savedCompetence.getSimpleNonPreferredTerm(), competence.getSimpleNonPreferredTerm()));
+            savedCompetence.setDefinition(mergeLanguages(savedCompetence.getDefinition(), competence.getDefinition()));
+        }
+        final Long timeDifference = (new Date()).getTime() - started.getTime();
+        LOG.info("Finished checking for double entry in the Database: " + competence + " in " + timeDifference + " ms");
         return savedCompetence;
     }
 
@@ -43,6 +49,8 @@ public class ControlServiceImpl implements ControlService {
 
     @Override
     public Relationship checkDouble(final Competence competence, final Relationship relationship){
+        final Date started = new Date();
+        LOG.info("Checking for double relationship in the Database: " + competence + ", " + relationship);
         final List<Relationship> savedRelationships = (competence.getRelated() != null) ? competence.getRelated()
                 : Lists.newArrayList();
         for(Relationship savedRelationship : savedRelationships){
@@ -50,13 +58,19 @@ public class ControlServiceImpl implements ControlService {
                     existsAndIsEqual(savedRelationship.getCode(), relationship.getCode()) ||
                     existsAndIsEqual(savedRelationship.getExternalUrl(), relationship.getExternalUrl())){
                 savedRelationship.setMessage(mergeLanguages(savedRelationship.getMessage(), relationship.getMessage()));
+                final Long timeDifference = (new Date()).getTime() - started.getTime();
+                LOG.info("Finished checking for double relationship in the Database: " + competence + ", " + relationship + " in " + timeDifference + " ms");
                 return savedRelationship;
             }
         }
+        final Long timeDifference = (new Date()).getTime() - started.getTime();
+        LOG.info("Finished checking for double relationship in the Database without results: " + competence + ", " + relationship + " in " + timeDifference + " ms");
         return null;
     }
 
     private Map<String, String> mergeLanguages(final Map<String, String> savedData, final Map<String, String> newData){
+        final Date started = new Date();
+        LOG.info("Starting Merge of the Language Data");
         if(newData != null){
             if((savedData == null) || (savedData.size() == 0)){
                 return newData;
@@ -66,6 +80,8 @@ public class ControlServiceImpl implements ControlService {
                 }
             }
         }
+        final Long timeDifference = (new Date()).getTime() - started.getTime();
+        LOG.info("Merge of the Language Data finished in " + timeDifference + " ms");
         return savedData;
     }
 

@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -95,6 +96,10 @@ public class CompetenceServiceImpl implements CompetenceService {
             if(competence == null) return null;
             final Competence competenceToUpdate = controlService.checkDouble(competence);
             if(competenceToUpdate != null){
+                if(competenceToUpdate.equals(competence)){
+                    LOG.info("Competence already exists in Database " + competence);
+                    return null;
+                }
                 return elasticsearchService.update(competenceToUpdate);
             } else {
                 final UUID id = UUID.randomUUID();
@@ -122,6 +127,11 @@ public class CompetenceServiceImpl implements CompetenceService {
                 .should(externalUrl).should(externalId), limit, offset);
     }
 
+    private void finishingCreateRelationshipLog(final Relationship relationship, final Date started){
+        final Long timeDifference = (new Date()).getTime() - started.getTime();
+        LOG.info("Finishing creating a new Relationship " + relationship + " in " + timeDifference + " ms");
+    }
+
     @Override
     public boolean create(final Relationship relationship){
         if((relationship == null) || ((relationship.getId() == null) && (relationship.getExternalUrl() == null))) return false;
@@ -130,24 +140,34 @@ public class CompetenceServiceImpl implements CompetenceService {
         final Competence source = (sourceId != null) ? elasticsearchService.get(sourceId) :
                 elasticsearchService.getFromExternalURL(sourceExternalUrl);
         if(source == null) return false;
+        final Date started = new Date();
+        LOG.info("Creating a new Relationship " + relationship);
         final Relationship sourceRelationship = controlService.checkDouble(source, relationship);
 
         try{
             if(sourceRelationship != null) {
                 elasticsearchService.update(source);
+                LOG.info("Adding languages to the relationship");
+                finishingCreateRelationshipLog(relationship, started);
                 return true;
             }
 
             if(relationship.getType() == RelationshipType.EXTERNAL) {
                 source.addRelated(relationship);
+                LOG.info("Creating new external relationship");
                 elasticsearchService.update(source);
+                finishingCreateRelationshipLog(relationship, started);
                 return true;
             }
 
             final String externalUrl = relationship.getExternalUrl();
             final Competence relatedCompetence = elasticsearchService.getFromExternalURL(externalUrl);
-            if(relatedCompetence == null) return false;
+            if(relatedCompetence == null){
+                finishingCreateRelationshipLog(relationship, started);
+                return false;
+            }
 
+            LOG.info("Adding new internal relationship");
             final Relationship newRelationship = new Relationship();
 
             relationship.setId(relatedCompetence.getUri());
@@ -172,6 +192,7 @@ public class CompetenceServiceImpl implements CompetenceService {
             elasticsearchService.update(source);
             relatedCompetence.addRelated(newRelationship);
             elasticsearchService.update(relatedCompetence);
+            finishingCreateRelationshipLog(relationship, started);
             return true;
 
         } catch (DatabaseActionException e) {

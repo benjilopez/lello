@@ -2,6 +2,8 @@ package ec.blopez.lello.services.impl;
 
 import ec.blopez.lello.domain.CrawlerSite;
 import ec.blopez.lello.services.CrawlerDBService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,6 +16,8 @@ import java.util.List;
  */
 @Service
 public class CrawlerDBServiceImpl implements CrawlerDBService {
+
+    private final static Logger LOG = LoggerFactory.getLogger(CrawlerDBServiceImpl.class);
 
     @Autowired
     private JdbcTemplate mysqlService;

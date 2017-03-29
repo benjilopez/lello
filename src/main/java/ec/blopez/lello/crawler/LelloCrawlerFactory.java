@@ -1,6 +1,5 @@
 package ec.blopez.lello.crawler;
 
-import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.services.CompetenceService;
 import ec.blopez.lello.services.CrawlerDBService;
 import edu.uci.ics.crawler4j.crawler.CrawlController;

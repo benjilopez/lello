@@ -12,7 +12,7 @@ public interface ControlService {
 
     Competence checkDouble(final Competence competence);
 
-    Relationship checkRelated(final Competence competence);
+    List<Relationship> checkRelated(final Competence competence);
 
     Relationship checkDouble(final Competence competence, final Relationship relationship);
 }

@@ -59,10 +59,4 @@ public class ISCOGroup {
                 '}';
     }
 
-    public ec.blopez.lello.domain.ISCOGroup toDomain(){
-        final ec.blopez.lello.domain.ISCOGroup result = new ec.blopez.lello.domain.ISCOGroup();
-        result.setNotation(notation);
-        result.setUri(uri);
-        return result;
-    }
 }

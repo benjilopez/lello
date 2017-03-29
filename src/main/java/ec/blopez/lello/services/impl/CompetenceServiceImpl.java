@@ -7,7 +7,7 @@ import ec.blopez.lello.domain.CompetenceSearchResult;
 import ec.blopez.lello.domain.Relationship;
 import ec.blopez.lello.enums.RelationshipType;
 import ec.blopez.lello.exceptions.DatabaseActionException;
-import ec.blopez.lello.rest.ResponseKeys;
+import ec.blopez.lello.utils.JSONKeys;
 import ec.blopez.lello.services.CompetenceService;
 import ec.blopez.lello.services.ControlService;
 import ec.blopez.lello.services.ElasticsearchService;
@@ -54,21 +54,6 @@ public class CompetenceServiceImpl implements CompetenceService {
             if(competence != null) result.add(competence);
         }
         return result;
-    }
-
-    private QueryBuilder getTermBuilder(final String term, final Object value){
-        return (value == null) ? null : QueryBuilders.termQuery(term, value.toString());
-    }
-
-    private BoolQueryBuilder getBoolQueryWithFilters(final String type, final String framework, final Boolean top){
-        final QueryBuilder typeBuilder = getTermBuilder(ResponseKeys.TYPE, type);
-        final QueryBuilder topBuilder = getTermBuilder(ResponseKeys.TOP, top);
-        final QueryBuilder frameworkBuilder = getTermBuilder(ResponseKeys.FRAMEWORK, framework);
-        final BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
-        if(typeBuilder != null) boolQuery.must(typeBuilder);
-        if(topBuilder != null) boolQuery.must(topBuilder);
-        if(frameworkBuilder != null) boolQuery.must(frameworkBuilder);
-        return boolQuery;
     }
 
     @Override
@@ -124,19 +109,15 @@ public class CompetenceServiceImpl implements CompetenceService {
         return null;
     }
 
-    private MatchQueryBuilder localeSearch(final String key, final Locale locale, final String query){
-        return QueryBuilders.matchQuery(key + "." + locale.getLanguage(), query);
-    }
-
     @Override
     public CompetenceSearchResult search(final String query, final int limit, final int offset, final Locale locale,
                                          final String type, final String framework, final Boolean top) {
         final BoolQueryBuilder boolQuery = getBoolQueryWithFilters(type, framework, top);
-        final MatchQueryBuilder nameQuery = localeSearch(ResponseKeys.NAME, locale, query);
-        final MatchQueryBuilder otherQuery = localeSearch(ResponseKeys.OTHER_NAME, locale, query);
-        final MatchQueryBuilder definitionQuery = localeSearch(ResponseKeys.DEFINITION, locale, query);
-        final MatchQueryBuilder externalUrl = QueryBuilders.matchQuery(ResponseKeys.EXTERNAL_URL , query);
-        final MatchQueryBuilder externalId = QueryBuilders.matchQuery(ResponseKeys.EXTERNAL_ID , query);
+        final MatchQueryBuilder nameQuery = localeSearch(JSONKeys.NAME, locale, query);
+        final MatchQueryBuilder otherQuery = localeSearch(JSONKeys.OTHER_NAME, locale, query);
+        final MatchQueryBuilder definitionQuery = localeSearch(JSONKeys.DEFINITION, locale, query);
+        final MatchQueryBuilder externalUrl = QueryBuilders.matchQuery(JSONKeys.EXTERNAL_URL , query);
+        final MatchQueryBuilder externalId = QueryBuilders.matchQuery(JSONKeys.EXTERNAL_ID , query);
         return elasticsearchService.search(boolQuery.should(nameQuery).should(otherQuery).should(definitionQuery)
                 .should(externalUrl).should(externalId), limit, offset);
     }
@@ -197,6 +178,24 @@ public class CompetenceServiceImpl implements CompetenceService {
             LOG.error("Error trying to update the update the entry in the database;");
             return false;
         }
+    }
 
+    private QueryBuilder getTermBuilder(final String term, final Object value){
+        return (value == null) ? null : QueryBuilders.termQuery(term, value.toString());
+    }
+
+    private BoolQueryBuilder getBoolQueryWithFilters(final String type, final String framework, final Boolean top){
+        final QueryBuilder typeBuilder = getTermBuilder(JSONKeys.TYPE, type);
+        final QueryBuilder topBuilder = getTermBuilder(JSONKeys.TOP, top);
+        final QueryBuilder frameworkBuilder = getTermBuilder(JSONKeys.FRAMEWORK, framework);
+        final BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+        if(typeBuilder != null) boolQuery.must(typeBuilder);
+        if(topBuilder != null) boolQuery.must(topBuilder);
+        if(frameworkBuilder != null) boolQuery.must(frameworkBuilder);
+        return boolQuery;
+    }
+
+    private MatchQueryBuilder localeSearch(final String key, final Locale locale, final String query){
+        return QueryBuilders.matchQuery(key + "." + locale.getLanguage(), query);
     }
 }

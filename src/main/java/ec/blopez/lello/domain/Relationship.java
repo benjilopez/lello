@@ -3,7 +3,7 @@ package ec.blopez.lello.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ec.blopez.lello.enums.RelationshipType;
-import ec.blopez.lello.rest.ResponseKeys;
+import ec.blopez.lello.utils.JSONKeys;
 
 import java.util.Map;
 
@@ -18,19 +18,19 @@ public class Relationship {
     @JsonIgnore
     private String sourceExternaUrl;
 
-    @JsonProperty(ResponseKeys.CODE)
+    @JsonProperty(JSONKeys.CODE)
     private String code;
 
-    @JsonProperty(ResponseKeys.ID)
+    @JsonProperty(JSONKeys.ID)
     private String id;
 
-    @JsonProperty(ResponseKeys.EXTERNAL_URL)
+    @JsonProperty(JSONKeys.EXTERNAL_URL)
     private String externalUrl;
 
-    @JsonProperty(ResponseKeys.TYPE)
+    @JsonProperty(JSONKeys.TYPE)
     public RelationshipType type;
 
-    @JsonProperty(ResponseKeys.DEFINITION)
+    @JsonProperty(JSONKeys.DEFINITION)
     private Map<String, String> message;
 
     public String getSourceId() {

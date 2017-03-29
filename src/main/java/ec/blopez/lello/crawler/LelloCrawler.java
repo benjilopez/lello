@@ -39,7 +39,7 @@ public class LelloCrawler extends WebCrawler {
     @Override
     public boolean shouldVisit(final Page referringPage, final WebURL url) {
         final String href = url.getURL().toLowerCase();
-        return (referringPage == null) && !FILTERS.matcher(href).matches();
+        return !FILTERS.matcher(href).matches();
     }
 
     @Override

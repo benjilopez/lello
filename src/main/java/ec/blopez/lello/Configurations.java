@@ -16,14 +16,18 @@ public class Configurations {
 
     public static String CRAWLER_PATH;
 
+    public static int CRAWLER_DEPTH;
+
     @Autowired
     public Configurations(@Value("${lello.url.production}") final String urlProd,
                           @Value("${lello.url.development}") final String urlDev,
                           @Value("${lello.path}") final String path,
                           @Value("${lello.environment}") final String environment,
-                          @Value("${lello.crawler.path}") final String crawlerPath){
+                          @Value("${crawler.path}") final String crawlerPath,
+                          @Value("${crawler.depth}")final int crawlerDepth){
         URL = "PRODUCTION".equals(environment)? urlProd : urlDev;
         PATH = path;
         CRAWLER_PATH = crawlerPath;
+        CRAWLER_DEPTH = crawlerDepth;
     }
 }

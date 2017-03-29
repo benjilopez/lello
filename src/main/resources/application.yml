@@ -6,7 +6,6 @@ lello:
     production: http://lello.blopez.ec:9090
     development: http://lello.blopez-local.ec:9090
   path: /api/v1.0/
-  crawler.path: data
 
 logging:
   file: ./lello.log
@@ -29,3 +28,7 @@ elasticsearch:
   type: competence
   cluster:
     name: elasticsearch
+
+crawler:
+  path: data
+  depth: 0

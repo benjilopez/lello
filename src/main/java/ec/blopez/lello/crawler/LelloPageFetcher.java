@@ -1,6 +1,5 @@
 package ec.blopez.lello.crawler;
 
-import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

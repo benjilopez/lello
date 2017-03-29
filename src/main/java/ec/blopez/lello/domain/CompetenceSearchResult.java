@@ -1,7 +1,7 @@
 package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ec.blopez.lello.rest.ResponseKeys;
+import ec.blopez.lello.utils.JSONKeys;
 
 import java.util.List;
 
@@ -10,13 +10,13 @@ import java.util.List;
  */
 public class CompetenceSearchResult {
 
-    @JsonProperty(ResponseKeys.TOTAL)
+    @JsonProperty(JSONKeys.TOTAL)
     private long total;
-    @JsonProperty(ResponseKeys.LIMIT)
+    @JsonProperty(JSONKeys.LIMIT)
     private int limit;
-    @JsonProperty(ResponseKeys.OFFSET)
+    @JsonProperty(JSONKeys.OFFSET)
     private int offset;
-    @JsonProperty(ResponseKeys.COMPETENCES)
+    @JsonProperty(JSONKeys.COMPETENCES)
     private List<Competence> competences;
 
     public List<Competence> getCompetences() {

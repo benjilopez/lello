@@ -24,19 +24,6 @@ public class ControlServiceImpl implements ControlService {
     @Autowired
     private ElasticsearchService elasticsearchService;
 
-    private Map<String, String> mergeLanguages(final Map<String, String> savedDate, final Map<String, String> newData){
-        if(newData != null){
-            if((savedDate == null) || (savedDate.size() == 0)){
-                return newData;
-            } else {
-                for(Map.Entry<String, String> entry : newData.entrySet()){
-                    savedDate.putIfAbsent(entry.getKey(), entry.getValue());
-                }
-            }
-        }
-        return savedDate;
-    }
-
     @Override
     public Competence checkDouble(final Competence competence) {
         if(competence == null) return null;
@@ -50,12 +37,8 @@ public class ControlServiceImpl implements ControlService {
     }
 
     @Override
-    public Relationship checkRelated(final Competence competence) {
+    public List<Relationship> checkRelated(final Competence competence) {
         return null;
-    }
-
-    private boolean existsAndIsEqual(final String source, final String newValue){
-        return (source != null) && (newValue != null) && source.equals(newValue);
     }
 
     @Override
@@ -71,5 +54,22 @@ public class ControlServiceImpl implements ControlService {
             }
         }
         return null;
+    }
+
+    private Map<String, String> mergeLanguages(final Map<String, String> savedData, final Map<String, String> newData){
+        if(newData != null){
+            if((savedData == null) || (savedData.size() == 0)){
+                return newData;
+            } else {
+                for(Map.Entry<String, String> entry : newData.entrySet()){
+                    savedData.putIfAbsent(entry.getKey(), entry.getValue());
+                }
+            }
+        }
+        return savedData;
+    }
+
+    private boolean existsAndIsEqual(final String source, final String newValue){
+        return (source != null) && (newValue != null) && source.equals(newValue);
     }
 }

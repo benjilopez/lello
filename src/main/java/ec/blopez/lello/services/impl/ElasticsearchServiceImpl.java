@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.domain.CompetenceSearchResult;
 import ec.blopez.lello.exceptions.DatabaseActionException;
-import ec.blopez.lello.rest.ResponseKeys;
+import ec.blopez.lello.utils.JSONKeys;
 import ec.blopez.lello.services.ElasticsearchService;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.search.SearchResponse;
@@ -91,8 +91,8 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
                         "    }" +
                         "}";
                 client.admin().indices().prepareCreate(index)
-                        .addMapping(this.type, String.format(mapping, this.type, ResponseKeys.EXTERNAL_URL,
-                                ResponseKeys.TYPE, ResponseKeys.FRAMEWORK, ResponseKeys.EXTERNAL_ID)).get();
+                        .addMapping(this.type, String.format(mapping, this.type, JSONKeys.EXTERNAL_URL,
+                                JSONKeys.TYPE, JSONKeys.FRAMEWORK, JSONKeys.EXTERNAL_ID)).get();
             }
         }
     }

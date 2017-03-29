@@ -4,7 +4,7 @@ import com.google.common.base.CharMatcher;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.domain.CompetenceSearchResult;
 import ec.blopez.lello.services.CompetenceService;
-import ec.blopez.lello.rest.ResponseKeys;
+import ec.blopez.lello.utils.JSONKeys;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,9 +39,9 @@ public class CompetenceController {
     public ResponseEntity<CompetenceSearchResult> get(final HttpServletRequest request){
         final String limitAsString = request.getParameter("limit");
         final String offSetAsString = request.getParameter("offset");
-        final String topAsString = request.getParameter(ResponseKeys.TOP);
-        final String typeAsString = request.getParameter(ResponseKeys.TYPE);
-        final String frameworkAsString = request.getParameter(ResponseKeys.FRAMEWORK);
+        final String topAsString = request.getParameter(JSONKeys.TOP);
+        final String typeAsString = request.getParameter(JSONKeys.TYPE);
+        final String frameworkAsString = request.getParameter(JSONKeys.FRAMEWORK);
         int limit = isOnlyDigits(limitAsString) ? Integer.parseInt(limitAsString) : DEFAULT_LIMIT;
         int offset = isOnlyDigits(offSetAsString) ? Integer.parseInt(offSetAsString) : DEFAULT_OFFSET;
         final Boolean top = (StringUtils.isEmpty(topAsString)) ? null : Boolean.parseBoolean(topAsString);
@@ -74,9 +74,9 @@ public class CompetenceController {
     public ResponseEntity<CompetenceSearchResult> search(@PathVariable final String query, final HttpServletRequest request){
         final String limitAsString = request.getParameter("limit");
         final String offSetAsString = request.getParameter("offset");
-        final String topAsString = request.getParameter(ResponseKeys.TOP);
-        final String typeAsString = request.getParameter(ResponseKeys.TYPE);
-        final String frameworkAsString = request.getParameter(ResponseKeys.FRAMEWORK);
+        final String topAsString = request.getParameter(JSONKeys.TOP);
+        final String typeAsString = request.getParameter(JSONKeys.TYPE);
+        final String frameworkAsString = request.getParameter(JSONKeys.FRAMEWORK);
         final String localeAsString = request.getHeader("Accept-Language");
         final int limit =  isOnlyDigits(limitAsString) ? Integer.parseInt(limitAsString) : DEFAULT_LIMIT;
         final int offset = isOnlyDigits(offSetAsString) ? Integer.parseInt(offSetAsString) : DEFAULT_OFFSET;
@@ -97,7 +97,7 @@ public class CompetenceController {
         if(competence != null){
             return new ResponseEntity<>(competence, getHeaders(), HttpStatus.OK);
         }
-        result.put(ResponseKeys.MESSAGE, "Invalid request");
+        result.put(JSONKeys.MESSAGE, "Invalid request");
         return new ResponseEntity<>(result, getHeaders(), HttpStatus.NOT_FOUND);
     }
 

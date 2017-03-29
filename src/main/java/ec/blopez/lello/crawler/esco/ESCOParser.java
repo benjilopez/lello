@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.stream.XMLStreamReader;
 import java.io.File;
 import java.net.URL;
 import java.util.List;

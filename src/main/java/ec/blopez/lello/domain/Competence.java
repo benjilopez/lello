@@ -1,20 +1,11 @@
 package ec.blopez.lello.domain;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import ec.blopez.lello.Configurations;
-import ec.blopez.lello.crawler.esco.domain.CompetenceType;
 import ec.blopez.lello.crawler.esco.domain.LexicalValue;
-import ec.blopez.lello.rest.ResponseKeys;
-import org.elasticsearch.Build;
-import org.hibernate.hql.internal.ast.tree.ComponentJoin;
-
-import java.io.Serializable;
-import java.text.ParseException;
+import ec.blopez.lello.utils.JSONKeys;
 import java.util.List;
 import java.util.Map;
 
@@ -23,51 +14,52 @@ import java.util.Map;
  */
 public class Competence {
 
-    @JsonProperty(ResponseKeys.ID)
+    @JsonProperty(JSONKeys.ID)
     private String uri;
 
-    @JsonProperty(ResponseKeys.CODE)
+    @JsonProperty(JSONKeys.CODE)
     private String id;
 
-    @JsonProperty(ResponseKeys.NAME)
+    @JsonProperty(JSONKeys.NAME)
     private Map<String, String> preferredTerm;
 
-    @JsonProperty(ResponseKeys.OTHER_NAME)
+    @JsonProperty(JSONKeys.OTHER_NAME)
     private Map<String, String> simpleNonPreferredTerm;
 
-    @JsonProperty(ResponseKeys.DEFINITION)
+    @JsonProperty(JSONKeys.DEFINITION)
     private Map<String, String> definition;
 
-    @JsonProperty(ResponseKeys.FRAMEWORK)
+    @JsonProperty(JSONKeys.FRAMEWORK)
     private String framework;
 
-    @JsonProperty(ResponseKeys.EXTERNAL_URL)
+    @JsonProperty(JSONKeys.EXTERNAL_URL)
     private String externalUri;
 
-    @JsonProperty(ResponseKeys.EXTERNAL_TYPES)
+    @JsonProperty(JSONKeys.EXTERNAL_TYPES)
     private List<String> types;
 
-    @JsonProperty(ResponseKeys.EXTERNAL_ID)
+    @JsonProperty(JSONKeys.EXTERNAL_ID)
     private String identifier;
 
-    @JsonProperty(ResponseKeys.STATUS)
+    @JsonProperty(JSONKeys.STATUS)
     private String status;
 
-    @JsonProperty(ResponseKeys.TOP)
+    @JsonProperty(JSONKeys.TOP)
     private boolean topConcept;
 
-    @JsonProperty(ResponseKeys.RELATED)
+    @JsonProperty(JSONKeys.RELATED)
     private List<Relationship> related;
 
-    @JsonProperty(ResponseKeys.NOTATION)
+    @JsonProperty(JSONKeys.NOTATION)
     private String notation;
 
-    @JsonProperty(ResponseKeys.HAS_AWARDING_BODY)
+    @JsonProperty(JSONKeys.HAS_AWARDING_BODY)
     private List<String> hasAwardingBody;
 
-    @JsonProperty(ResponseKeys.TYPE)
+    @JsonProperty(JSONKeys.TYPE)
     private String type;
 
+    @JsonGetter
     public String getExternalUri() {
         return externalUri;
     }
@@ -182,6 +174,7 @@ public class Competence {
         if(simpleNonPreferredTerms == null) return;
         for(Map.Entry<String, String> entry : simpleNonPreferredTerms.entrySet()) this.simpleNonPreferredTerm.computeIfAbsent(entry.getKey(), k -> entry.getValue());
     }
+
 
     public String getNotation() {
         return notation;

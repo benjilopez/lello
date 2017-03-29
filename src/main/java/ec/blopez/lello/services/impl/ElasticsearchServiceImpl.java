@@ -68,6 +68,7 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
                         .setTypes(type).setSize(1).setFrom(0).execute().get();
             } catch(Exception e){
                 //Type isn't declared. Declaring type and not analyzing the externalUri to index
+                LOG.info("Elasticsearch Index and Type not defined. Adding Elasticsearch mapping.");
                 final String mapping = "{" +
                         "    \"%s\":{" +
                         "        \"properties\": {" +

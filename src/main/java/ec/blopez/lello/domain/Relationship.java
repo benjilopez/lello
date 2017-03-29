@@ -88,4 +88,46 @@ public class Relationship {
     public void setType(RelationshipType type) {
         this.type = type;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Relationship that = (Relationship) o;
+
+        if (sourceId != null ? !sourceId.equals(that.sourceId) : that.sourceId != null) return false;
+        if (sourceExternaUrl != null ? !sourceExternaUrl.equals(that.sourceExternaUrl) : that.sourceExternaUrl != null)
+            return false;
+        if (code != null ? !code.equals(that.code) : that.code != null) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (externalUrl != null ? !externalUrl.equals(that.externalUrl) : that.externalUrl != null) return false;
+        if (type != that.type) return false;
+        return message != null ? message.equals(that.message) : that.message == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = sourceId != null ? sourceId.hashCode() : 0;
+        result = 31 * result + (sourceExternaUrl != null ? sourceExternaUrl.hashCode() : 0);
+        result = 31 * result + (code != null ? code.hashCode() : 0);
+        result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (externalUrl != null ? externalUrl.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (message != null ? message.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Relationship{" +
+                "sourceId='" + sourceId + '\'' +
+                ", sourceExternaUrl='" + sourceExternaUrl + '\'' +
+                ", code='" + code + '\'' +
+                ", id='" + id + '\'' +
+                ", externalUrl='" + externalUrl + '\'' +
+                ", type=" + type +
+                ", message=" + message +
+                '}';
+    }
 }

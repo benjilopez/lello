@@ -2,7 +2,6 @@ package ec.blopez.lello.crawler;
 
 import com.google.common.collect.Lists;
 import ec.blopez.lello.crawler.esco.ESCOParser;
-import ec.blopez.lello.crawler.esco.domain.ESCOXmlRootElement;
 import ec.blopez.lello.domain.Competence;
 import ec.blopez.lello.domain.ParserResult;
 import ec.blopez.lello.domain.Relationship;

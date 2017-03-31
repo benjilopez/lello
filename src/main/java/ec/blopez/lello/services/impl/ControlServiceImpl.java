@@ -30,7 +30,7 @@ public class ControlServiceImpl implements ControlService {
         if(competence == null) return null;
         Competence savedCompetence = null;
         final Date started = new Date();
-        LOG.info("Checking for double entry in the Database: " + competence);
+        LOG.info("Checking for double entry in the Database.");
         if(competence.getExternalUri() != null) savedCompetence = elasticsearchService.getFromExternalURL(competence.getExternalUri());
         if(savedCompetence != null) {
             savedCompetence.setPreferredTerm(mergeLanguages(savedCompetence.getPreferredTerm(), competence.getPreferredTerm()));
@@ -38,7 +38,7 @@ public class ControlServiceImpl implements ControlService {
             savedCompetence.setDefinition(mergeLanguages(savedCompetence.getDefinition(), competence.getDefinition()));
         }
         final Long timeDifference = (new Date()).getTime() - started.getTime();
-        LOG.info("Finished checking for double entry in the Database: " + competence + " in " + timeDifference + " ms");
+        LOG.info("Finished checking for double entry in the Database in " + timeDifference + " ms");
         return savedCompetence;
     }
 
@@ -59,12 +59,12 @@ public class ControlServiceImpl implements ControlService {
                     existsAndIsEqual(savedRelationship.getExternalUrl(), relationship.getExternalUrl())){
                 savedRelationship.setMessage(mergeLanguages(savedRelationship.getMessage(), relationship.getMessage()));
                 final Long timeDifference = (new Date()).getTime() - started.getTime();
-                LOG.info("Finished checking for double relationship in the Database: " + competence + ", " + relationship + " in " + timeDifference + " ms");
+                LOG.info("Finished checking for double relationship in the Database in " + timeDifference + " ms");
                 return savedRelationship;
             }
         }
         final Long timeDifference = (new Date()).getTime() - started.getTime();
-        LOG.info("Finished checking for double relationship in the Database without results: " + competence + ", " + relationship + " in " + timeDifference + " ms");
+        LOG.info("Finished checking for double relationship in the Database without results in " + timeDifference + " ms");
         return null;
     }
 

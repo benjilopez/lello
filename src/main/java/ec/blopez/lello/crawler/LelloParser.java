@@ -1,12 +1,8 @@
 package ec.blopez.lello.crawler;
 
-import ec.blopez.lello.crawler.esco.ESCOParser;
-import ec.blopez.lello.crawler.esco.domain.ESCOXmlRootElement;
 import ec.blopez.lello.domain.ParserResult;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
